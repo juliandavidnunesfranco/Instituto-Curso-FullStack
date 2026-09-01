@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "DBMS",
+  "permalink": "/DBMS/",
+  "eleventyNavigation": {
+    "key": "DBMS",
+    "order": 1
+  }
+}

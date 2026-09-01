@@ -1,0 +1,8 @@
+{
+  "lessonTitle": "JavaScript V",
+  "permalink": "/JavaScript_V/",
+  "eleventyNavigation": {
+    "key": "JS V",
+    "order": 10
+  }
+}

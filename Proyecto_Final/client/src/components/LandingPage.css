@@ -1,0 +1,37 @@
+body {
+  background-image: url("../assets/mario_landingPage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.landingfont {
+  width: 400px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: -100px;
+  text-align: center;
+  color: white;
+}
+
+.buttonLanding {
+  width: 160px;
+  height: 40px;
+  position: relative;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: yellow;
+  color: black;
+  text-decoration: none;
+}
+
+.buttonLanding:hover {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+}

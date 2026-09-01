@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "React-Intro",
+  "permalink": "/React-Intro/",
+  "eleventyNavigation": {
+    "key": "React",
+    "order": 6
+  }
+}

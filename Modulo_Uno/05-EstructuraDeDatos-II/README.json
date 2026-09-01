@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Estructura de datos II",
+  "permalink": "/Estructura_de_datos_II/",
+  "eleventyNavigation": {
+    "key": "Datos II",
+    "order": 5
+  }
+}

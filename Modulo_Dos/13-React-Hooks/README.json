@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "React-Hooks",
+  "permalink": "/React-Hooks/",
+  "eleventyNavigation": {
+    "key": "Hooks",
+    "order": 13
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "ES6",
+  "permalink": "/ES6/",
+  "eleventyNavigation": {
+    "key": "ES6",
+    "order": 3
+  }
+}

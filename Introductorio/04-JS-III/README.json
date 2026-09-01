@@ -1,0 +1,8 @@
+{
+  "lessonTitle": "JavaScript III",
+  "permalink": "/JavaScript_III/",
+  "eleventyNavigation": {
+    "key": "JS III",
+    "order": 8
+  }
+}

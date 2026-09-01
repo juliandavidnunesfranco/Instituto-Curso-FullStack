@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Bundlers",
+  "permalink": "/Bundlers/",
+  "eleventyNavigation": {
+    "key": "Bundlers",
+    "order": 5
+  }
+}

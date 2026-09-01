@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Ajax",
+  "permalink": "/Ajax/",
+  "eleventyNavigation": {
+    "key": "Ajax",
+    "order": 4
+  }
+}

@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+}
+.button {
+  position: relative;
+  margin-top: 30px;
+  margin-left: 20px;
+  height: 40px;
+  width: 160px;
+  border-radius: 10px;
+  background-color: yellow;
+  color: black;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+}
+.button-genre {
+  position: absolute;
+  margin-top: 100px;
+  margin-left: -161px;
+  height: 40px;
+  width: 160px;
+  border-radius: 10px;
+  background-color: yellow;
+  color: black;
+  text-decoration: none;
+}
+.button-genre:hover {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+}
+.button-createv {
+  position: absolute;
+  margin-top: 40px;
+  margin-left: 20px;
+  height: 40px;
+  width: 160px;
+  border-radius: 10px;
+  background-color: yellow;
+  color: black;
+  text-decoration: none;
+}
+.button-createv:hover {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+}
+.cuadroUno {
+  height: 40px;
+  width: 160px;
+  flex-direction: column;
+  margin-top: -60px;
+  margin-left: 200px;
+  color: white;
+}
+.cuadroDos {
+  height: 40px;
+  width: 160px;
+  flex-direction: column;
+  margin-top: -60px;
+  margin-left: 380px;
+  color: white;
+}
+.cuadroTres {
+  height: 40px;
+  width: 160px;
+  flex-direction: column;
+  margin-top: -60px;
+  margin-left: 560px;
+  color: white;
+}
+.cuadroCuatro {
+  height: 40px;
+  width: 160px;
+  flex-direction: column;
+  margin-top: -60px;
+  margin-left: 740px;
+  color: white;
+}
+
+.Card {
+  margin-top: 100px;
+  width: 300px;
+  float: left;
+  height: 500px;
+  margin-bottom: 30px;
+  border-radius: 30px;
+}
+
+.img {
+  margin-top: 13px;
+  border-radius: 20px;
+}
+
+/* .Card{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+
+
+} */

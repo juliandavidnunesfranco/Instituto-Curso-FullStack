@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Authentication",
+  "permalink": "/Authentication/",
+  "eleventyNavigation": {
+    "key": "Authentication",
+    "order": 4
+  }
+}

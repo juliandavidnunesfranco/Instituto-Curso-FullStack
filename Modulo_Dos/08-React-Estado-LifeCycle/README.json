@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "React-LifeCycle",
+  "permalink": "/React-Estado-LifeCycle/",
+  "eleventyNavigation": {
+    "key": "React-LifeCycle",
+    "order": 8
+  }
+}

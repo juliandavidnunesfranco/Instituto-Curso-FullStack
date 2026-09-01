@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Sequelize",
+  "permalink": "/Sequelize/",
+  "eleventyNavigation": {
+    "key": "Sequelize",
+    "order": 4
+  }
+}

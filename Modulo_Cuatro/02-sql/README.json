@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "SQL",
+  "permalink": "/SQL/",
+  "eleventyNavigation": {
+    "key": "SQL",
+    "order": 2
+  }
+}

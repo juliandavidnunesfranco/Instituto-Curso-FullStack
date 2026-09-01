@@ -1,0 +1,22 @@
+.search{  
+    display: flex;
+    margin-top: 30px;
+    margin-left: 980px;
+    width: 50px;
+    height: 25px;
+    gap: 0.3vw;
+}
+.btn{
+    height: 40px;
+    width: 160px;
+    margin-top: -9px;
+    border-radius: 10px;
+    background-color: yellow;
+    color: black;
+    text-decoration: none;
+}
+.btn:hover{
+    background-color: black;
+    color: white;
+    text-decoration: none;
+}

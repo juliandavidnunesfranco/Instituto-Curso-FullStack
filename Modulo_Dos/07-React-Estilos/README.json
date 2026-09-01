@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "React-Estilos",
+  "permalink": "/React-Estilos/",
+  "eleventyNavigation": {
+    "key": "React-Estilos",
+    "order": 7
+  }
+}

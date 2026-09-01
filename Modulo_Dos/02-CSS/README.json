@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "CSS",
+  "permalink": "/CSS/",
+  "eleventyNavigation": {
+    "key": "CSS",
+    "order": 2
+  }
+}

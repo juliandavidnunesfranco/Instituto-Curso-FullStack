@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "React-Redux",
+  "permalink": "/React-Redux/",
+  "eleventyNavigation": {
+    "key": "React-Redux",
+    "order": 12
+  }
+}

@@ -1,0 +1,237 @@
+
+
+/**Ejemplo del Profe */  
+ /* Tree.prototype.add = function(valor){
+    let arbolUno = new Tree(valor);
+​
+    if(this.left == null){
+        this.left = arbolUno;
+    } else if(this.right == null){
+        this.right = arbolUno;
+    } else {
+        this.left.add(valor);
+    }
+    return "árbol creado con éxito"
+}*/
+
+/*var node = {
+  value: value,
+  left : null,
+  right: null
+};*/
+
+function BinarySearchTree(value) {
+  this.value = value,
+  this.left = null,
+  this.right = null
+};
+
+BinarySearchTree.prototype.size = function(){ 
+  // Nodo Hoja
+  if(!this.left && !this.rigth ) return 1;
+
+   if(!this.left) return 1 + this.right.size();         // con un solo nodo ya sea el izq o el derecho pero solo uno
+   if(!this.right) return 1 + this.left.size();
+                                                       // con los dos nodos
+    return 1 + this.left.size() + this.right.size();
+};
+
+BinarySearchTree.prototype.insert = function(value){  
+  if (value > this.value){  // Deberia ir a la derecha
+      if(!this.rigth){      // la posicion derecha esta libre
+          this.right = new BinarySearchTree(value);
+      }else {               // la posicion derecha esta ocupada
+         this.right.insert(value);    // O sea como value > this.value va a la derecha si o si pero como ya esta ocupada se crea una nueva
+      }
+  }else{                   // deberia ir a la izquierda
+    if(!this.left){
+      this.left = new BinarySearchTree(value);   // se crea un nuevo nodo en caso que este vacia la posicion izquierda
+    } else {            // en caso que ya este ocupado el nodo izquierdo se crea uno nuevo abajo 
+      this.left.insert(value);
+    }
+  }
+};
+
+
+BinarySearchTree.prototype.contains = function(value){  
+
+  if(this.value === value) return true;
+
+  if(value > this.value) {
+    if(!this.right){
+      return false;
+    } else {
+      return this.rigth.contains(value);
+    }
+  } else {
+    if(!this.left){
+      return false;
+    } else {
+      return this.left.contains(value);
+    }
+  }
+};
+
+BinarySearchTree.prototype.depthFirstForEach = function(){  
+};
+
+BinarySearchTree.prototype.breadthFirstForEach = function(){  
+};
+
+
+
+
+/*
+BinarySearchTree.prototype = {
+  constructor: BinarySearchTree,
+
+  insert: function (node, current) {
+    if (node.value < current.value) {
+     if (current.left === null) {
+       current.left = node;
+      } else {
+       this.insert(node, current.left);
+      }
+    } else if ( node.value > current.value ){
+      if (current.right === null) {
+        current.right = node;
+      } else {
+        this.insert(node, current.right);
+      }
+    }
+  },
+
+  add: function (value) {
+    var node = {
+      value: value,
+      left: null,
+      right: null
+    }
+    if (this._root === null) {
+      this._root = node;
+    } else {
+      this.insert(node, this._root);
+    }
+  },
+
+  //Remove
+
+ findValues:  function(value, current, parent) {
+  if (current === null) {
+    return null;
+    }
+    if (value < current.value) {       // Para buscar por la izquierda
+      return this.findValues(value, current.left, current);
+    } else if (value > current.value) {   //Para buscar por la derecha
+        return this.findValues(value, current.right, current);
+      } else {
+          return {
+              current, 
+              parent 
+            }
+          }
+  },
+ 
+   remove:  function(value) {
+      var replacement = null,
+      var replacementParent = null;
+      var v = this.findValues(value, this._root, null);
+ 
+  
+  
+    if (v !== null) {
+      var childCount = (v.current.left !== null ? 1 : 0) + (v.current.right !== null ? 1 : 0);
+         if (v.current === this._root) {
+        } else {
+              if (v.current === this._root) {
+          switch (childCount) {
+              case 0:
+                this._root = null;
+                break;
+  
+                case 1:
+                this._root = (v.current.right === null ? v.current.left : v.current.right)
+                break;
+  
+                case 2:
+                replacement = this._root.left;
+   
+  
+              while(replacement.right !== null) {
+                  replacementParent = replacement;
+                  replacement = replacement.right;
+  
+              } 
+ 
+              if (replacementParent !== null) {
+                  replacementParent.right = replacement.left;
+ 
+                replacement.right = this._root.right;
+                replacement.left = this._root.left;
+  
+              } else {
+                  replacement.right = this._root.right;
+                }
+  
+  
+  
+              this._root = replacement;
+  
+  
+  
+          }
+  
+        }
+  
+
+      }
+  
+    }
+  
+  },
+  
+  contains: function (value) {
+
+    return this.findValue(value, this._root);
+  
+  },
+
+  traverse: function(process) {
+    function inOrder(node) {
+      if (node) {
+        if (node.left !== null) {
+          inOrder(node.left);
+        }
+        process.call(this, node);
+        if (node.right !== null) {
+          inOrder(node.right);
+        }
+      }
+    }
+    inOrder(this._root);
+  },
+
+  size: function () {
+    var length = 0; 
+    this.traverse(function(node) {
+        length++;
+      });
+      return length;
+  },
+
+  toArray: function () {       //Regresa un array con los valores de cada nodo de menor a mayor.
+    var result = []; 
+    this.traverse(function(node) {
+        result.push(node.value);
+      });
+      return result;
+  },
+  
+  toString: function() {
+    return this.toArray().toString(); 
+  },
+
+
+
+}
+**/

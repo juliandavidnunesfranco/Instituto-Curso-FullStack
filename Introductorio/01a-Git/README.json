@@ -1,0 +1,8 @@
+{
+  "lessonTitle": "Git",
+  "permalink": "/Git/",
+  "eleventyNavigation": {
+    "key": "Git",
+    "order": 3
+  }
+}

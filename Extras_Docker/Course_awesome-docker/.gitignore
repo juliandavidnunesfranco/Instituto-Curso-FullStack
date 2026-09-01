@@ -1,0 +1,18 @@
+logs
+*.log
+npm-debug.log*
+build
+node_modules
+.cache
+dist
+website/index.html
+website/table.html
+
+.idea
+**/.DS_Store
+.worktrees
+
+# Go
+/awesome-docker
+/.claude/*
+!/.claude/skills/

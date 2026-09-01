@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "title": "Testing",
+  "permalink": "/Testing/",
+  "eleventyNavigation": {
+    "key": "Testing",
+    "order": 6
+  }
+}

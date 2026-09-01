@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Algoritmos II",
+  "permalink": "/Algoritmos_II/",
+  "eleventyNavigation": {
+    "key": "Algoritmos II",
+    "order": 8
+  }
+}

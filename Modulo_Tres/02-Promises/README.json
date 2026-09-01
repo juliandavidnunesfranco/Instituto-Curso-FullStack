@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Promises",
+  "permalink": "/Promises/",
+  "eleventyNavigation": {
+    "key": "Promises",
+    "order": 2
+  }
+}

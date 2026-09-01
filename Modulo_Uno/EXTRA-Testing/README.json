@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Software Testing",
+  "permalink": "/Software_Testing/",
+  "eleventyNavigation": {
+    "key": "Testing",
+    "order": 9
+  }
+}

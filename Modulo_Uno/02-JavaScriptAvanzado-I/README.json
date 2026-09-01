@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "JavaScript Avanzado I",
+  "permalink": "/JS_Avanzado_I/",
+  "eleventyNavigation": {
+    "key": "JS Avanzado I",
+    "order": 2
+  }
+}

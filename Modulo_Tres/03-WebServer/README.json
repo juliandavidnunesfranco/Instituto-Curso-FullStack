@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": " Web Server",
+  "permalink": "/WebServer/",
+  "eleventyNavigation": {
+    "key": "Web Server",
+    "order": 3
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Advanced Promises",
+  "permalink": "/AdvancedPromises/",
+  "eleventyNavigation": {
+    "key": "Advanced Promises",
+    "order": 4
+  }
+}

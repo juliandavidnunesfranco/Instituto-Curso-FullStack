@@ -32,7 +32,8 @@ entrega de proyectos que no sean homework con tests.
 | Persistencia | Google Sheets | 20–40 alumnos; el docente puede mirar la planilla directamente |
 | Gating | 100% de tests para abrir la siguiente unidad | Decisión del docente |
 | Nota | `pasados / total × 100` | Directa y explicable al alumno |
-| Despliegue | Vercel | Es de los creadores de Next.js; sin disco persistente, que Sheets no necesita |
+| Despliegue | Vercel, con Root Directory = `plataforma` | Es de los creadores de Next.js; sin disco persistente, que Sheets no necesita |
+| Ubicación | `plataforma/` dentro de este mismo repositorio | Las lecciones se editan una sola vez; sin duplicar ni sincronizar |
 | Framework | Next.js 16.3.4 | Ver `docs/restricciones.md` §5 |
 | Librería de auth | `next-auth@5.0.0-beta.32` | Nativa de App Router; declara `next: ^16.0.0`. Ver §10 |
 
@@ -126,6 +127,29 @@ navegador. Se autentica con el `id` del cuerpo.
 | `auth.ts` | Configuración de Auth.js y restricción de dominio | `next-auth` |
 
 Ninguna página lee Sheets ni el disco directamente.
+
+### Leer archivos fuera de `plataforma/`
+
+Las lecciones y los homework viven un nivel arriba, fuera del Root Directory
+que Vercel construye. Por defecto la función serverless no los incluiría: el
+ZIP se generaría bien en local y fallaría en producción con `ENOENT`.
+
+Se resuelve declarando el rastreo en `next.config.ts`:
+
+```ts
+import path from 'node:path'
+
+export default {
+  outputFileTracingRoot: path.join(__dirname, '..'),
+  outputFileTracingIncludes: {
+    '/api/homework/[slug]': ['../Introductorio/**/homework/**'],
+    '/unidad/[slug]': ['../Introductorio/**/README.*'],
+  },
+}
+```
+
+Verificar esto **en un despliegue de preview**, no solo en local: es
+precisamente el fallo que no aparece en desarrollo.
 
 ---
 

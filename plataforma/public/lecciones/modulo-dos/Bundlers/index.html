@@ -1097,46 +1097,46 @@ div.footerContained p {
           <ul class="nav">
       
       <li class="link">
-        <a href="/" class="nav-link" role="menuitem">Intro</a>
+        <a href="/lecciones/modulo-dos/" class="nav-link" role="menuitem">Intro</a>
       </li>
 <li class="link">
-        <a href="/DOM/" class="nav-link" role="menuitem">DOM</a>
+        <a href="/lecciones/modulo-dos/DOM/" class="nav-link" role="menuitem">DOM</a>
       </li>
 <li class="link">
-        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+        <a href="/lecciones/modulo-dos/CSS/" class="nav-link" role="menuitem">CSS</a>
       </li>
 <li class="link">
-        <a href="/ES6/" class="nav-link" role="menuitem">ES6</a>
+        <a href="/lecciones/modulo-dos/ES6/" class="nav-link" role="menuitem">ES6</a>
       </li>
 <li class="link">
-        <a href="/Ajax/" class="nav-link" role="menuitem">Ajax</a>
+        <a href="/lecciones/modulo-dos/Ajax/" class="nav-link" role="menuitem">Ajax</a>
       </li>
 <li class="link">
         <span class="nav-link activeLink" tabindex="-1" aria-current="true">Bundlers</span>
       </li>
 <li class="link">
-        <a href="/React-Intro/" class="nav-link" role="menuitem">React</a>
+        <a href="/lecciones/modulo-dos/React-Intro/" class="nav-link" role="menuitem">React</a>
       </li>
 <li class="link">
-        <a href="/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
+        <a href="/lecciones/modulo-dos/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
       </li>
 <li class="link">
-        <a href="/React-Estado-LifeCycle/" class="nav-link" role="menuitem">React-LifeCycle</a>
+        <a href="/lecciones/modulo-dos/React-Estado-LifeCycle/" class="nav-link" role="menuitem">React-LifeCycle</a>
       </li>
 <li class="link">
-        <a href="/React-Routing/" class="nav-link" role="menuitem">React-Routing</a>
+        <a href="/lecciones/modulo-dos/React-Routing/" class="nav-link" role="menuitem">React-Routing</a>
       </li>
 <li class="link">
-        <a href="/React-Forms/" class="nav-link" role="menuitem">Forms</a>
+        <a href="/lecciones/modulo-dos/React-Forms/" class="nav-link" role="menuitem">Forms</a>
       </li>
 <li class="link">
-        <a href="/Redux/" class="nav-link" role="menuitem">Redux</a>
+        <a href="/lecciones/modulo-dos/Redux/" class="nav-link" role="menuitem">Redux</a>
       </li>
 <li class="link">
-        <a href="/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
+        <a href="/lecciones/modulo-dos/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
       </li>
 <li class="link">
-        <a href="/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
+        <a href="/lecciones/modulo-dos/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
       </li>
     </ul>
         </div>
@@ -1226,11 +1226,11 @@ En informática, se utiliza para nombrar a la conexión funcional entre dos sist
 <h2 id="que-son-los-bundlers%3F" tabindex="-1">Que son los Bundlers? <a class="anchor-link" href="#que-son-los-bundlers%3F"></a></h2>
 <p>Bien, ahora que sabemos algo sobre módulos, veamos cómo estos revolucionaron la forma de escribir código para el front-end con la introducción de los bundlers.</p>
 <p>Como sabemos, la forma de importar librerías (que a su vez son módulos) en HTML es la siguiente:</p>
-<p><img src="/_src/assets/05-Bundlers/scripts.jpeg" alt="scripts"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/05-Bundlers/scripts.jpeg" alt="scripts"></p>
 <p>Si pensamos en detalle que sucede cuando importamos cada uno de esos scripts, veremos que básicamente todos terminan cayendo al mismo contexto, el global. Para salvar esto, las librerías básicamente elegían arbitrariamente un nombre de variable donde exponer su funcionalidad. Por ejemplo, <code>jQuery</code> utilizaba el signo <code>$</code>. Ahora bien, si otra librería decidía utilizar el mismo nombre de variable para su interfaz, tendríamos un conflicto, y ambas librerías no podrían ser usadas en el mismo HTML.</p>
 <p>Al principio, sólo se importaba una cantidad pequeñas de librerías para el front, por lo tanto esto no era un problema tan grande. pero a medida que la complejidad del front fue aumentando, y la cantidad de librerías tambien, se tuvo que pensar una nueva forma para resolver esto.</p>
 <p>Acá aparecieron los <strong>Module Bundlers</strong>. Como por ejemplo: <code>Browserify</code>, <code>Webpack</code>, <code>Rollup</code>, etc… Básicamente lo que hacen es ejecutar un proceso que lee todas las dependencias de nuestro proyecto, y luego genera un archivo JS que contiene todos los módulos necesarios que podemos incluir en nuestro HTML.</p>
-<p><img src="/_src/assets/05-Bundlers/graph.png" alt="Dependecy Graph"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/05-Bundlers/graph.png" alt="Dependecy Graph"></p>
 <p>Hay dos cosas etapas en tarea de un Bundler:</p>
 <ul>
 <li>Resolución de dependecias</li>

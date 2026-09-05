@@ -1097,46 +1097,46 @@ div.footerContained p {
           <ul class="nav">
       
       <li class="link">
-        <a href="/" class="nav-link" role="menuitem">Intro</a>
+        <a href="/lecciones/modulo-dos/" class="nav-link" role="menuitem">Intro</a>
       </li>
 <li class="link">
-        <a href="/DOM/" class="nav-link" role="menuitem">DOM</a>
+        <a href="/lecciones/modulo-dos/DOM/" class="nav-link" role="menuitem">DOM</a>
       </li>
 <li class="link">
-        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+        <a href="/lecciones/modulo-dos/CSS/" class="nav-link" role="menuitem">CSS</a>
       </li>
 <li class="link">
-        <a href="/ES6/" class="nav-link" role="menuitem">ES6</a>
+        <a href="/lecciones/modulo-dos/ES6/" class="nav-link" role="menuitem">ES6</a>
       </li>
 <li class="link">
-        <a href="/Ajax/" class="nav-link" role="menuitem">Ajax</a>
+        <a href="/lecciones/modulo-dos/Ajax/" class="nav-link" role="menuitem">Ajax</a>
       </li>
 <li class="link">
-        <a href="/Bundlers/" class="nav-link" role="menuitem">Bundlers</a>
+        <a href="/lecciones/modulo-dos/Bundlers/" class="nav-link" role="menuitem">Bundlers</a>
       </li>
 <li class="link">
-        <a href="/React-Intro/" class="nav-link" role="menuitem">React</a>
+        <a href="/lecciones/modulo-dos/React-Intro/" class="nav-link" role="menuitem">React</a>
       </li>
 <li class="link">
-        <a href="/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
+        <a href="/lecciones/modulo-dos/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
       </li>
 <li class="link">
-        <a href="/React-Estado-LifeCycle/" class="nav-link" role="menuitem">React-LifeCycle</a>
+        <a href="/lecciones/modulo-dos/React-Estado-LifeCycle/" class="nav-link" role="menuitem">React-LifeCycle</a>
       </li>
 <li class="link">
         <span class="nav-link activeLink" tabindex="-1" aria-current="true">React-Routing</span>
       </li>
 <li class="link">
-        <a href="/React-Forms/" class="nav-link" role="menuitem">Forms</a>
+        <a href="/lecciones/modulo-dos/React-Forms/" class="nav-link" role="menuitem">Forms</a>
       </li>
 <li class="link">
-        <a href="/Redux/" class="nav-link" role="menuitem">Redux</a>
+        <a href="/lecciones/modulo-dos/Redux/" class="nav-link" role="menuitem">Redux</a>
       </li>
 <li class="link">
-        <a href="/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
+        <a href="/lecciones/modulo-dos/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
       </li>
 <li class="link">
-        <a href="/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
+        <a href="/lecciones/modulo-dos/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
       </li>
     </ul>
         </div>
@@ -1187,7 +1187,7 @@ Dentro de <code>BrowserRouter</code>, vamos a agregar nuestras rutas. En este ca
 <li><em>component</em>: Es el componente que se va a cargar cuando ingresemos a la ruta definida en el <em>path</em>.</li>
 <li><em>exact</em>: Agregamos esta keyword para que matchee exactamente con el path que le pasamos. Este parametro entra en juego cuando tenemos path anidados.</li>
 </ul>
-<p><img src="/_src/assets/09-React-Routing/ejemploRutas.gif" alt="ReactRouter"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/09-React-Routing/ejemploRutas.gif" alt="ReactRouter"></p>
 <p>Ahora, si probamos este ejemplo (siguiendo los pasos mencionados anteriormente sobre como usar <em>webpack</em>), vamos a ver en el browser que se carga el Componente que declaramos en la ruta <code>/</code>, y si escribimos <code>/lista</code> en la URL, vemos que automáticamente se carga el componente declarado en la ruta <code>/lista</code>.</p>
 <blockquote>
 <p>Si son observadores se habrán dado cuenta del <strong>#</strong> en la barra de direcciones después del <code>index.html</code>, esto se debe a que estamos usando el middleware <code>hashHistory</code> para mapear URLs, más adelante vamos a ver otras formas.</p>
@@ -1209,7 +1209,7 @@ Dentro de <code>BrowserRouter</code>, vamos a agregar nuestras rutas. En este ca
 <p>Por ahora no estamos realizando las mejores prácticas en términos de reutilizar Componentes, por lo tanto vamos a escribir la propiedad en todos los Links.</p>
 </blockquote>
 <p>Veamos el resultado:</p>
-<p><img src="/_src/assets/09-React-Routing/reactLinkExample.gif" alt="ReactLink"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/09-React-Routing/reactLinkExample.gif" alt="ReactLink"></p>
 <p>Con esto vamos a poder navegar entre páginas de nuestra SPA, y además ya tenemos resuelto el tema de mantener los estilos de los Links de páginas activas!</p>
 <h2 id="reutilizando-componentes-con-react-router-dom" tabindex="-1">Reutilizando Componentes con React-Router-Dom <a class="anchor-link" href="#reutilizando-componentes-con-react-router-dom"></a></h2>
 <p>Recién vimos en el ejemplo que usamos la misma barra de navegación en varios Componentes. Pero en este caso no <em>reutilizamos</em> código ya que tuvimos que escribir el código de los <code>Links</code> en cada Componente.</p>
@@ -1223,14 +1223,14 @@ Para entender esto, mejor empezemos viendo cómo serán las rutas de <code>react
 Afuera de nuestro <code>Switch</code> pondremos nuestro componente <NavBar />, que no tendra ningun path para nuestra url, y renderizara siempra. Este sera nuestro componente que nos permitira movernos a las rutas que tengamos en nuestro <code>Switch</code>.</p>
 <p>Como vemos, importamos los Componentes como siempre y en el método render retornamos un <code>div</code> ( JSX sólo nos deja retornar un único elemento que envuelta todo), que tiene adentro a nuestro <code>Nav</code> y además usamos la referencia <code>this.props.children</code> para retornar el Componente que nos haya pasado <code>react-router-dom</code> según la ruta donde haya navegado el usuario.</p>
 <p>En la siguiente imagen, digramamos que sería cada Componente:</p>
-<p><img src="/_src/assets/09-React-Routing/EjemploNavBar.png" alt="EjemploNavBar"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/09-React-Routing/EjemploNavBar.png" alt="EjemploNavBar"></p>
 <p>El componente violeta llamado <em>Componentes</em> va a ser el que se renderizé a través nuestras rutas.</p>
 <p>Veamos nuestro código en funcionamiento:</p>
-<p><img src="/_src/assets/09-React-Routing/exampleNavBar.gif" alt="NavBar"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/09-React-Routing/exampleNavBar.gif" alt="NavBar"></p>
 <p>Bien, vemos que renderiza bien la barra de navegación en todas las páginas, pero está pasando algo raro ya que el <code>NavLink</code> al home ( ‘/’ ) está siempre como activo. Esto se debe a que la ruta de ese link matchea siempre con la ruta de la ruta <em>raíz</em>. Para resolver este problema debemos agregar lo siguiente:</p>
 <pre class="language-javascript"><code class="hljs language-javascript">  <span class="token operator">&lt;</span>div<span class="token operator">></span><br>    <span class="token operator">&lt;</span>h2<span class="token operator">></span>Barra de Navegación<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span><br>    <span class="token operator">&lt;</span>NavLink exact to<span class="token operator">=</span><span class="token string">"/"</span> activeClassName<span class="token operator">=</span><span class="token string">"active"</span> <span class="token operator">></span>Home<span class="token operator">&lt;</span><span class="token operator">/</span>NavLink<span class="token operator">></span><br>    <span class="token operator">&lt;</span>NavLink to<span class="token operator">=</span><span class="token string">"/about"</span> activeClassName<span class="token operator">=</span><span class="token string">"active"</span> <span class="token operator">></span>Componente2<span class="token operator">&lt;</span><span class="token operator">/</span>NavLink<span class="token operator">></span><br>    <span class="token operator">&lt;</span>NavLink to<span class="token operator">=</span><span class="token string">"/ejemplo"</span> activeClassName<span class="token operator">=</span><span class="token string">"active"</span><span class="token operator">></span>Componente3<span class="token operator">&lt;</span><span class="token operator">/</span>NavLink<span class="token operator">></span><br>  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span></code></pre>
 <p>El parametro <code>exact</code> cuando lo pasamos nuestra <code>activeClassName</code> solo se aplicará si la ubicación coincida exactamente.</p>
-<p><img src="/_src/assets/09-React-Routing/reactNavBarOk.gif" alt="NavBarOK"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/09-React-Routing/reactNavBarOk.gif" alt="NavBarOK"></p>
 <h2 id="homework" tabindex="-1">Homework <a class="anchor-link" href="#homework"></a></h2>
 <p>Completa la tarea descrita en el archivo <a href="./homework/README.md">README</a></p>
 

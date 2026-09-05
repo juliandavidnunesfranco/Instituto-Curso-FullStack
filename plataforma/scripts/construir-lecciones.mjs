@@ -66,9 +66,56 @@ function construir(modulo, segmento) {
     { cwd: dir, stdio: ['ignore', 'pipe', 'inherit'] },
   );
 
+  const corregidos = corregirRutas(destino, `/lecciones/${segmento}`);
   const paginas = contarHtml(destino);
-  log(`  ✅ ${modulo} → /lecciones/${segmento}  (${paginas} páginas)`);
+  log(
+    `  ✅ ${modulo} → /lecciones/${segmento}  (${paginas} páginas, ` +
+      `${corregidos} rutas corregidas)`,
+  );
   return true;
+}
+
+/**
+ * Anade el prefijo del modulo a las rutas absolutas que Eleventy dejo sin
+ * reescribir.
+ *
+ * El pathPrefix cubre lo que pasa por el filtro `url`, pero no lo demas:
+ * el plugin eleventy-navigation-bootstrap genera la barra superior con
+ * rutas como /JavaScript_V/, y las imagenes del material apuntan a
+ * /_src/assets/... Sin este paso ambas dan 404 al servirse bajo
+ * /lecciones/<modulo>/.
+ *
+ * Devuelve cuantas rutas se corrigieron, para que el build lo informe: si
+ * alguna vez baja a cero, o el plugin se arreglo o algo se rompio.
+ */
+function corregirRutas(dir, prefijo) {
+  let total = 0;
+
+  for (const entrada of fs.readdirSync(dir, { withFileTypes: true })) {
+    const ruta = path.join(dir, entrada.name);
+
+    if (entrada.isDirectory()) {
+      total += corregirRutas(ruta, prefijo);
+      continue;
+    }
+    if (!entrada.name.endsWith('.html')) continue;
+
+    const original = fs.readFileSync(ruta, 'utf8');
+
+    // Solo href/src/action que empiecen por una unica barra y no lleven ya
+    // el prefijo. Se excluye // para no tocar URLs relativas al protocolo.
+    const corregido = original.replace(
+      /(href|src|action)="\/(?!\/|lecciones\/)([^"]*)"/g,
+      (_, attr, resto) => {
+        total += 1;
+        return `${attr}="${prefijo}/${resto}"`;
+      },
+    );
+
+    if (corregido !== original) fs.writeFileSync(ruta, corregido);
+  }
+
+  return total;
 }
 
 function contarHtml(dir) {

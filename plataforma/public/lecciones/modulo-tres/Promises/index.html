@@ -1091,28 +1091,28 @@ div.footerContained p {
           <ul class="nav">
       
       <li class="link">
-        <a href="/" class="nav-link" role="menuitem">Intro</a>
+        <a href="/lecciones/modulo-tres/" class="nav-link" role="menuitem">Intro</a>
       </li>
 <li class="link">
-        <a href="/Node/" class="nav-link" role="menuitem">Node</a>
+        <a href="/lecciones/modulo-tres/Node/" class="nav-link" role="menuitem">Node</a>
       </li>
 <li class="link">
         <span class="nav-link activeLink" tabindex="-1" aria-current="true">Promises</span>
       </li>
 <li class="link">
-        <a href="/WebServer/" class="nav-link" role="menuitem">Web Server</a>
+        <a href="/lecciones/modulo-tres/WebServer/" class="nav-link" role="menuitem">Web Server</a>
       </li>
 <li class="link">
-        <a href="/AdvancedPromises/" class="nav-link" role="menuitem">Advanced Promises</a>
+        <a href="/lecciones/modulo-tres/AdvancedPromises/" class="nav-link" role="menuitem">Advanced Promises</a>
       </li>
 <li class="link">
-        <a href="/Express/" class="nav-link" role="menuitem">Express</a>
+        <a href="/lecciones/modulo-tres/Express/" class="nav-link" role="menuitem">Express</a>
       </li>
 <li class="link">
-        <a href="/Testing/" class="nav-link" role="menuitem">Testing</a>
+        <a href="/lecciones/modulo-tres/Testing/" class="nav-link" role="menuitem">Testing</a>
       </li>
 <li class="link">
-        <a href="/AsyncAwait/" class="nav-link" role="menuitem">Async/Await</a>
+        <a href="/lecciones/modulo-tres/AsyncAwait/" class="nav-link" role="menuitem">Async/Await</a>
       </li>
     </ul>
         </div>
@@ -1142,13 +1142,13 @@ div.footerContained p {
           <h1 id="promises" tabindex="-1">Promises <a class="anchor-link" href="#promises"></a></h1>
 <p>Javascript es muy potente a la hora de trabajar con tareas asincrónicas, de hecho, ya venimos programando funciones y código que hacen uso de <code>callbacks</code> para ejecutar código en el futuro cercano, cuando un evento sucede o cuando se termina la ejecución de un proceso (escribir en la bd, o escribir en el disco, hacer un request http, etc…).<br>
 Esto es genial, pero a veces nos sucede que tenemos callbacks anidadas, es decir, que dentro de un callback tenemos otro callback y así sucesivamente ( inception de callbacks ), y tambien tenemos problemas donde tenemos que esperar que <em>dos o más</em> eventos terminen para continuar la ejecución de nuestro código. Si bien podemos resolverlo sin problemas con callbacks, vamos a ver que nuestro código empieza a hacerce díficil de leer, muy díficil de controlar si hay errores (no sabemos qué función es la que realmente produjo el error ), y si tenemos que buscar un bug dentro del código nos daremos cuenta que, sin querer, hemos terminado dentro del :japanese_goblin: <strong>Callback Hell</strong>:</p>
-<p><img src="/_src/assets/02-Promises/callback_hell.gif" alt="callbackHell"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/02-Promises/callback_hell.gif" alt="callbackHell"></p>
 <p>También conocido como <strong>Pyramid of Doom</strong> :scream::</p>
-<p><img src="/_src/assets/02-Promises/pyr-1.png" alt="PyramidOfDoom"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/02-Promises/pyr-1.png" alt="PyramidOfDoom"></p>
 <p>Se pueden imaginar, por los nombres que eligieron para esto, que no es una situación deseada en nuestro código. También van a pensar, que es un mal necesario, ya que de esta forma puedo lograr que mi aplicación se comporte de acuerdo a los requerimientos asincrónicos que hay en el medio.</p>
 <h2 id="promises-al-rescate" tabindex="-1">Promises al rescate <a class="anchor-link" href="#promises-al-rescate"></a></h2>
 <p>Cuando programamos en lenguajes que son bloqueantes, como <code>C++</code> o <code>python</code>, perdemos el poder del asincronismo, pero ganamos legibilidad, ya que una línea de código se ejecuta exactamente cuando termina al anterior (si la anterior tarda 3 horas, vamos a esperar a que termine), esto hace que el código sea fácil de leer ya que siguiendo la línea de ejecución vamos a ver que cosas suceden antes o después, esto mismo no lo podemos hacer con callbacks (o por lo menos sin entrar al <em>Callback hell</em>.):</p>
-<p><img src="/_src/assets/02-Promises/software-architecture-introduction-3.png" alt="SyncVsAsync"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/02-Promises/software-architecture-introduction-3.png" alt="SyncVsAsync"></p>
 <p>¿No sería genial si pudieras escribir código como si fuera sincrónico, pero que la ejecución fuera asincrónica? Esta pregunta seguramente se hicieron los inventores de las <strong>Promises</strong> de javascript!<br>
 Justamente las <strong>Promises</strong> en Js intentan solucionar el problema del <em>callback hell</em> y lograr que el código sea más legible, más fácil de debuggear y que tengamos mayor control sobre los errores. Veamos como funcionan las promises.</p>
 <h2 id="%C2%BFqu%C3%A9-es-una-promesa%3F" tabindex="-1">¿Qué es una Promesa? <a class="anchor-link" href="#%C2%BFqu%C3%A9-es-una-promesa%3F"></a></h2>

@@ -1088,16 +1088,16 @@ div.footerContained p {
           <ul class="nav">
       
       <li class="link">
-        <a href="/" class="nav-link" role="menuitem">Intro</a>
+        <a href="/lecciones/modulo-cuatro/" class="nav-link" role="menuitem">Intro</a>
       </li>
 <li class="link">
-        <a href="/DBMS/" class="nav-link" role="menuitem">DBMS</a>
+        <a href="/lecciones/modulo-cuatro/DBMS/" class="nav-link" role="menuitem">DBMS</a>
       </li>
 <li class="link">
-        <a href="/SQL/" class="nav-link" role="menuitem">SQL</a>
+        <a href="/lecciones/modulo-cuatro/SQL/" class="nav-link" role="menuitem">SQL</a>
       </li>
 <li class="link">
-        <a href="/Sequelize/" class="nav-link" role="menuitem">Sequelize</a>
+        <a href="/lecciones/modulo-cuatro/Sequelize/" class="nav-link" role="menuitem">Sequelize</a>
       </li>
 <li class="link">
         <span class="nav-link activeLink" tabindex="-1" aria-current="true">Authentication</span>
@@ -1137,7 +1137,7 @@ div.footerContained p {
 <p>Durante este tiempo, estuvimos trabajando con protocolos HTTP. Estos protocolos tienen una particularidad, y es que son stateless, osea que no tienen conocimiento sobre estados. Y eso qué significa? que cada vez que enviemos una request, esta se va a ejecutar, pero si refrescamos la página todos esos datos se van a perder. Es por esto que vamos a necesitar herramientas que <strong>guarden</strong> la sesión, es decir, que nos permitan como usuarios permanecer logueados una vez que enviemos nuestros datos.</p>
 <h3 id="cookies" tabindex="-1">Cookies <a class="anchor-link" href="#cookies"></a></h3>
 <p>Una de las herramientas que nos van a permitir poder guardar esa información son las cookies. Una cookie (o galleta informática) es un pequeño archivo de datos creado por el sitio web visitado y almacenado en el navegador o dispositivo utilizado por los usuarios. Las cookies contienen pequeñas cantidades de información que se envían entre un emisor (generalmente el servidor de la web) y un receptor (el navegador del usuario) almacenando esta información en la memoria del navegador. El objetivo de este proceso es que la web visitada pueda comprobar esa cookie en una futura conexión del usuario y utilizarla.</p>
-<p><img src="/_src/assets/04-Authentication/CookiesAuth.png" alt="Cookies"></p>
+<p><img src="/lecciones/modulo-cuatro/_src/assets/04-Authentication/CookiesAuth.png" alt="Cookies"></p>
 <ul>
 <li><strong>Cookies de sesión (Session Cookies)</strong></li>
 </ul>
@@ -1151,7 +1151,7 @@ Una vez cerrada esta sesión de navegación, tanto el identificador, como el res
 <p>Por otro lado, la autenticación basada en tokens es un protocolo que nos va a permitir verificar nuestra identidad y, a cambio, recibir un token de acceso único. Durante la vida del token, los usuarios accedemos al sitio web o la aplicación para la que se emitió, en lugar de tener que volver a ingresar las credenciales cada vez que volvemos a ingresar a la misma página web, aplicación o cualquier recurso protegido con ese mismo token.</p>
 <p>Lo pueden pensar como un boleto sellado. Básicamente, vamos a conservar el acceso mientras el token siga siendo válido. Una vez que cerramos sesión o salimos de una aplicación, el token se invalida.</p>
 <p>La autenticación basada en tokens es diferente de las técnicas de autenticación tradicionales basadas en contraseña o en servidor. Los tokens ofrecen una segunda capa de seguridad y los administradores tienen un control detallado sobre cada acción y transacción.</p>
-<p><img src="/_src/assets/04-Authentication/TokenAuth.png" alt="TokenAuth"></p>
+<p><img src="/lecciones/modulo-cuatro/_src/assets/04-Authentication/TokenAuth.png" alt="TokenAuth"></p>
 <h3 id="jwt" tabindex="-1">JWT <a class="anchor-link" href="#jwt"></a></h3>
 <p>Un JSON Web Token es un token de acceso estandarizado en el RFC 7519 que permite el intercambio seguro de datos entre dos partes. Contiene toda la información importante sobre una entidad, lo que implica que no hace falta consultar una base de datos ni que la sesión tenga que guardarse en el servidor (sesión sin estado).</p>
 <p>Por este motivo, los JWT son especialmente populares en los procesos de autentificación. Con este estándar es posible cifrar mensajes cortos, enviarles información sobre el remitente y demostrar si este cuenta con los derechos de acceso requeridos.<br>
@@ -1160,7 +1160,7 @@ Los propios usuarios solo entran en contacto con el token de manera indirecta: p
 <p>En la práctica, se trata de una cadena de texto que tiene tres partes codificadas en Base64, cada una de ellas separadas por un punto, como en el siguiente ejemplo:</p>
 <pre class="language-bash"><code class="hljs language-bash">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNveSBIZW5yeSIsImlhdCI6MTUxNjIzOTAyMn0.ixJ_6SpS1ppUImi6OPSOJGqW_bn31g5L0BydnnhDoM8</code></pre>
 <p>Podemos utilizar un <a href="https://jwt.io/">Debugger Online</a> para decodificar ese token y visualizar su contenido. Si accedemos al mismo y pegamos dentro el texto completo, se nos mostrará lo que contiene:</p>
-<p><img src="/_src/assets/04-Authentication/JWTdecode.png" alt="JWTdecode"></p>
+<p><img src="/lecciones/modulo-cuatro/_src/assets/04-Authentication/JWTdecode.png" alt="JWTdecode"></p>
 <p>Como dijimos, un token tiene tres partes:</p>
 <ul>
 <li>
@@ -1178,7 +1178,7 @@ a poder verificar que el remitente es quien dice ser, y que el mensaje no se ha 
 </ul>
 <h2 id="passport" tabindex="-1">Passport <a class="anchor-link" href="#passport"></a></h2>
 <p>Y cómo vamos a implementar entonces todo esto? Ahí es donde entra Passport! Passport es una librería de Node que nos va a dar la capacidad de autenticarnos. El único propósito de Passport es autenticar solicitudes, lo que hace a través de un conjunto extensible de complementos conocidos como estrategias. Y qué son las estrategias? Son diferentes mecanismos de autenticación que nos ofrece Passport para no tener que acudir a dependencias innecesarias. Por ejemplo, pueden autenticarse en una instancia de base de datos local/remota o utilizar el inicio de sesión único de proveedores de OAuth para Facebook, Twitter, Google, etc.‌ La API es simple: le proporcionamos una solicitud de autenticación y Passport proporciona enlaces para controlar lo que ocurre cuando esta tiene éxito o falla.</p>
-<p><img src="/_src/assets/04-Authentication/passportJS.png" alt="passportJS"></p>
+<p><img src="/lecciones/modulo-cuatro/_src/assets/04-Authentication/passportJS.png" alt="passportJS"></p>
 <h3 id="modo-de-uso" tabindex="-1">Modo de Uso <a class="anchor-link" href="#modo-de-uso"></a></h3>
 <p>Primero que nada vamos a instalar Passport.</p>
 <pre class="language-bash"><code class="hljs language-bash"><span class="token function">npm</span> <span class="token function">install</span> passport</code></pre>

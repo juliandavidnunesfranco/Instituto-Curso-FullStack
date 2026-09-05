@@ -1097,46 +1097,46 @@ div.footerContained p {
           <ul class="nav">
       
       <li class="link">
-        <a href="/" class="nav-link" role="menuitem">Intro</a>
+        <a href="/lecciones/modulo-dos/" class="nav-link" role="menuitem">Intro</a>
       </li>
 <li class="link">
-        <a href="/DOM/" class="nav-link" role="menuitem">DOM</a>
+        <a href="/lecciones/modulo-dos/DOM/" class="nav-link" role="menuitem">DOM</a>
       </li>
 <li class="link">
-        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+        <a href="/lecciones/modulo-dos/CSS/" class="nav-link" role="menuitem">CSS</a>
       </li>
 <li class="link">
-        <a href="/ES6/" class="nav-link" role="menuitem">ES6</a>
+        <a href="/lecciones/modulo-dos/ES6/" class="nav-link" role="menuitem">ES6</a>
       </li>
 <li class="link">
-        <a href="/Ajax/" class="nav-link" role="menuitem">Ajax</a>
+        <a href="/lecciones/modulo-dos/Ajax/" class="nav-link" role="menuitem">Ajax</a>
       </li>
 <li class="link">
-        <a href="/Bundlers/" class="nav-link" role="menuitem">Bundlers</a>
+        <a href="/lecciones/modulo-dos/Bundlers/" class="nav-link" role="menuitem">Bundlers</a>
       </li>
 <li class="link">
         <span class="nav-link activeLink" tabindex="-1" aria-current="true">React</span>
       </li>
 <li class="link">
-        <a href="/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
+        <a href="/lecciones/modulo-dos/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
       </li>
 <li class="link">
-        <a href="/React-Estado-LifeCycle/" class="nav-link" role="menuitem">React-LifeCycle</a>
+        <a href="/lecciones/modulo-dos/React-Estado-LifeCycle/" class="nav-link" role="menuitem">React-LifeCycle</a>
       </li>
 <li class="link">
-        <a href="/React-Routing/" class="nav-link" role="menuitem">React-Routing</a>
+        <a href="/lecciones/modulo-dos/React-Routing/" class="nav-link" role="menuitem">React-Routing</a>
       </li>
 <li class="link">
-        <a href="/React-Forms/" class="nav-link" role="menuitem">Forms</a>
+        <a href="/lecciones/modulo-dos/React-Forms/" class="nav-link" role="menuitem">Forms</a>
       </li>
 <li class="link">
-        <a href="/Redux/" class="nav-link" role="menuitem">Redux</a>
+        <a href="/lecciones/modulo-dos/Redux/" class="nav-link" role="menuitem">Redux</a>
       </li>
 <li class="link">
-        <a href="/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
+        <a href="/lecciones/modulo-dos/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
       </li>
 <li class="link">
-        <a href="/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
+        <a href="/lecciones/modulo-dos/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
       </li>
     </ul>
         </div>
@@ -1185,7 +1185,7 @@ div.footerContained p {
 <p>Para el segundo punto, React construye una representación del DOM en memoria y calcula que elementos del DOM van a cambiar. Hacer cambios en el DOM consume muchos recursos, es por eso que se concentraron tanto en minimizar al máximo los cambios en el DOM real. Muy básicamente, cuando algo cambia en el estado del modelo, la idea es no tocar el DOM e ir haciendo cambios en el Virtual DOM, luego se computan las diferencias entre el DOM real y el virtual DOM ( para esto se utilizan <a href="http://snip.ly/ywCe#http://calendar.perfplanet.com/2013/diff/">algoritmos de diferencia bastante copados</a> ), y finalmente se realizan la menor cantidad de cambios posibles al DOM real.</p>
 <h3 id="component-driven-development" tabindex="-1">Component Driven Development <a class="anchor-link" href="#component-driven-development"></a></h3>
 <p>Miremos la imagen de abajo, cada cajita con un color particular representa un componente. Esta es una de las muchas formas de poder dividir un solo elemento o feature de nuestro sitio. Según esta división tendríamos la jerarquía de componentes que se muestran a la derecha de la imagen:</p>
-<p><img src="/_src/assets/06-React-Intro/react_component_hierarchy.png" alt="componentes"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/06-React-Intro/react_component_hierarchy.png" alt="componentes"></p>
 <h5>Qué debería contener un <em>Componente</em>?</h5>
 <p>Para diseñar componentes es importante tener en cuenta el principio de diseño llamado <em><a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">single responsabilty principle</a></em>, o <em>princio de responsabilidad única</em>, basicamente deberíamos diseñar cada componente para que sea responsable de <em>sólo</em> una cosa. Pensar de este modo no es fácil, <a href="https://facebook.github.io/react/docs/thinking-in-react.html">acá</a> hay un tutorial de <em>facebook</em> para empezar a pensar en componentes.</p>
 <p>De todos modos, la mejor forma de aprender es la práctica. Al usar React, te vas a ir dando cuenta cuando te conviene subdividir un componente en otros o no. De hecho, no te deberías preocupar tanto por asumir esta mentalidad antes de empezar, aceptá el hecho que mientas desarrolles con react vas a ir cambiando solo la mentalidad, y no al revés.</p>
@@ -1270,7 +1270,7 @@ Vemos que ese objeto tiene tres propiedades: <code>test</code>, <code>exclude</c
 <p>Para poder ejecutar webpack, debemos agregar dentro de <code>scripts</code> en nuestro <code>package.json</code> lo siguiente:</p>
 <pre class="language-javascript"><code class="hljs language-javascript"><span class="token string-property property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token string-property property">"build"</span><span class="token operator">:</span> <span class="token string">"webpack -w"</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span><br><span class="token string-property property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token string-property property">"@babel/core"</span><span class="token operator">:</span> <span class="token string">"^7.9.0"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"@babel/preset-env"</span><span class="token operator">:</span> <span class="token string">"^7.9.0"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"@babel/preset-react"</span><span class="token operator">:</span> <span class="token string">"^7.9.4"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"babel-loader"</span><span class="token operator">:</span> <span class="token string">"^8.1.0"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"webpack"</span><span class="token operator">:</span> <span class="token string">"^4.42.1"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"webpack-cli"</span><span class="token operator">:</span> <span class="token string">"^3.3.11"</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token string-property property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token string-property property">"react"</span><span class="token operator">:</span> <span class="token string">"^16.13.1"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"react-dom"</span><span class="token operator">:</span> <span class="token string">"^16.13.1"</span><br>  <span class="token punctuation">}</span></code></pre>
 <p>Para probar si todo funciona bien, iremos a la carpeta donde tenemos definidos todos estos archivos, y vamos a escribir <code>npm run build</code>.</p>
-<p><img src="/_src/assets/06-React-Intro/webpack.png" alt="Webpack"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/06-React-Intro/webpack.png" alt="Webpack"></p>
 <p>Si todo funcionó bien, veremos un mensaje como el de la imagen! Y además encontraremos un archivo nuevo en la carpeta <code>dist</code>.</p>
 <p>Bien, ahora por último tenemos que agregar ese archivo generado a un HTML para poder correrlo:</p>
 <pre class="language-html"><code class="hljs language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Descubre React<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./dist/index_bundle.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>

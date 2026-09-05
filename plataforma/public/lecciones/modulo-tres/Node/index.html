@@ -1091,28 +1091,28 @@ div.footerContained p {
           <ul class="nav">
       
       <li class="link">
-        <a href="/" class="nav-link" role="menuitem">Intro</a>
+        <a href="/lecciones/modulo-tres/" class="nav-link" role="menuitem">Intro</a>
       </li>
 <li class="link">
         <span class="nav-link activeLink" tabindex="-1" aria-current="true">Node</span>
       </li>
 <li class="link">
-        <a href="/Promises/" class="nav-link" role="menuitem">Promises</a>
+        <a href="/lecciones/modulo-tres/Promises/" class="nav-link" role="menuitem">Promises</a>
       </li>
 <li class="link">
-        <a href="/WebServer/" class="nav-link" role="menuitem">Web Server</a>
+        <a href="/lecciones/modulo-tres/WebServer/" class="nav-link" role="menuitem">Web Server</a>
       </li>
 <li class="link">
-        <a href="/AdvancedPromises/" class="nav-link" role="menuitem">Advanced Promises</a>
+        <a href="/lecciones/modulo-tres/AdvancedPromises/" class="nav-link" role="menuitem">Advanced Promises</a>
       </li>
 <li class="link">
-        <a href="/Express/" class="nav-link" role="menuitem">Express</a>
+        <a href="/lecciones/modulo-tres/Express/" class="nav-link" role="menuitem">Express</a>
       </li>
 <li class="link">
-        <a href="/Testing/" class="nav-link" role="menuitem">Testing</a>
+        <a href="/lecciones/modulo-tres/Testing/" class="nav-link" role="menuitem">Testing</a>
       </li>
 <li class="link">
-        <a href="/AsyncAwait/" class="nav-link" role="menuitem">Async/Await</a>
+        <a href="/lecciones/modulo-tres/AsyncAwait/" class="nav-link" role="menuitem">Async/Await</a>
       </li>
     </ul>
         </div>
@@ -1140,7 +1140,7 @@ div.footerContained p {
         <div class='lesson'>
           
           <h1 id="introducci%C3%B3n-a-node.js" tabindex="-1">Introducción a Node.JS <a class="anchor-link" href="#introducci%C3%B3n-a-node.js"></a></h1>
-<p><img src="/_src/assets/01-Node//logo.png" alt="logo"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//logo.png" alt="logo"></p>
 <h2 id="%C2%BFqu%C3%A9-es-nodejs%3F" tabindex="-1">¿Qué es Nodejs? <a class="anchor-link" href="#%C2%BFqu%C3%A9-es-nodejs%3F"></a></h2>
 <h3 id="conceptos" tabindex="-1">Conceptos <a class="anchor-link" href="#conceptos"></a></h3>
 <p>Para poder entender el concepto de node, primero vamos a tener que conocer otros conceptos más básicos sobre estos temas:</p>
@@ -1157,10 +1157,10 @@ div.footerContained p {
 <li>MIPS</li>
 </ul>
 <p>Para pasarle intrucciones al procesador, no escribimos 1’s y 0’s, sino que usamos un lenguaje que se traduce directamente a esa secuencia, llamado <a href="https://es.wikipedia.org/wiki/Lenguaje_ensamblador"><strong>assembler</strong></a>.</p>
-<p><img src="/_src/assets/01-Node//asembler.png" alt="assembler"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//asembler.png" alt="assembler"></p>
 <p>Hoy en día no se programa en assembler (<a href="https://es.wikipedia.org/wiki/Lenguaje_de_bajo_nivel"><strong>lenguaje de bajo nivel</strong></a>), ya que es muy complejo y hacer un simple ‘Hello World’ podría llevar muchas líneas de código: Simplemente no escala. Para solucionar esto, se crearon lenguajes más fáciles y rápidos de programar y que compilan a lenguaje de máquina, estos son los conocidos <em>lenguajes de alto nivel</em>, JAVA, C++, Javascript son ejemplos de estos lenguajes. Es importante notar, que no importa que lenguaje usemos, en algún momento el código será <em>traducido</em> o <em>compilado</em> a lenguaje de máquina, que es el único lenguaje que entiende verdaderamente la computadora.</p>
 <p>Como pueden pensar mientras nos alejamos del lenguaje de máquina (lenguajes de más alto nivel) y nos abstraemos vamos ganando velocidad para codear, pero también vamos perdiendo performance. Piensen que si codeamos en lenguaje de máquina, podemos controlar cada slot de memoria nosotros mismos y hacerlo de la mejor forma posible. Cuando subimos de nivel, alguien hace ese trabajo por nosotros, y como tiene que ser genérico no puede lograr ser tan óptimo. Es por eso que según la performance y los recursos que se necesite o tengamos vamos a elegir lenguajes de altisimo o bajísimo nivel.</p>
-<p><img src="/_src/assets/01-Node//lowh.png" alt="low-high"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//lowh.png" alt="low-high"></p>
 <p><em>Por ejemplo, los microcontroladores embebidos en lavaropas están programados en C compilado a lenguaje de máquina, esto es porque tienen muy poca memoria y tienen que optimizarla al máximo</em></p>
 <h4 id="c%2B%2B" tabindex="-1">C++ <a class="anchor-link" href="#c%2B%2B"></a></h4>
 <p><a href="https://es.wikipedia.org/wiki/C%2B%2B">C++</a> es un lenguaje de programación de bajo nivel, estaría justo por arriba de Assembly. Este lenguaje se hizo muy popular porque es fácil para codear, pero a su vez te deja tener bastante control sobre lo que está pasando en nivel hardware. Muchos otros lenguajes se construyeron en base a C++, o siguiendo sus sintaxis o usándolo en su cadena de abstracción.</p>
@@ -1236,11 +1236,11 @@ Este concepto ya existia en otros lenguajes de programación y era muy usado par
 <pre class="language-javascript"><code class="hljs language-javascript"><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./hola.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p><strong>Require</strong> recibe como argumento, un string que es el path en donde encontrará el código o el módulo que queremos agregar, en este caso como <code>hola.js</code> está en la misma carpeta el path es: <code>./hola.js</code>.</p>
 <p>Ahora, si corremos el archivo <code>app.js</code> usando <code>node app.js</code> en la terminal vamos a ver que se ejecutó el código que escribimos en <code>hola.js</code>:</p>
-<p><img src="/_src/assets/01-Node//require.png" alt="require"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//require.png" alt="require"></p>
 <p>Hagamos algo más interesante, vamos a <code>hola.js</code> y creemos una función y luego la usemos para saludar:</p>
 <pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">saludar</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Hola!!!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token function">saludar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>Corramos de nuevo <code>app.js</code>:</p>
-<p><img src="/_src/assets/01-Node//require2.png" alt="require"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//require2.png" alt="require"></p>
 <p>El resultado es el mismo!<br>
 Ahora, si no invocamos <code>saludar()</code> dentro de <code>hola.ja</code>, creen que la podremos invocar (usar) en <code>app.js</code>? Hagamos la prueba!</p>
 <p>Comentamos la invocación en <code>hola.js</code>:</p>
@@ -1248,14 +1248,14 @@ Ahora, si no invocamos <code>saludar()</code> dentro de <code>hola.ja</code>, cr
 <p>Invacamos en <code>app.js</code>:</p>
 <pre class="language-javascript"><code class="hljs language-javascript"><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./hola.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token function">saludar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>saludar no está definido! recibimos un error. De hecho, esto está bien que suceda. Se acuerdan que dijimos que un módulo no debería afectar otro código accidentalmente? Eso quiere decir que el código está protegido y que no podemos simplemente usarlo y acceder a los objetos fuera de ese módulo.</p>
-<p><img src="/_src/assets/01-Node//simply.jpg" alt="simply"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//simply.jpg" alt="simply"></p>
 <p>Para usarlo afuera, vamos a tener que explicitarlo, veamos como hacer que podamos usar <code>saludar()</code> desde <code>app.js</code>.</p>
 <p>Nodejs nos permite hacerlo usando <code>module.exports</code>, que es una variable especial cuyo objetivo es pasar su contenido a otro pedazo de código cuando llamamos a <code>require</code>:</p>
 <pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">saludar</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Hola!!!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> saludar<span class="token punctuation">;</span></code></pre>
 <p>Ahora este módulo está exponiendo el objeto <code>saludar</code>. Para usarlo en nuestro módulo tenemos que guardar lo que devuelve <code>require</code> en una variable (puedo llamar a la nueva variable como quiera):</p>
 <pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> hola <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./hola.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token function">hola</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>Ahora voy a poder invocar <code>hola()</code>, porque lo hemos pasado a través de <code>module.exports</code>. Si ejecuto <code>app.js</code>:</p>
-<p><img src="/_src/assets/01-Node//require3.png" alt="require"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//require3.png" alt="require"></p>
 <p>Ahora pudimos acceder al código de <code>hola.js</code>, porque lo expusimos a propósito.</p>
 <p>Resumiendo:</p>
 <ul>
@@ -1280,7 +1280,7 @@ Ahora, si no invocamos <code>saludar()</code> dentro de <code>hola.ja</code>, cr
 <p>y en greetings.json vamos a tener los saludos per se:</p>
 <pre class="language-json"><code class="hljs language-json"><span class="token punctuation">{</span><br> <span class="token property">"en"</span><span class="token operator">:</span> <span class="token string">"Hello"</span><span class="token punctuation">,</span><br> <span class="token property">"es"</span><span class="token operator">:</span> <span class="token string">"Hola"</span><br><span class="token punctuation">}</span></code></pre>
 <p>Si ejecutamos nuestra <code>app.js</code>:</p>
-<p><img src="/_src/assets/01-Node//patron.png" alt="patron"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//patron.png" alt="patron"></p>
 <h5>Más Patrones</h5>
 <p>En la carpeta <code>./patrones/otro</code> hemos puesto varios files distintos llamados <code>saludos</code> que van del uno al cinco, y luego los importamos en el archivo <code>app.js</code>. En cada módulo exportamos lo que necesitamos de manera distinta, cada una de esas formas constituye un patrón.</p>
 <p>Dentro de cada archivo en los comentarios está explicado en más detalle el patrón.</p>
@@ -1305,7 +1305,7 @@ En Node hay dos tipo de eventos:</p>
 <p>Dijimos que cuando ocurre un evento, queremos capturarlo y responder de alguna forma, para eso vamos a hacer uso de los <em>Events Listeners</em>, básicamente es el código que <em>escucha</em> por un evento y que hace algo (ejecuta código) cuando ese evento sucede. Podemos tener varios listeners escuchando el mismo evento.</p>
 <h3 id="event-loop" tabindex="-1">Event Loop <a class="anchor-link" href="#event-loop"></a></h3>
 <p>Repasemos como funcionaba V8 internamente y veamos qué es exactamente el <strong>event loop</strong>:</p>
-<p><img src="/_src/assets/01-Node//eventloop.png" alt="event-loop"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//eventloop.png" alt="event-loop"></p>
 <p>Los componentes que vemos en la figura son:</p>
 <ul>
 <li>
@@ -1319,7 +1319,7 @@ En Node hay dos tipo de eventos:</p>
 </li>
 </ul>
 <p>Toda esta interacción con el SO, el manejo del Task Queue y el Event loop está implementado en la libreria <a href="http://docs.libuv.org/en/v1.x/"><strong>libuv</strong></a> que es la piedra angular de Nodejs. De hecho, su logo es un Unicornio T-rex, es demasiado copada:</p>
-<p><img src="/_src/assets/01-Node//libuv.png" alt="logo"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//libuv.png" alt="logo"></p>
 <h2 id="%C2%BFqu%C3%A9-es-un-gestor-de-paquetes%3F" tabindex="-1">¿Qué es un gestor de paquetes? <a class="anchor-link" href="#%C2%BFqu%C3%A9-es-un-gestor-de-paquetes%3F"></a></h2>
 <p>Primero definamos lo que es un paquete. Básicamente es… <code>código</code>! Es cualquier pieza de <strong>código</strong> manejada y mantenida por un gestor de paquetes.</p>
 <p>Ahora, un gestor de paquetes es un software que automatiza la instalación y actualización de paquetes. Maneja qué versión de los paquetes tenes o necesitas y maneja sus <em>dependencias</em>. Una <strong>dependencia</strong> es código del cual dependen uno o más pedazos de código para funcionar. Por ejemplo, si usás <code>fs</code> en tu servidor, entonces <code>fs</code> es una dependecia de tu server. Sin el código de <code>fs</code> tu servidor no podría ejecutarse. De hecho, cada paquete podría tener sus propias dependecias, es por esto que manejarlos a mano se podría volver un poco engorroso, por suerte tenemos los gestores de paquetes que nos solucionan este problema.</p>
@@ -1361,7 +1361,7 @@ Para hacerlos usamos el argumento <code>-g</code> en <code>npm install</code>.</
 <pre class="language-bash"><code class="hljs language-bash"><span class="token punctuation">[</span>nodemon<span class="token punctuation">]</span> <span class="token number">1.10</span>.0<br><span class="token punctuation">[</span>nodemon<span class="token punctuation">]</span> to restart at any time, enter <span class="token variable"><span class="token variable">`</span>rs<span class="token variable">`</span></span><br><span class="token punctuation">[</span>nodemon<span class="token punctuation">]</span> watching: *.*<br><span class="token punctuation">[</span>nodemon<span class="token punctuation">]</span> starting <span class="token variable"><span class="token variable">`</span><span class="token function">node</span> index.js<span class="token variable">`</span></span><br>Sun/07/2016, 11PM<br><span class="token punctuation">[</span>nodemon<span class="token punctuation">]</span> clean <span class="token builtin class-name">exit</span> - waiting <span class="token keyword">for</span> changes before restart</code></pre>
 <p>Para probar si funciona, hagamos un cambio en el archivo <code>index.js</code> y salvemos. Para mi ejemplo voy a agregar un <code>console.log()</code>.</p>
 <pre class="language-js"><code class="hljs language-js"><span class="token keyword">var</span> moment <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'moment'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Salgo en la consola!!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">moment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"ddd/MM/YYYY, hA"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p><img src="/_src/assets/01-Node//npmnodemon.png" alt="Npm-Init"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//npmnodemon.png" alt="Npm-Init"></p>
 <p>Como vemos, no fue necesario volver a correr el archivo <code>index.js</code> a mano para ver los cambios, Nodemon hizo todo el trabajo por nosotros!</p>
 <h2 id="actualizar-paquetes" tabindex="-1">Actualizar paquetes <a class="anchor-link" href="#actualizar-paquetes"></a></h2>
 <p>Como dijimos, <code>npm</code> también nos sirve para mantener actualizados los paquetes. Para hacerlo sólo tenemos que escribir el siguiente comando:</p>
@@ -1379,7 +1379,7 @@ Para hacerlos usamos el argumento <code>-g</code> en <code>npm install</code>.</
 <p><strong>__dirname: esta variable tiene guardado el path completo del directorio donde está el archivo que está ejecutando el código</strong></p>
 </blockquote>
 <p>Por lo tanto le estamos diciendo que lea el archivo  greet que creamos <em>DE MANERA SINCRONICA</em> (esto quiere decir que no va avanzar hasta que no lea de manera completa) y que guarde el resultado en la variable <code>saludo</code>, luego que muestre el contenido de saludo por consola. Como vemos, el resultado es que en <code>saludo</code> se guarda el contenido del archivo <code>greet.txt</code>!!</p>
-<p><img src="/_src/assets/01-Node//fs.png" alt="fs"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//fs.png" alt="fs"></p>
 <p>Al hacerlo sincronico, el programa se <em>bloquea</em> hasta que no termine de leer el archivo completo, si el archivo fuera muy grande, veriamos que el programa queda <em>trabado</em> y causa una mala experiencia de uso.</p>
 <p>Para resolver ese problema, vamos a hacer lo mismo, pero haciendo que la lectura del archivo sea en forma asincrónica.<br>
 Para hacerlo, <code>fs</code> nos da la función <code>readFile</code>, que recibe el path del archivo a leer, el encoding, y además recibe una función, que será el <code>callback</code> para cuando se termine de leer el archivo:</p>
@@ -1387,7 +1387,7 @@ Para hacerlo, <code>fs</code> nos da la función <code>readFile</code>, que reci
 <p>Hemos agregado al final el <code>console.log('Listo!')</code> para que vean en qué momento se ejecuta esa linea de código y en qué momento se ejecuta el callback.</p>
 <p><strong>Es super importante que comprendan el porqué del orden en el que aparecen los console.logs, no avances antes de comprenderlo. Pista: Mirá más arriba como funciona el event loop de JS.</strong></p>
 <p>Otra cosa a notar es que la función anónima que le pasamos tiene dos parámetros: <em>err</em> y <em>data</em>. Esto se debe a que existe un standard llamado <strong>error-first callback</strong> que dice que cada vez que escribas una función que ejecute un callback, le pases a ese <em>cb</em> como <strong>primer</strong> parámetro una variable de <em>Error</em>. En el caso que no haya habido errores en la ejecución, entonces esa variable tendrá <em>null</em>, en caso contrario tendrá algo que informe el error.</p>
-<p><img src="/_src/assets/01-Node//fs2.png" alt="fs-2"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/01-Node//fs2.png" alt="fs-2"></p>
 <p>Como vemos, primero se ejecutó el segundo console log, luego el console log del <em>callback</em>.</p>
 <h3 id="combinando-todo" tabindex="-1">Combinando Todo <a class="anchor-link" href="#combinando-todo"></a></h3>
 <p>Bien! Ahora estamos listos para empezar a crear nuestro propio servidor web usando estos conceptos!</p>

@@ -1097,46 +1097,46 @@ div.footerContained p {
           <ul class="nav">
       
       <li class="link">
-        <a href="/" class="nav-link" role="menuitem">Intro</a>
+        <a href="/lecciones/modulo-dos/" class="nav-link" role="menuitem">Intro</a>
       </li>
 <li class="link">
-        <a href="/DOM/" class="nav-link" role="menuitem">DOM</a>
+        <a href="/lecciones/modulo-dos/DOM/" class="nav-link" role="menuitem">DOM</a>
       </li>
 <li class="link">
-        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+        <a href="/lecciones/modulo-dos/CSS/" class="nav-link" role="menuitem">CSS</a>
       </li>
 <li class="link">
-        <a href="/ES6/" class="nav-link" role="menuitem">ES6</a>
+        <a href="/lecciones/modulo-dos/ES6/" class="nav-link" role="menuitem">ES6</a>
       </li>
 <li class="link">
-        <a href="/Ajax/" class="nav-link" role="menuitem">Ajax</a>
+        <a href="/lecciones/modulo-dos/Ajax/" class="nav-link" role="menuitem">Ajax</a>
       </li>
 <li class="link">
-        <a href="/Bundlers/" class="nav-link" role="menuitem">Bundlers</a>
+        <a href="/lecciones/modulo-dos/Bundlers/" class="nav-link" role="menuitem">Bundlers</a>
       </li>
 <li class="link">
-        <a href="/React-Intro/" class="nav-link" role="menuitem">React</a>
+        <a href="/lecciones/modulo-dos/React-Intro/" class="nav-link" role="menuitem">React</a>
       </li>
 <li class="link">
-        <a href="/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
+        <a href="/lecciones/modulo-dos/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
       </li>
 <li class="link">
         <span class="nav-link activeLink" tabindex="-1" aria-current="true">React-LifeCycle</span>
       </li>
 <li class="link">
-        <a href="/React-Routing/" class="nav-link" role="menuitem">React-Routing</a>
+        <a href="/lecciones/modulo-dos/React-Routing/" class="nav-link" role="menuitem">React-Routing</a>
       </li>
 <li class="link">
-        <a href="/React-Forms/" class="nav-link" role="menuitem">Forms</a>
+        <a href="/lecciones/modulo-dos/React-Forms/" class="nav-link" role="menuitem">Forms</a>
       </li>
 <li class="link">
-        <a href="/Redux/" class="nav-link" role="menuitem">Redux</a>
+        <a href="/lecciones/modulo-dos/Redux/" class="nav-link" role="menuitem">Redux</a>
       </li>
 <li class="link">
-        <a href="/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
+        <a href="/lecciones/modulo-dos/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
       </li>
 <li class="link">
-        <a href="/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
+        <a href="/lecciones/modulo-dos/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
       </li>
     </ul>
         </div>
@@ -1219,7 +1219,7 @@ Vemos que ese objeto tiene tres propiedades: <code>test</code>, <code>exclude</c
 <p>Para poder ejecutar webpack, debemos agregar dentro de <code>scripts</code> en nuestro <code>package.json</code> lo siguiente:</p>
 <pre class="language-javascript"><code class="hljs language-javascript"><span class="token string-property property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token string-property property">"build"</span><span class="token operator">:</span> <span class="token string">"webpack -w"</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span><br><span class="token string-property property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token string-property property">"@babel/core"</span><span class="token operator">:</span> <span class="token string">"^7.9.0"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"@babel/preset-env"</span><span class="token operator">:</span> <span class="token string">"^7.9.0"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"@babel/preset-react"</span><span class="token operator">:</span> <span class="token string">"^7.9.4"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"babel-loader"</span><span class="token operator">:</span> <span class="token string">"^8.1.0"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"webpack"</span><span class="token operator">:</span> <span class="token string">"^4.42.1"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"webpack-cli"</span><span class="token operator">:</span> <span class="token string">"^3.3.11"</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token string-property property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token string-property property">"react"</span><span class="token operator">:</span> <span class="token string">"^16.13.1"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"react-dom"</span><span class="token operator">:</span> <span class="token string">"^16.13.1"</span><br>  <span class="token punctuation">}</span></code></pre>
 <p>Para probar si todo funciona bien, iremos a la carpeta donde tenemos definidos todos estos archivos, y vamos a escribir <code>npm run build</code>.</p>
-<p><img src="/_src/assets/08-React-Estado-LifeCycle/webpack.png" alt="Webpack"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/08-React-Estado-LifeCycle/webpack.png" alt="Webpack"></p>
 <p>Si todo funcionó bien, veremos un mensaje como el de la imagen! Y además encontraremos un archivo nuevo en la carpeta <code>dist</code>.</p>
 <p>Bien, ahora por último tenemos que agregar ese archivo generado a un HTML para poder correrlo:</p>
 <pre class="language-html"><code class="hljs language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Descubre React<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./dist/index_bundle.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
@@ -1343,7 +1343,7 @@ Existe una convención en React para distinguir entre Componentes React y elemen
 <p>Como sabemos, es critico para una app tener estados, es decir poder hacer Ajax requests, etc… Dijimos que el método render de los Componentes tiene que ser <em>stateless</em>, es decir que en él no vamos a poder agregar este comportamiento.<br>
 Para poder hacerlo vamos a incorporar el concepto de ciclo de vida de React y sus métodos. Con ellos, vamos a poder dar comportamiento a nuestros Componentes según sucedan ciertos eventos en nuestra app y en nuestros Componentes ( por ejemplo, cuando se renderiza el Componente, o cuando le llegan datos nuevos, etc).</p>
 <p>En la imagen de abajo, vemos el ciclo de vida Completo de cualquier Componente de React. En ella vemos también los estados en los que puede estar un Componente y qué cosas o funciones activarán el paso de estados y por ende la invocación de los métodos que nos provee React:</p>
-<p><img src="/_src/assets/08-React-Estado-LifeCycle/lifecycle.png" alt="LifeCycle"></p>
+<p><img src="/lecciones/modulo-dos/_src/assets/08-React-Estado-LifeCycle/lifecycle.png" alt="LifeCycle"></p>
 <blockquote>
 <p>Pueden ver este <a href="https://gist.github.com/fay-jai/fc8a5093c0b5124d4b2d#file-react-lifecycle-parent-child-jsx">Gist</a> y probarlo localmente para tener un mayor entendimiento de <em>cuando</em> se invoca cada método de React.</p>
 </blockquote>

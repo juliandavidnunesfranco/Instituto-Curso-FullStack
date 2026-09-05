@@ -1093,34 +1093,34 @@ div.footerContained p {
           <ul class="nav">
       
       <li class="link">
-        <a href="/" class="nav-link" role="menuitem">Intro</a>
+        <a href="/lecciones/modulo-uno/" class="nav-link" role="menuitem">Intro</a>
       </li>
 <li class="link">
-        <a href="/Intro_CS/" class="nav-link" role="menuitem">Intro CS</a>
+        <a href="/lecciones/modulo-uno/Intro_CS/" class="nav-link" role="menuitem">Intro CS</a>
       </li>
 <li class="link">
-        <a href="/JS_Avanzado_I/" class="nav-link" role="menuitem">JS Avanzado I</a>
+        <a href="/lecciones/modulo-uno/JS_Avanzado_I/" class="nav-link" role="menuitem">JS Avanzado I</a>
       </li>
 <li class="link">
-        <a href="/JS_Avanzado_II/" class="nav-link" role="menuitem">JS Avanzado II</a>
+        <a href="/lecciones/modulo-uno/JS_Avanzado_II/" class="nav-link" role="menuitem">JS Avanzado II</a>
       </li>
 <li class="link">
-        <a href="/Estructura_de_datos_I/" class="nav-link" role="menuitem">Datos I</a>
+        <a href="/lecciones/modulo-uno/Estructura_de_datos_I/" class="nav-link" role="menuitem">Datos I</a>
       </li>
 <li class="link">
-        <a href="/Estructura_de_datos_II/" class="nav-link" role="menuitem">Datos II</a>
+        <a href="/lecciones/modulo-uno/Estructura_de_datos_II/" class="nav-link" role="menuitem">Datos II</a>
       </li>
 <li class="link">
-        <a href="/Estructura_de_datos_III/" class="nav-link" role="menuitem">Datos III</a>
+        <a href="/lecciones/modulo-uno/Estructura_de_datos_III/" class="nav-link" role="menuitem">Datos III</a>
       </li>
 <li class="link">
-        <a href="/Algoritmos_I/" class="nav-link" role="menuitem">Algoritmos I</a>
+        <a href="/lecciones/modulo-uno/Algoritmos_I/" class="nav-link" role="menuitem">Algoritmos I</a>
       </li>
 <li class="link">
-        <a href="/Algoritmos_II/" class="nav-link" role="menuitem">Algoritmos II</a>
+        <a href="/lecciones/modulo-uno/Algoritmos_II/" class="nav-link" role="menuitem">Algoritmos II</a>
       </li>
 <li class="link">
-        <a href="/Software_Testing/" class="nav-link" role="menuitem">Testing</a>
+        <a href="/lecciones/modulo-uno/Software_Testing/" class="nav-link" role="menuitem">Testing</a>
       </li>
     </ul>
         </div>
@@ -1155,15 +1155,15 @@ div.footerContained p {
 <p>No vamos a hablar mucho de la <a href="https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)">herencia clásica</a>, ya que JavaScript no soporta este tipo de herencia. JavaScript tiene una forma de herencia mucho más simple, donde no hay tanto protocolo ni restricciones. Esto hace que sea más flexible y fácil de entender.</p>
 <h2 id="prototypal-inheritance" tabindex="-1">Prototypal Inheritance <a class="anchor-link" href="#prototypal-inheritance"></a></h2>
 <p>Como sabemos, los objetos de javascript tienen propiedades y métodos, y sabemos cómo acceder a ellos. Lo que no sabíamos es que además de las propiedades y métodos que nosotros le agregamos <strong>todos los objetos tienen una referencia a otro objeto llamado proto</strong>. Veamos para que le sirve:</p>
-<p><img src="/_src/assets/02-JavaScriptAvanzado-I/protoypeInheritance.png" alt="PrototypalInheritance"></p>
+<p><img src="/lecciones/modulo-uno/_src/assets/02-JavaScriptAvanzado-I/protoypeInheritance.png" alt="PrototypalInheritance"></p>
 <p>En el ejemplo de arriba tenemos al objeto <code>Objeto</code>, que contiene dos propiedades <code>propiedad1</code> y <code>propiedad2</code>. Por lo tanto si quisiera acceder a cualquiera de esas propiedades podría usar la <code>dot notation</code>: <code>Objeto.propiedad1</code>. Ahora, como se ve en la imagen <code>Objeto</code> tiene una referencia a otro objeto llamado <code>proto</code>, y a su vez este objeto tiene una propiedad llamada <code>propiedad3</code>. Ahora lo interesante, es que si nosotros queremos acceder a la <code>propiedad3</code> del objeto <code>Objeto</code>, lo vamos a poder hacer! Cuando escribimos <code>Objeto.propiedad3</code> lo que ocurre es que el intérprete busca en el objeto por esa propiedad, y si no la encuentra antes de lanzar un error, busca en el objeto <code>proto</code> (que lo tienen <em>todos</em> los objetos) a ver si no encuentra esa propiedad, si la encuentra la devuelve.</p>
-<p><img src="/_src/assets/02-JavaScriptAvanzado-I/protoypeInheritance2.png" alt="PrototypeChain"></p>
+<p><img src="/lecciones/modulo-uno/_src/assets/02-JavaScriptAvanzado-I/protoypeInheritance2.png" alt="PrototypeChain"></p>
 <p>De hecho, el objeto al que hace referencia <code>proto</code> también podría tener una referencia a otro <code>proto</code>. Digamos el objeto al que hace referencia el segundo <code>proto</code> contiene la propiedad <code>propiedad4</code>. Si nosotros intentaramos acceder a <code>propiedad4</code> desde <code>Objeto</code> usando <code>Objeto.propiedad4</code>, el interprete primero buscaría en <code>Objeto</code>, como no está esa propiedad ahí entonces va a buscar en el objeto al que hace referencia <code>proto</code>, como tampoco está ahí se fija si ese objeto tiene una referencia en <code>proto</code>, como la tiene, va a buscar la propiedad en ese objeto al que hace referencia. En nuestro ejemplo, finalmente encuentra la <code>propiedad4</code> en este último y por lo tanto la accede. Esto es lo que se conoce como <strong>Prototype Chain</strong>.</p>
 <blockquote>
 <p>Las propiedades <em>parecen</em> que están en el Objeto que intentamos acceder, pero en realidad están en <em>otro</em> objeto y son accedidas a traves del <strong>prototype chain</strong>.</p>
 </blockquote>
 <p>Lo más importante de esto, es que si tuvieramos un segundo objeto: <code>Objeto 2</code>, cuya propiedad <code>proto</code> hace referencia al <em>mismo objeto</em> al que hacia referencia el <code>proto</code> de <code>Objeto</code>, entonces ambos objetos <strong>compartirian</strong> un subset de propiedades. En este caso, si quisieramos acceder a <code>Objeto2.propiedad3</code> (que no existe en el objeto 2), la encontraríamos siguiendo el prototype chain, y accederiamos a la misma propiedad que si hicieramos <code>Objeto1.propiedad3</code>.</p>
-<p><img src="/_src/assets/02-JavaScriptAvanzado-I/protoypeInheritance3.png" alt="Herencia"></p>
+<p><img src="/lecciones/modulo-uno/_src/assets/02-JavaScriptAvanzado-I/protoypeInheritance3.png" alt="Herencia"></p>
 <p>Veamos algunos ejemplos:</p>
 <pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> persona <span class="token operator">=</span> <span class="token punctuation">{</span><br> <span class="token literal-property property">nombre</span><span class="token operator">:</span> <span class="token string">'Default'</span><span class="token punctuation">,</span><br> <span class="token literal-property property">apellido</span><span class="token operator">:</span> <span class="token string">'Default'</span><span class="token punctuation">,</span><br> <span class="token function-variable function">getNombre</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">+</span> <span class="token string">' '</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>apellido<span class="token punctuation">;</span><br> <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">var</span> juan <span class="token operator">=</span> <span class="token punctuation">{</span><br> <span class="token literal-property property">nombre</span><span class="token operator">:</span> <span class="token string">'Juan'</span><span class="token punctuation">,</span><br> <span class="token literal-property property">apellido</span><span class="token operator">:</span> <span class="token string">'Maquiavelo'</span><br><span class="token punctuation">}</span><br><br><span class="token comment">// no hacer esto en producción es sólo para demostración</span><br><span class="token comment">// hay otras formas de asiganar prototipos.</span><br><br>juan<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> persona<span class="token punctuation">;</span><br><br><span class="token comment">// Ahora podemos usar los métodos de `persona`</span><br><br>juan<span class="token punctuation">.</span><span class="token function">getNombre</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <blockquote>

@@ -1091,25 +1091,25 @@ div.footerContained p {
           <ul class="nav">
       
       <li class="link">
-        <a href="/" class="nav-link" role="menuitem">Intro</a>
+        <a href="/lecciones/modulo-tres/" class="nav-link" role="menuitem">Intro</a>
       </li>
 <li class="link">
-        <a href="/Node/" class="nav-link" role="menuitem">Node</a>
+        <a href="/lecciones/modulo-tres/Node/" class="nav-link" role="menuitem">Node</a>
       </li>
 <li class="link">
-        <a href="/Promises/" class="nav-link" role="menuitem">Promises</a>
+        <a href="/lecciones/modulo-tres/Promises/" class="nav-link" role="menuitem">Promises</a>
       </li>
 <li class="link">
-        <a href="/WebServer/" class="nav-link" role="menuitem">Web Server</a>
+        <a href="/lecciones/modulo-tres/WebServer/" class="nav-link" role="menuitem">Web Server</a>
       </li>
 <li class="link">
-        <a href="/AdvancedPromises/" class="nav-link" role="menuitem">Advanced Promises</a>
+        <a href="/lecciones/modulo-tres/AdvancedPromises/" class="nav-link" role="menuitem">Advanced Promises</a>
       </li>
 <li class="link">
-        <a href="/Express/" class="nav-link" role="menuitem">Express</a>
+        <a href="/lecciones/modulo-tres/Express/" class="nav-link" role="menuitem">Express</a>
       </li>
 <li class="link">
-        <a href="/Testing/" class="nav-link" role="menuitem">Testing</a>
+        <a href="/lecciones/modulo-tres/Testing/" class="nav-link" role="menuitem">Testing</a>
       </li>
 <li class="link">
         <span class="nav-link activeLink" tabindex="-1" aria-current="true">Async/Await</span>
@@ -1163,7 +1163,7 @@ div.footerContained p {
 <li><strong>Fin</strong>: una vez completadas o pasados todos los puntos de pausa el generator llega a su fin</li>
 </ul>
 <p>La siguiente imagen muestra en detalle las diferencias entre ambos modelos recién expuestas:</p>
-<p><img src="/_src/assets/07-AsyncAwait/flow.png" alt="Flow"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/07-AsyncAwait/flow.png" alt="Flow"></p>
 <h3 id="generators-syntax" tabindex="-1">Generators Syntax <a class="anchor-link" href="#generators-syntax"></a></h3>
 <pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span><span class="token operator">*</span> <span class="token function">generatorShowInstructors</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Iniciando generator function"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token keyword">yield</span> <span class="token string">"Franco"</span><span class="token punctuation">;</span><br>  <span class="token keyword">yield</span> <span class="token string">"Toni"</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Generator function terminada"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">var</span> generatorObject <span class="token operator">=</span> <span class="token function">generatorShowInstructors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>generatorObject<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>En primer lugar para poder definir un generator debemos utilizar la sintaxis <code>function*</code> lo que va a indicar que la misma debe retornar un <code>Generator Object</code>.</p>
@@ -1228,7 +1228,7 @@ div.footerContained p {
 <li>FIN</li>
 </ol>
 <p>¿Cómo deberíamos modificar el código previo?</p>
-<p><img src="/_src/assets/07-AsyncAwait/Spoiler-Alert.png" alt="no-box"></p>
+<p><img src="/lecciones/modulo-tres/_src/assets/07-AsyncAwait/Spoiler-Alert.png" alt="no-box"></p>
 <pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">showInstructors</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> instructor1 <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'Franco'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>instructor1<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token keyword">const</span> instructor2 <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'Toni'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>instructor2<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">tareaAsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"¿Quiénes son los instructores?"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token keyword">await</span> <span class="token function">showInstructors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Gracias vuelvan pronto"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">await</span> <span class="token function">tareaAsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"FIN"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h3 id="ventajas" tabindex="-1">Ventajas <a class="anchor-link" href="#ventajas"></a></h3>
 <ul>

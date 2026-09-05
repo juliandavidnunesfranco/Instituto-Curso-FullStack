@@ -4,8 +4,10 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import rehypeHighlight from 'rehype-highlight';
 import { leerUnidad, listarUnidades } from '@/lib/lecciones';
+import { tiempoDeLectura } from '@/lib/tiempo-lectura';
 import { Cabecera } from '@/components/Cabecera';
 import { NavLecciones } from '@/components/NavLecciones';
+import { BarraProgreso } from '@/components/BarraProgreso';
 
 export function generateStaticParams() {
   return listarUnidades().map((u) => ({ id: u.id }));
@@ -31,18 +33,22 @@ export default async function PaginaUnidad(props: {
 
   const { unidad, markdown } = datos;
   const hermanas = listarUnidades().filter((u) => u.modulo === unidad.modulo);
+  const cuerpo = sinTituloInicial(markdown);
 
   return (
     <>
+      <BarraProgreso />
       <Cabecera
         titulo={unidad.titulo}
         subtitulo={unidad.modulo.replace(/_/g, ' ')}
+        tiempoLectura={tiempoDeLectura(cuerpo)}
       />
       <NavLecciones unidades={hermanas} activa={unidad.id} />
 
       <main className="contenedor">
-        <h1>{unidad.titulo}</h1>
-        <article className="leccion">
+        {/* La clase `lesson` es la del CSS original del curso */}
+        <article className="lesson">
+          <h1>{unidad.titulo}</h1>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             // El material trae HTML real en 29 lecciones: divs, imagenes y
@@ -50,7 +56,7 @@ export default async function PaginaUnidad(props: {
             // seguro porque el markdown es nuestro, no entrada de usuario.
             rehypePlugins={[rehypeRaw, [rehypeHighlight, { detect: true }]]}
           >
-            {sinTituloInicial(markdown)}
+            {cuerpo}
           </ReactMarkdown>
         </article>
       </main>
@@ -60,8 +66,7 @@ export default async function PaginaUnidad(props: {
 
 /**
  * Casi todos los README.md abren con su propio "# Titulo", que repetiria el
- * encabezado que ya pone la pagina. Se quita solo ese primero; el resto del
- * documento queda intacto.
+ * encabezado que ya pone la pagina. Se quita solo ese primero.
  */
 function sinTituloInicial(markdown: string): string {
   return markdown.replace(/^\s*#\s+.*\r?\n/, '');

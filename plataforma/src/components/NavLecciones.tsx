@@ -15,7 +15,7 @@ export function NavLecciones({
   if (unidades.length === 0) return null;
 
   return (
-    <nav className="topnav" aria-label="Lecciones del módulo">
+    <nav className="topnav-plataforma" aria-label="Lecciones del módulo">
       <ul>
         {unidades.map((u) => (
           <li key={u.id}>

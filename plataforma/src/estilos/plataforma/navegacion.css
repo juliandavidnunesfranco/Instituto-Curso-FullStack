@@ -1,0 +1,36 @@
+/* Navegacion horizontal entre lecciones del mismo modulo. */
+.topnav-plataforma {
+  border-bottom: 1px solid var(--borde);
+  background: var(--fondo);
+  overflow-x: auto;
+}
+
+.topnav-plataforma ul {
+  max-width: var(--ancho-contenedor);
+  margin: 0 auto;
+  padding: 0 1.2rem;
+  display: flex;
+  gap: 0.2rem;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.topnav-plataforma a {
+  display: block;
+  padding: 0.7rem 0.75rem;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.topnav-plataforma a:hover {
+  color: var(--marca);
+  background: var(--fondo-sutil);
+}
+
+.topnav-plataforma a.activo {
+  color: var(--marca);
+  border-bottom-color: var(--marca);
+  font-weight: 600;
+}

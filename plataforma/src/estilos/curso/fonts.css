@@ -1,0 +1,56 @@
+/*
+  Tipografía del curso — versión local.
+
+  El original cargaba Avenir desde el S3 del instituto. Avenir es una
+  tipografía comercial de Linotype: redistribuir sus archivos sería un
+  problema de licencia distinto del CSS, así que se sustituye por
+  Nunito Sans (SIL Open Font License), geométrica humanista muy cercana.
+
+  Se conservan los nombres de familia originales —Avenir-Book, Avenir-Roman,
+  etc.— para que los otros nueve CSS del curso funcionen sin tocarlos. Cada
+  nombre mapea al peso equivalente de la fuente variable.
+
+  Un solo archivo de 31 KB cubre todos los pesos.
+*/
+
+@font-face {
+  font-family: 'Avenir-Light';
+  src: url('/fuentes/nunito-sans-variable.woff2') format('woff2-variations');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir-Book';
+  src: url('/fuentes/nunito-sans-variable.woff2') format('woff2-variations');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir-Roman';
+  src: url('/fuentes/nunito-sans-variable.woff2') format('woff2-variations');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir-Medium';
+  src: url('/fuentes/nunito-sans-variable.woff2') format('woff2-variations');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir-Heavy';
+  src: url('/fuentes/nunito-sans-variable.woff2') format('woff2-variations');
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir-Black';
+  src: url('/fuentes/nunito-sans-variable.woff2') format('woff2-variations');
+  font-weight: 900;
+  font-display: swap;
+}

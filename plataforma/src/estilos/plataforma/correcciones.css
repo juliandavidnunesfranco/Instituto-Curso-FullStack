@@ -1,0 +1,19 @@
+/*
+  Correcciones sobre el CSS heredado del curso.
+  Cada una lleva su motivo: si alguna molesta, se borra la regla y se
+  vuelve exactamente al comportamiento original.
+*/
+
+/*
+  main.css aplica `user-select: none` a todo, asi que en el sitio original
+  no se puede seleccionar ni copiar nada — tampoco los ejemplos de codigo.
+  En un curso de programacion copiar el codigo es parte de estudiar, asi
+  que se reactiva la seleccion en el contenido.
+*/
+.lesson,
+.lesson * {
+  user-select: text;
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+}

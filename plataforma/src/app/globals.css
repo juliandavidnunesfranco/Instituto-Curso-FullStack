@@ -19,6 +19,18 @@
   --texto-suave: #59616e;
   --borde: #e2e6ec;
 
+  /* La cabecera es azul en ambos temas: el logo es blanco y necesita
+     fondo oscuro para verse. */
+  --marca-solida: #2e4f8f;
+
+  /* Resaltado de sintaxis */
+  --cod-clave: #a626a4;
+  --cod-texto: #50a14f;
+  --cod-numero: #b76b01;
+  --cod-comentario: #8b949e;
+  --cod-funcion: #4078f2;
+  --cod-propiedad: #986801;
+
   --medida: 68ch;
   --radio: 8px;
 
@@ -38,6 +50,13 @@
     --texto: #e6e9ee;
     --texto-suave: #a2acb9;
     --borde: #2a3038;
+
+    --cod-clave: #c678dd;
+    --cod-texto: #98c379;
+    --cod-numero: #d19a66;
+    --cod-comentario: #7f8896;
+    --cod-funcion: #61afef;
+    --cod-propiedad: #e5c07b;
   }
 }
 
@@ -279,4 +298,121 @@ h4 {
   h2 {
     font-size: 1.3rem;
   }
+}
+
+/* ---------- Cabecera de marca ---------- */
+
+.cabecera {
+  background: var(--marca-solida);
+  color: #fff;
+}
+
+.cabecera-contenido {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0.85rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.cabecera-titulos {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.cabecera-titulo {
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.cabecera-sep,
+.cabecera-subtitulo {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.94rem;
+}
+
+/* ---------- Navegacion entre lecciones ---------- */
+
+.topnav {
+  border-bottom: 1px solid var(--borde);
+  background: var(--fondo);
+  overflow-x: auto;
+}
+
+.topnav ul {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.2rem;
+  display: flex;
+  gap: 0.2rem;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.topnav a {
+  display: block;
+  padding: 0.7rem 0.75rem;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.topnav a:hover {
+  color: var(--marca);
+  background: var(--fondo-sutil);
+}
+
+.topnav a.activo {
+  color: var(--marca);
+  border-bottom-color: var(--marca);
+  font-weight: 600;
+}
+
+/* ---------- Resaltado de sintaxis (highlight.js) ---------- */
+
+.leccion .hljs-keyword,
+.leccion .hljs-built_in,
+.leccion .hljs-literal {
+  color: var(--cod-clave);
+}
+.leccion .hljs-string,
+.leccion .hljs-template-string {
+  color: var(--cod-texto);
+}
+.leccion .hljs-number {
+  color: var(--cod-numero);
+}
+.leccion .hljs-comment,
+.leccion .hljs-quote {
+  color: var(--cod-comentario);
+  font-style: italic;
+}
+.leccion .hljs-title,
+.leccion .hljs-function .hljs-title,
+.leccion .hljs-name {
+  color: var(--cod-funcion);
+}
+.leccion .hljs-attr,
+.leccion .hljs-property,
+.leccion .hljs-variable {
+  color: var(--cod-propiedad);
+}
+
+/* Contenedor comun de las paginas */
+.contenedor {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.5rem 1.2rem 4rem;
 }

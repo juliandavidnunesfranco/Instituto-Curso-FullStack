@@ -1,9 +1,11 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import rehypeHighlight from 'rehype-highlight';
 import { leerUnidad, listarUnidades } from '@/lib/lecciones';
+import { Cabecera } from '@/components/Cabecera';
+import { NavLecciones } from '@/components/NavLecciones';
 
 export function generateStaticParams() {
   return listarUnidades().map((u) => ({ id: u.id }));
@@ -14,7 +16,9 @@ export async function generateMetadata(props: {
 }) {
   const { id } = await props.params;
   const datos = leerUnidad(id);
-  return { title: datos ? `${datos.unidad.titulo} — Curso Full Stack` : 'Lección' };
+  return {
+    title: datos ? `${datos.unidad.titulo} — Curso Full Stack` : 'Lección',
+  };
 }
 
 export default async function PaginaUnidad(props: {
@@ -25,29 +29,32 @@ export default async function PaginaUnidad(props: {
   const datos = leerUnidad(id);
   if (!datos) notFound();
 
+  const { unidad, markdown } = datos;
+  const hermanas = listarUnidades().filter((u) => u.modulo === unidad.modulo);
+
   return (
-    <main style={{ maxWidth: 860, margin: '0 auto', padding: '2rem 1.2rem 4rem' }}>
-      <Link href="/" className="volver">
-        ← Volver al índice
-      </Link>
+    <>
+      <Cabecera
+        titulo={unidad.titulo}
+        subtitulo={unidad.modulo.replace(/_/g, ' ')}
+      />
+      <NavLecciones unidades={hermanas} activa={unidad.id} />
 
-      <h1>{datos.unidad.titulo}</h1>
-      <p style={{ color: 'var(--texto-suave)', marginTop: '-0.4rem' }}>
-        {datos.unidad.modulo.replace(/_/g, ' ')}
-      </p>
-
-      <article className="leccion">
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          // El material trae HTML real: videos de Vimeo, divs e imagenes en
-          // 29 de las lecciones. Sin rehype-raw se muestra como texto plano.
-          // Es seguro porque el markdown es nuestro, no entrada de usuario.
-          rehypePlugins={[rehypeRaw]}
-        >
-          {sinTituloInicial(datos.markdown)}
-        </ReactMarkdown>
-      </article>
-    </main>
+      <main className="contenedor">
+        <h1>{unidad.titulo}</h1>
+        <article className="leccion">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            // El material trae HTML real en 29 lecciones: divs, imagenes y
+            // videos. Sin rehype-raw se mostraria como texto plano. Es
+            // seguro porque el markdown es nuestro, no entrada de usuario.
+            rehypePlugins={[rehypeRaw, [rehypeHighlight, { detect: true }]]}
+          >
+            {sinTituloInicial(markdown)}
+          </ReactMarkdown>
+        </article>
+      </main>
+    </>
   );
 }
 

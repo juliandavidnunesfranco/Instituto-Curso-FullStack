@@ -1,0 +1,1105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Curso Introductorio</title>
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+  /* border: 2px dashed green; */
+  font-family: 'Avenir-Roman';
+  font-size: 16px;
+  line-height: 18px;
+  text-align: justify;
+  padding: 2rem 2rem 4rem 80px;
+  font-size: 1.1em;
+  width: 100%;
+  max-width: 98vw;
+}
+
+.lesson .hide {
+  display: none;
+}
+
+.lesson :target:before {
+  content: '';
+  display: block;
+  height: 85px;
+}
+
+.lesson .readingTime {
+  font-family: 'Avenir-Book';
+  font-size: 14px;
+  line-height: 119.6%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  width: 160px;
+  height: 41px;
+  padding: 1.1rem;
+  margin-bottom: -4rem;
+  margin-top: 3rem;
+}
+
+.lesson img[alt~='HenryLogo'] {
+  display: none;
+}
+
+.lesson h1 {
+  display: inline-block;
+  font-family: 'Avenir-Black';
+  font-size: 48px;
+  line-height: 66px;
+  color: #2e2e2e;
+
+  border-bottom-style: solid;
+  border-bottom-width: 25px;
+  border-bottom-color: #ffff01;
+
+  height: 64px;
+  margin: 10px 0 3rem 0;
+}
+
+.lesson h1 + h4 {
+  margin: -40px 0 3rem 0;
+  font-family: 'Avenir-Black';
+  font-size: 32px;
+  line-height: 32px;
+}
+
+.lesson h1 + h2 {
+  margin-top: 0;
+}
+
+.lesson h2 {
+  font-family: 'Avenir-Black';
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 32px;
+  text-align: left;
+  color: #2e2e2e;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+hr {
+  display: none;
+}
+
+.lesson h3 {
+  font-family: 'Avenir-Black';
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: left;
+  color: #2e2e2e;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.lesson h3:first-of-type  {
+  display: none
+}
+
+.lesson h4 {
+  font-family: 'Avenir-Black';
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: left;
+  color: #2e2e2e;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.lesson img {
+  width: auto;
+  max-width: 900px;
+  height: auto;
+  display: block;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.lesson img[alt~='logo'] {
+  box-shadow: none;
+  width: 350px;
+}
+
+.lesson ul {
+  list-style: square;
+}
+
+.lesson li {
+  font-family: 'Avenir-Heavy';
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.lesson a {
+  font-family: 'Avenir-Black';
+  font-size: 16px;
+}
+
+.lesson .iframeContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.lesson iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+   
+    <div class="headerResponsive">
+      <div class="leftContent">
+        <img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio">
+        <span>Curso Introductorio</span>
+      </div>
+      <div class="menuDiv">
+        <input type="checkbox">
+        <i class="fas fa-bars"></i>
+        <i class="fas fa-times"></i>
+        <nav>
+          <ul><li><a href="/lecciones/introductorio/">Intro</a></li>
+<li><a href="/lecciones/introductorio/Primeros_Pasos/">Primeros Pasos</a></li>
+<li><a href="/lecciones/introductorio/Git/">Git</a></li>
+<li><a href="/lecciones/introductorio/Git_y_GitHub/">Git y GitHub</a></li>
+<li><a href="/lecciones/introductorio/Conceptos/">Conceptos</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_I/">JS I</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_II/">JS II</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_III/">JS III</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_IV/">JS IV</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_V/">JS V</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_VI/">JS VI</a></li>
+<li><a href="/lecciones/introductorio/HTML/">HTML</a></li>
+<li><a href="/lecciones/introductorio/CSS/">CSS</a></li>
+<li><a href="/lecciones/introductorio/Glosario/">Glosario</a></li></ul>
+        </nav>
+        
+        </div>
+      </div>
+    </div>
+
+    <div class="headerContainer">
+      <div class="headerContained">
+        <img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio">
+        <div>
+          <span>Curso Introductorio</span>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <div class="topnav" id='myTopnav' >
+        
+        <ul class="nav">
+      
+      <li class="link">
+        <a href="/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <a href="/Primeros_Pasos/" class="nav-link" role="menuitem">Primeros Pasos</a>
+      </li>
+<li class="link">
+        <a href="/Git/" class="nav-link" role="menuitem">Git</a>
+      </li>
+<li class="link">
+        <a href="/Git_y_GitHub/" class="nav-link" role="menuitem">Git y GitHub</a>
+      </li>
+<li class="link">
+        <a href="/Conceptos/" class="nav-link" role="menuitem">Conceptos</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_I/" class="nav-link" role="menuitem">JS I</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_II/" class="nav-link" role="menuitem">JS II</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_III/" class="nav-link" role="menuitem">JS III</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_IV/" class="nav-link" role="menuitem">JS IV</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_V/" class="nav-link" role="menuitem">JS V</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_VI/" class="nav-link" role="menuitem">JS VI</a>
+      </li>
+<li class="link">
+        <a href="/HTML/" class="nav-link" role="menuitem">HTML</a>
+      </li>
+<li class="link">
+        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">Glosario</span>
+      </li>
+    </ul>
+      </div>
+
+      <div class='lesson'>
+        <div>
+          
+          <h1 id="glosario" tabindex="-1">Glosario <a class="anchor-link" href="#glosario"></a></h1>
+<h5>A continuación encontrarás una serie de conceptos básicos propios de la programación, que te servirán para familiarizarte con el contenido del Prep Course.</h5>
+<h2 id="a" tabindex="-1">A <a class="anchor-link" href="#a"></a></h2>
+<p><strong>Argumento:</strong> valor real pasado como input (valor de entrada) a una función.</p>
+<p><strong>Array (Arreglo):</strong> es un tipo especial de variable que se utiliza para almacenar múltiples elementos. A su vez es un tipo de objeto.</p>
+<p><strong>Asignar:</strong> dar un valor a una variable, es decir guardar algo (dato) en un contenedor.</p>
+<h2 id="b" tabindex="-1">B <a class="anchor-link" href="#b"></a></h2>
+<p><strong>Bloque de código:</strong> es la agrupación de statements(sentencias) dentro de un par de llaves con el fin de que se ejecuten juntas.</p>
+<p><strong>Booleano</strong>: es un tipo de dato que solo puede tener dos posibles valores: verdadero o falso.</p>
+<p><strong>Bucle (loop)</strong>: es una herramienta de programación que permite repetir un set de instrucciones hasta llegar a una condición de corte.</p>
+<h2 id="c" tabindex="-1">C <a class="anchor-link" href="#c"></a></h2>
+<p><strong>Callbacks:</strong> es una función que se pasa como argumento a otra función para ser invocada por la última.</p>
+<p><strong>Clases (class):</strong> son una plantilla para crear objetos. Un tipo especial de funciones.</p>
+<p><strong>Clonar:</strong> crear una copia local (en tu computadora) de un repositorio manteniendo una conexión remota con el mismo.</p>
+<p><strong>Comando:</strong> una orden o instrucción que un usuario le da a un sistema para que realice determinada tarea.</p>
+<p><strong>Condición:</strong> o una sentencia condicional es una expresión que puede evaluarse a verdadero o falso con el fin de permitir que cierto fragmento de código se ejecute solo cuando se cumpla o no dicha condición.</p>
+<p><strong>Consola (del navegador)</strong>: es una herramienta que nos permite interactuar con el código de una página web usando JavaScript.</p>
+<p><strong>Console.log:</strong> es un método que muestra un mensaje en la consola. Tiene múltiples usos como por ejemplo “ver” el valor asignado a una variable o todo el contenido de un array así como también el resultado de la ejecución de una función.</p>
+<p><strong>Constructor:</strong> es un tipo especial de función que actúa a modo de molde para crear nuevos objetos.</p>
+<h2 id="d" tabindex="-1">D <a class="anchor-link" href="#d"></a></h2>
+<p><strong>Dato:</strong> cualquier objeto manipulable por la computadora, puede ser letras, números, caracteres especiales que ocupa un lugar en memoria.</p>
+<p><strong>Declarar:</strong> crear una variable, sin asignarle un valor.</p>
+<h2 id="e" tabindex="-1">E <a class="anchor-link" href="#e"></a></h2>
+<p><strong>Editor de texto:</strong> es un programa que te permite crear y editar archivos en diferentes lenguajes de programación. (Es donde escribimos nuestro código!)</p>
+<p><strong>Expression (Expresión):</strong> es cualquier unidad de código válida que se resuelve en un valor.</p>
+<h2 id="f" tabindex="-1">F <a class="anchor-link" href="#f"></a></h2>
+<p><strong>Flujos de control (Control Flow)</strong>: es el orden en que la computadora ejecuta las sentencias en un script.</p>
+<p><strong>Forkear:</strong> crear una copia independiente de un repositorio del cual eres dueño y puedes modificar, aunque los cambios no se verán reflejados en el repositorio original.</p>
+<p><strong>Función:</strong> es un bloque de código diseñado para que realice una tarea en particular.</p>
+<h2 id="g" tabindex="-1">G <a class="anchor-link" href="#g"></a></h2>
+<p><strong>Git:</strong> es una herramienta que permite trabajar colaborativamente en un código ya que mantiene un récord de todos los cambios hechos en un código.</p>
+<p><strong>GitHub:</strong> es una herramienta que permite crear, almacenar y compartir repositorios.</p>
+<h2 id="h" tabindex="-1">H <a class="anchor-link" href="#h"></a></h2>
+<p><strong>Hoisting (elevación de variables y funciones):</strong> es el comportamiento por defecto de JavaScript que parece mover las declaraciones de las variables, funciones y clases a la parte de arriba del código antes de su ejecución.</p>
+<h2 id="i" tabindex="-1">I <a class="anchor-link" href="#i"></a></h2>
+<p><strong>IDE (entorno de desarrollo integrado):</strong> es una herramienta que combina en una sola interfaz las más necesarias para los desarrolladores.</p>
+<p><strong>IIFE (Expresión de función ejecutadas inmediatamente):</strong> es una manera de ejecutar funciones inmediatamente, ya que las mismas se ejecutan al momento en que se declaran.</p>
+<p><strong>Inicializar:</strong> la asignación inicial de un valor a una variable.</p>
+<p><strong>Interprete:</strong> es un software que lee, analiza y ejecuta el código escrito en algunos lenguajes de programación.</p>
+<p><strong>Invocar (llamar):</strong> es simplemente ejecutar o “correr” una función.</p>
+<p><strong>Iterar:</strong> realizar un proceso repetidas veces con el fin de llegar al resultado deseado.</p>
+<h2 id="m" tabindex="-1">M <a class="anchor-link" href="#m"></a></h2>
+<p><strong>Método:</strong> es una función que pertenece a un objeto. Por ejemplo, el .push() en los arrays.</p>
+<h2 id="n" tabindex="-1">N <a class="anchor-link" href="#n"></a></h2>
+<p><strong>Node:</strong> es un entorno de ejecución de JavaScript. Se utiliza para poder ejecutar código del lado del servidor.</p>
+<p><strong>NPM:</strong> es un sistema de gestión de paquetes para Node.js, sirve para acomodar los módulos para que Node los encuentre y pueda utilizarlos al ejecutar el código.</p>
+<h2 id="o" tabindex="-1">O <a class="anchor-link" href="#o"></a></h2>
+<p><strong>Objeto:</strong> es un tipo que dato que se utiliza para guardar colecciones de pares clave-valor.</p>
+<p><strong>Operador:</strong> es un símbolo especial que representa una acción. Por ejemplo, el “=” es el operador utilizado para asignar un valor a una variable.</p>
+<h2 id="p" tabindex="-1">P <a class="anchor-link" href="#p"></a></h2>
+<p><strong>Palabra reservada/ keyword:</strong> son palabras dentro de un lenguaje de programación que se guardan para su uso funcional ya que tienen un significado y una función. Por ejemplo, var, let y const.</p>
+<p><strong>Parámetro:</strong> el nombre que se establece para el futuro argumento, cuando se define la función.</p>
+<p><strong>Prototype:</strong> el mecanismo por el cual los objetos de JavaScript heredan características unos de otros.</p>
+<h2 id="r" tabindex="-1">R <a class="anchor-link" href="#r"></a></h2>
+<p><strong>Repositorio:</strong> es un espacio virtual donde se almacena información, generalmente los archivos que conforman un programa, página web o aplicación</p>
+<p><strong>Return:</strong> es una palabra reservada que se utiliza para terminar o “cortar” con la ejecución de una función o bloque de código. Un statement(sentencia) que comienza con return especifica el valor que debe retornar dicha función o bloque de código.</p>
+<h2 id="s" tabindex="-1">S <a class="anchor-link" href="#s"></a></h2>
+<p><strong>Saltos (jumps):</strong> son formas de “salir” de un bucle(loop). Por ejemplo, usando las palabras reservadas return, break, continue.</p>
+<p><strong>Script:</strong> es un conjunto de comando o instrucciones escritos en algún lenguaje de programación para que algún programa u ordenador luego lo ejecute.</p>
+<p><strong>Scope (Ambito de una variable):</strong> los limites en el cual existe una variable.</p>
+<p><strong>Statement (sentencia):</strong> es una línea de código que ordena una tarea.</p>
+<p><strong>String(cadena):</strong> es uno de los tipos de datos primitivos de JavaSript. Son variables en donde se almacena texto, es decir cualquier combinación o cantidad de caracteres.</p>
+<h2 id="t" tabindex="-1">T <a class="anchor-link" href="#t"></a></h2>
+<p><strong>Terminal:</strong> otro término que hace referencia a la consola. (ejemplo: la terminal integrada en visual studio code)</p>
+<p><strong>This:</strong> es un keyword que hace referencia al objeto (en JavaScript básicamente todo es en el fondo un objeto) que está ejecutando la función o bloque de código. Es una especie de puntero.</p>
+<p><strong>Tipos de datos:</strong> es una clasificación de los datos. Un atributo que tienen que ayuda al interprete a saber cómo procesarlo correctamente.</p>
+<h2 id="v" tabindex="-1">V <a class="anchor-link" href="#v"></a></h2>
+<p><strong>Variable:</strong> contenedor en los que puedes almacenar valores.</p>
+
+        </div>
+      </div>
+
+    </main>
+
+  </body>
+</html>

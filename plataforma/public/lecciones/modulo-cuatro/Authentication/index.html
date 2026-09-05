@@ -1,0 +1,1283 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Authentication | Módulo 4 - Bases de Datos</title>
+    
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+    /* border: 2px dashed green; */
+    font-family: 'Avenir-Roman';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: justify;
+    padding: 0 2rem 4rem 300px;
+    width: 100%;
+    max-width: 98vw;
+    margin-top: 60px;
+  }
+  
+  .lesson .hide {
+    display: none;
+  }
+  
+  .lesson :target:before {
+    content: '';
+    display: block;
+    height: 85px;
+  }
+  
+  .lesson img[alt~='HenryLogo'] {
+    display: none;
+  }
+  
+  .lesson h1 {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #2e2e2e;
+  
+    border-bottom-style: solid;
+    border-bottom-width: 25px;
+    border-bottom-color: #ffff01;
+  
+    height: 64px;
+    margin: 0px 0 50px 0;
+  }
+  
+  .lesson h1 + h4 {
+    margin: -40px 0 3rem 0;
+    font-family: 'Avenir-Black';
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+  }
+  
+  .lesson h1 + h2 {
+    margin-top: 0;
+  }
+  
+  .lesson h2 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h2#homework {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #1fa32a;
+  }
+  
+  .lesson h3 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 24px;
+    font-display: swap;
+    line-height: 24px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h4 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson img {
+    width: auto;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson img[alt~='logo'] {
+    box-shadow: none;
+    width: 350px;
+  }
+  
+  .lesson img[alt~='no-box'] {
+    box-shadow: none;
+  }
+  
+  .lesson ul {
+    list-style: square;
+  }
+  
+  .lesson li {
+    font-family: 'Avenir-Heavy';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+  }
+  
+  .lesson a {
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+  }
+  
+  .lesson .iframeContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson .sandboxContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+  .lesson iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lesson table {
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    text-align: center !important;
+  }
+  
+  .lesson th {
+    background-color: rgb(170, 170, 170);
+    padding: 8px;
+    text-align: center !important;
+  }
+  
+  .lesson thead {
+    text-align: center !important;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+  
+  .lesson td {
+    padding: 5px;
+    text-align: center !important;
+  }
+  
+  tr + td {
+    border-right: 1px solid gray !important;
+  }
+  
+  .rightBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    width: 97vw;
+    max-width: 1500px;
+    margin-top: 5rem;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .homeworkBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .homeworkBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .homeworkBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: green;
+  }
+  
+  .quizzBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .quizzBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .quizzBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: rgb(128, 79, 0);
+  }
+  
+  .readingTime {
+    font-family: 'Avenir-Book';
+    font-size: 14px;
+    font-display: swap;
+    line-height: 119.6%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reader-bar-start">
+
+      <div class="headerResponsive">
+        <div class="leftContent">
+          <img class="brandLogo" src="/lecciones/modulo-cuatro/_src/assets/logo.png" alt="Módulo 4 - Bases de Datos">
+          <span>Authentication</span>
+        </div>
+        <div class="menuDiv">
+          <input type="checkbox">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times"></i>
+          <nav>
+            <ul><li><a href="/lecciones/modulo-cuatro/">Intro</a></li>
+<li><a href="/lecciones/modulo-cuatro/DBMS/">DBMS</a></li>
+<li><a href="/lecciones/modulo-cuatro/SQL/">SQL</a></li>
+<li><a href="/lecciones/modulo-cuatro/Sequelize/">Sequelize</a></li>
+<li><a href="/lecciones/modulo-cuatro/Authentication/">Authentication</a></li></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="headerContainer">
+        <div class="headerContained">
+          <img class="brandLogo" src="/lecciones/modulo-cuatro/_src/assets/logo.png" alt="Módulo 4 - Bases de Datos">
+          <div>
+            <span class="lessonTitle">Authentication</span> | <span>Módulo 4 - Bases de Datos</span>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="topnav" id='myTopnav' >
+          
+          <ul class="nav">
+      
+      <li class="link">
+        <a href="/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <a href="/DBMS/" class="nav-link" role="menuitem">DBMS</a>
+      </li>
+<li class="link">
+        <a href="/SQL/" class="nav-link" role="menuitem">SQL</a>
+      </li>
+<li class="link">
+        <a href="/Sequelize/" class="nav-link" role="menuitem">Sequelize</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">Authentication</span>
+      </li>
+    </ul>
+        </div>
+
+        <div class='sidebar'>
+          <div class="tocTitle">
+            Contenido de la clase
+            </div>
+          <div class="tocBox">
+            
+            <nav class="toc" >
+        <ul><li><a href="#autenticaci%C3%B3n-vs-autorizaci%C3%B3n">Autenticación VS Autorización </a></li><li><a href="#autenticaci%C3%B3n">Autenticación </a><ul><li><a href="#cookies">Cookies </a></li><li><a href="#tokens-de-autenticaci%C3%B3n">Tokens de Autenticación </a></li><li><a href="#jwt">JWT </a></li><li><a href="#token-jwt">Token JWT </a></li></ul></li><li><a href="#passport">Passport </a><ul><li><a href="#modo-de-uso">Modo de Uso </a></li></ul></li><li><a href="#homework">Homework </a></li></ul>
+      </nav>
+          </div>
+        </div>
+
+        <div class='rightBox'>
+          <div class="readingTime">
+                    Tiempo de lectura 14 min
+          </div>
+
+          
+        </div>
+
+        <div class='lesson'>
+          
+          <h1 id="authentication" tabindex="-1">Authentication <a class="anchor-link" href="#authentication"></a></h1>
+<h2 id="autenticaci%C3%B3n-vs-autorizaci%C3%B3n" tabindex="-1">Autenticación VS Autorización <a class="anchor-link" href="#autenticaci%C3%B3n-vs-autorizaci%C3%B3n"></a></h2>
+<p>Es normal pensar que autenticación y autorizacion son sinónimos. De hecho, ambos son procesos de seguridad, aunque tienen propósitos diferentes.</p>
+<p><img src="https://www.redeszone.net/app/uploads-redeszone.net/2020/06/diferencias-autenticacion-autorizacion-3.jpg" alt="diferencias"></p>
+<p>La autenticación es el proceso de identificar a los usuarios y garantizar que los mismos sean quienes dicen ser. Cuál podría ser una prueba de autenticación? La más utilizada es la contraseña. A la hora de iniciar sesión, si conocen sus credenciales (nombre de usuario y contraseña), el sistema entenderá que su identidad es válida. En consecuencia,van a poder acceder al recurso o conjunto de recursos que quieran.</p>
+<p>Por otro lado, la autorización es lo que define a qué recursos dentro de ese sistema autenticado van a poder acceder. Que hayan logrado pasar la instancia de la autenticación, no significa que van a poder utilizar el sistema por completo. Un ejemplo sería autenticarse en la página de un banco. Una autenticación exitosa no les va a otorgar  la capacidad de ver las cuentas de otros clientes ni de retirar dinero de las mismas. En cambio, para un ejecutivo de cuentas, que inicia sesión como administrador, es habitual acceder a muchas cuentas y realizar acciones adicionales que un usuario, como cliente, no podría.</p>
+<h2 id="autenticaci%C3%B3n" tabindex="-1">Autenticación <a class="anchor-link" href="#autenticaci%C3%B3n"></a></h2>
+<p>Durante este tiempo, estuvimos trabajando con protocolos HTTP. Estos protocolos tienen una particularidad, y es que son stateless, osea que no tienen conocimiento sobre estados. Y eso qué significa? que cada vez que enviemos una request, esta se va a ejecutar, pero si refrescamos la página todos esos datos se van a perder. Es por esto que vamos a necesitar herramientas que <strong>guarden</strong> la sesión, es decir, que nos permitan como usuarios permanecer logueados una vez que enviemos nuestros datos.</p>
+<h3 id="cookies" tabindex="-1">Cookies <a class="anchor-link" href="#cookies"></a></h3>
+<p>Una de las herramientas que nos van a permitir poder guardar esa información son las cookies. Una cookie (o galleta informática) es un pequeño archivo de datos creado por el sitio web visitado y almacenado en el navegador o dispositivo utilizado por los usuarios. Las cookies contienen pequeñas cantidades de información que se envían entre un emisor (generalmente el servidor de la web) y un receptor (el navegador del usuario) almacenando esta información en la memoria del navegador. El objetivo de este proceso es que la web visitada pueda comprobar esa cookie en una futura conexión del usuario y utilizarla.</p>
+<p><img src="/_src/assets/04-Authentication/CookiesAuth.png" alt="Cookies"></p>
+<ul>
+<li><strong>Cookies de sesión (Session Cookies)</strong></li>
+</ul>
+<p>Comprenden el tiempo que transcurre entre el inicio y el cierre de una sesión. Al iniciarla, el servidor genera un “ID de sesión” que se transmite al cliente. Este ID, también denominado identificador de sesión, es un número generado al azar que las cookies almacenan de manera temporal. Su único fin es asignar al usuario una sesión en particular. Este identificador tiene una gran ventaja: si nosotros como usuarios abrimos varias ventanas en el mismo sitio web, estas se van a asignar a una sola sesión. Esto nos va a permitir que iniciemos varias consultas de forma simultánea sin que se pierda información personal importante.<br>
+Una vez cerrada esta sesión de navegación, tanto el identificador, como el resto de datos almacenados, se borran.</p>
+<ul>
+<li><strong>Cookies persistentes</strong></li>
+</ul>
+<p>Opuestas a las cookies de sesión, las cookies persistentes son aquellas que siguen almacenadas en el navegador durante más tiempo incluso después de la sesión (pueden ser horas, meses o años).</p>
+<h3 id="tokens-de-autenticaci%C3%B3n" tabindex="-1">Tokens de Autenticación <a class="anchor-link" href="#tokens-de-autenticaci%C3%B3n"></a></h3>
+<p>Por otro lado, la autenticación basada en tokens es un protocolo que nos va a permitir verificar nuestra identidad y, a cambio, recibir un token de acceso único. Durante la vida del token, los usuarios accedemos al sitio web o la aplicación para la que se emitió, en lugar de tener que volver a ingresar las credenciales cada vez que volvemos a ingresar a la misma página web, aplicación o cualquier recurso protegido con ese mismo token.</p>
+<p>Lo pueden pensar como un boleto sellado. Básicamente, vamos a conservar el acceso mientras el token siga siendo válido. Una vez que cerramos sesión o salimos de una aplicación, el token se invalida.</p>
+<p>La autenticación basada en tokens es diferente de las técnicas de autenticación tradicionales basadas en contraseña o en servidor. Los tokens ofrecen una segunda capa de seguridad y los administradores tienen un control detallado sobre cada acción y transacción.</p>
+<p><img src="/_src/assets/04-Authentication/TokenAuth.png" alt="TokenAuth"></p>
+<h3 id="jwt" tabindex="-1">JWT <a class="anchor-link" href="#jwt"></a></h3>
+<p>Un JSON Web Token es un token de acceso estandarizado en el RFC 7519 que permite el intercambio seguro de datos entre dos partes. Contiene toda la información importante sobre una entidad, lo que implica que no hace falta consultar una base de datos ni que la sesión tenga que guardarse en el servidor (sesión sin estado).</p>
+<p>Por este motivo, los JWT son especialmente populares en los procesos de autentificación. Con este estándar es posible cifrar mensajes cortos, enviarles información sobre el remitente y demostrar si este cuenta con los derechos de acceso requeridos.<br>
+Los propios usuarios solo entran en contacto con el token de manera indirecta: por ejemplo, al introducir el nombre de usuario y la contraseña en una interfaz. La comunicación como tal entre las diferentes aplicaciones se lleva a cabo en el lado del cliente y del servidor.</p>
+<h3 id="token-jwt" tabindex="-1"><strong>Token JWT</strong> <a class="anchor-link" href="#token-jwt"></a></h3>
+<p>En la práctica, se trata de una cadena de texto que tiene tres partes codificadas en Base64, cada una de ellas separadas por un punto, como en el siguiente ejemplo:</p>
+<pre class="language-bash"><code class="hljs language-bash">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNveSBIZW5yeSIsImlhdCI6MTUxNjIzOTAyMn0.ixJ_6SpS1ppUImi6OPSOJGqW_bn31g5L0BydnnhDoM8</code></pre>
+<p>Podemos utilizar un <a href="https://jwt.io/">Debugger Online</a> para decodificar ese token y visualizar su contenido. Si accedemos al mismo y pegamos dentro el texto completo, se nos mostrará lo que contiene:</p>
+<p><img src="/_src/assets/04-Authentication/JWTdecode.png" alt="JWTdecode"></p>
+<p>Como dijimos, un token tiene tres partes:</p>
+<ul>
+<li>
+<p><strong>Header</strong>: encabezado dónde se indica, al menos, el algoritmo y el tipo de token, que en el caso del ejemplo anterior<br>
+era el algoritmo HS256 y un token JWT.</p>
+</li>
+<li>
+<p><strong>Payload</strong>: donde aparecen los datos de usuario y privilegios, así como toda la información que queramos añadir,<br>
+todos los datos que creamos convenientes.</p>
+</li>
+<li>
+<p><strong>Signature</strong>: una firma que nos permite verificar si el token es válido. La firma se construye de tal forma que vamos<br>
+a poder verificar que el remitente es quien dice ser, y que el mensaje no se ha modificado en el camino.</p>
+</li>
+</ul>
+<h2 id="passport" tabindex="-1">Passport <a class="anchor-link" href="#passport"></a></h2>
+<p>Y cómo vamos a implementar entonces todo esto? Ahí es donde entra Passport! Passport es una librería de Node que nos va a dar la capacidad de autenticarnos. El único propósito de Passport es autenticar solicitudes, lo que hace a través de un conjunto extensible de complementos conocidos como estrategias. Y qué son las estrategias? Son diferentes mecanismos de autenticación que nos ofrece Passport para no tener que acudir a dependencias innecesarias. Por ejemplo, pueden autenticarse en una instancia de base de datos local/remota o utilizar el inicio de sesión único de proveedores de OAuth para Facebook, Twitter, Google, etc.‌ La API es simple: le proporcionamos una solicitud de autenticación y Passport proporciona enlaces para controlar lo que ocurre cuando esta tiene éxito o falla.</p>
+<p><img src="/_src/assets/04-Authentication/passportJS.png" alt="passportJS"></p>
+<h3 id="modo-de-uso" tabindex="-1">Modo de Uso <a class="anchor-link" href="#modo-de-uso"></a></h3>
+<p>Primero que nada vamos a instalar Passport.</p>
+<pre class="language-bash"><code class="hljs language-bash"><span class="token function">npm</span> <span class="token function">install</span> passport</code></pre>
+<p>Lo seteamos en nuestro archivo raíz. Acá vamos a requerir la librería y la inicializamos junto con su middleware de autenticación de sesión.</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token keyword">const</span> passport <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'passport'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>passport<span class="token punctuation">.</span><span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>passport<span class="token punctuation">.</span><span class="token function">session</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Antes de autenticar las solicitudes, configuramos la estrategia (o estrategias) que vamos a usar.</p>
+<pre class="language-js"><code class="hljs language-js">passport<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">LocalStrategy</span><span class="token punctuation">(</span><br>  <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">username<span class="token punctuation">,</span> password<span class="token punctuation">,</span> done</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    User<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">username</span><span class="token operator">:</span> username <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> user</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>      <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token function">done</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><br>      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>user<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token function">done</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'Incorrect username.'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>      <span class="token punctuation">}</span><br>      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>user<span class="token punctuation">.</span><span class="token function">validPassword</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token function">done</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'Incorrect password.'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>      <span class="token punctuation">}</span><br>      <span class="token keyword">return</span> <span class="token function">done</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> user<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Para autenticar solicitudes vamos a usar passport.authenticate () y especificar qué estrategia queremos implementar. De forma predeterminada, si la autenticación falla, Passport nos va a responder con un estado 401 No autorizado y no va a invocar a ningún controlador de ruta adicional. Si la autenticación es exitosa, se invocará el siguiente controlador y la propiedad req.user se va a establecer en el usuario autenticado.</p>
+<pre class="language-js"><code class="hljs language-js">app<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/login'</span><span class="token punctuation">,</span><br>  passport<span class="token punctuation">.</span><span class="token function">authenticate</span><span class="token punctuation">(</span><span class="token string">'local'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>  <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// If this function gets called, authentication was successful.</span><br>    <span class="token comment">// `req.user` contains the authenticated user.</span><br>    res<span class="token punctuation">.</span><span class="token function">redirect</span><span class="token punctuation">(</span><span class="token string">'/users/'</span> <span class="token operator">+</span> req<span class="token punctuation">.</span>user<span class="token punctuation">.</span>username<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Pueden encontrar más información sobre Passport y sus estrategias en <a href="http://passportjs.org">passportjs.org</a></p>
+<h2 id="homework" tabindex="-1">Homework <a class="anchor-link" href="#homework"></a></h2>
+<p>Completa la tarea descrita en el archivo <a href="./homework">README</a></p>
+
+        </div>
+
+      </main>
+
+      
+
+      <div class="footerContainer">
+        <div class="footerContained">
+          <p>Material de estudio personal</p>
+        </div>
+      </div>
+
+      <div class="readerBarDiv">
+        
+  <!-- up button -->
+  <div>
+    <button
+      id="upBtn"
+      style="position:fixed; width:32px; height:32px; border-radius:50%; border:none; background-color:black; right:20px; bottom:55px; color:white; z-index:999; focus:outline-none; cursor:pointer; transition-duration:500ms; opacity:0; pointer-events:none;"
+    ><i class="arrow up"></i></button>
+  </div>
+  
+  <style>
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  </style>
+
+  <script>
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      upBtn.style.opacity = 1;
+      upBtn.style.pointerEvents = 'auto';     
+    }
+    else {
+      upBtn.style.opacity = 0;
+      upBtn.style.pointerEvents = 'none';
+    }
+  })
+
+  upBtn.addEventListener('click', () => {
+    let start = document.querySelector('.reader-bar-start')
+    start.scrollIntoView({behavior: "smooth"})
+  })
+  </script>
+
+  <!-- reader bar -->
+  <div id="readerBarContainer" style="height:3px;width:100%;background-color:black;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;">
+    <div id="readerBar" style="height:3px;width:0;background-color:#2E4F8F;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;"></div>
+  </div>
+
+  <script>
+    let winH = window.innerHeight;
+    const content = document.querySelector('.reader-bar-start');
+
+    let contentH = content.offsetHeight;
+    let contentS = contentH - winH;
+    let readerBar = document.getElementById('readerBar');
+    window.addEventListener('load', () => {
+      document.addEventListener ('scroll', updateBar);
+    })
+    window.addEventListener('resize', redefine)
+
+    function redefine() {
+      winH = window.innerHeight;
+      contentH = content.offsetHeight;
+      contentS = contentH - winH;
+      updateBar();
+    }
+
+    function updateBar() {
+      const pagePos = window.scrollY; 
+      const updatedBar = pagePos * 100 / contentS;
+      readerBar.style.width = updatedBar + "%";
+    }
+  </script>
+  
+      </div>
+
+    </body>
+  </html>

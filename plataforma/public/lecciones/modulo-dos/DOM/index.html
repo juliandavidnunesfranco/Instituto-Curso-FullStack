@@ -1,0 +1,1337 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>DOM | Módulo 2 - Frontend</title>
+    
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+    /* border: 2px dashed green; */
+    font-family: 'Avenir-Roman';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: justify;
+    padding: 0 2rem 4rem 300px;
+    width: 100%;
+    max-width: 98vw;
+    margin-top: 60px;
+  }
+  
+  .lesson .hide {
+    display: none;
+  }
+  
+  .lesson :target:before {
+    content: '';
+    display: block;
+    height: 85px;
+  }
+  
+  .lesson img[alt~='HenryLogo'] {
+    display: none;
+  }
+  
+  .lesson h1 {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #2e2e2e;
+  
+    border-bottom-style: solid;
+    border-bottom-width: 25px;
+    border-bottom-color: #ffff01;
+  
+    height: 64px;
+    margin: 0px 0 50px 0;
+  }
+  
+  .lesson h1 + h4 {
+    margin: -40px 0 3rem 0;
+    font-family: 'Avenir-Black';
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+  }
+  
+  .lesson h1 + h2 {
+    margin-top: 0;
+  }
+  
+  .lesson h2 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h2#homework {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #1fa32a;
+  }
+  
+  .lesson h3 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 24px;
+    font-display: swap;
+    line-height: 24px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h4 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson img {
+    width: auto;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson img[alt~='logo'] {
+    box-shadow: none;
+    width: 350px;
+  }
+  
+  .lesson img[alt~='no-box'] {
+    box-shadow: none;
+  }
+  
+  .lesson ul {
+    list-style: square;
+  }
+  
+  .lesson li {
+    font-family: 'Avenir-Heavy';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+  }
+  
+  .lesson a {
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+  }
+  
+  .lesson .iframeContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson .sandboxContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+  .lesson iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lesson table {
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    text-align: center !important;
+  }
+  
+  .lesson th {
+    background-color: rgb(170, 170, 170);
+    padding: 8px;
+    text-align: center !important;
+  }
+  
+  .lesson thead {
+    text-align: center !important;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+  
+  .lesson td {
+    padding: 5px;
+    text-align: center !important;
+  }
+  
+  tr + td {
+    border-right: 1px solid gray !important;
+  }
+  
+  .rightBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    width: 97vw;
+    max-width: 1500px;
+    margin-top: 5rem;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .homeworkBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .homeworkBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .homeworkBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: green;
+  }
+  
+  .quizzBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .quizzBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .quizzBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: rgb(128, 79, 0);
+  }
+  
+  .readingTime {
+    font-family: 'Avenir-Book';
+    font-size: 14px;
+    font-display: swap;
+    line-height: 119.6%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reader-bar-start">
+
+      <div class="headerResponsive">
+        <div class="leftContent">
+          <img class="brandLogo" src="/lecciones/modulo-dos/_src/assets/logo.png" alt="Módulo 2 - Frontend">
+          <span>DOM</span>
+        </div>
+        <div class="menuDiv">
+          <input type="checkbox">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times"></i>
+          <nav>
+            <ul><li><a href="/lecciones/modulo-dos/">Intro</a></li>
+<li><a href="/lecciones/modulo-dos/DOM/">DOM</a></li>
+<li><a href="/lecciones/modulo-dos/CSS/">CSS</a></li>
+<li><a href="/lecciones/modulo-dos/ES6/">ES6</a></li>
+<li><a href="/lecciones/modulo-dos/Ajax/">Ajax</a></li>
+<li><a href="/lecciones/modulo-dos/Bundlers/">Bundlers</a></li>
+<li><a href="/lecciones/modulo-dos/React-Intro/">React</a></li>
+<li><a href="/lecciones/modulo-dos/React-Estilos/">React-Estilos</a></li>
+<li><a href="/lecciones/modulo-dos/React-Estado-LifeCycle/">React-LifeCycle</a></li>
+<li><a href="/lecciones/modulo-dos/React-Routing/">React-Routing</a></li>
+<li><a href="/lecciones/modulo-dos/React-Forms/">Forms</a></li>
+<li><a href="/lecciones/modulo-dos/Redux/">Redux</a></li>
+<li><a href="/lecciones/modulo-dos/React-Redux/">React-Redux</a></li>
+<li><a href="/lecciones/modulo-dos/React-Hooks/">Hooks</a></li></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="headerContainer">
+        <div class="headerContained">
+          <img class="brandLogo" src="/lecciones/modulo-dos/_src/assets/logo.png" alt="Módulo 2 - Frontend">
+          <div>
+            <span class="lessonTitle">DOM</span> | <span>Módulo 2 - Frontend</span>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="topnav" id='myTopnav' >
+          
+          <ul class="nav">
+      
+      <li class="link">
+        <a href="/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">DOM</span>
+      </li>
+<li class="link">
+        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+      </li>
+<li class="link">
+        <a href="/ES6/" class="nav-link" role="menuitem">ES6</a>
+      </li>
+<li class="link">
+        <a href="/Ajax/" class="nav-link" role="menuitem">Ajax</a>
+      </li>
+<li class="link">
+        <a href="/Bundlers/" class="nav-link" role="menuitem">Bundlers</a>
+      </li>
+<li class="link">
+        <a href="/React-Intro/" class="nav-link" role="menuitem">React</a>
+      </li>
+<li class="link">
+        <a href="/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
+      </li>
+<li class="link">
+        <a href="/React-Estado-LifeCycle/" class="nav-link" role="menuitem">React-LifeCycle</a>
+      </li>
+<li class="link">
+        <a href="/React-Routing/" class="nav-link" role="menuitem">React-Routing</a>
+      </li>
+<li class="link">
+        <a href="/React-Forms/" class="nav-link" role="menuitem">Forms</a>
+      </li>
+<li class="link">
+        <a href="/Redux/" class="nav-link" role="menuitem">Redux</a>
+      </li>
+<li class="link">
+        <a href="/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
+      </li>
+<li class="link">
+        <a href="/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
+      </li>
+    </ul>
+        </div>
+
+        <div class='sidebar'>
+          <div class="tocTitle">
+            Contenido de la clase
+            </div>
+          <div class="tocBox">
+            
+            <nav class="toc" >
+        <ul><li><a href="#el-elemento-script">El elemento script </a></li><li><a href="#document">Document </a></li><li><a href="#selectors">Selectors </a><ul><li><a href="#getelementsbyclassname">getElementsByClassName </a></li><li><a href="#getelementbyid">getElementById </a></li></ul></li><li><a href="#queryselecto">querySelecto </a><ul><li><a href="#queryselectorall">querySelectorAll </a></li><li><a href="#createelement">createElement </a></li></ul></li><li><a href="#element-methods">Element Methods </a><ul><li><a href="#.innerhtml">.innerHTML </a></li><li><a href="#.%5Battribute%5D-y-.setattribute">.[attribute] y .setAttribute </a></li><li><a href="#.style">.style </a></li><li><a href="#.classname-y-.id">.className y .id </a></li><li><a href="#.appendchild">.appendChild </a></li></ul></li><li><a href="#event-listeners">Event Listeners </a><ul><li><a href="#click">Click </a></li><li><a href="#addeventlistener-y-otros-eventos">addEventListener y otros eventos </a></li></ul></li><li><a href="#homework">Homework </a></li></ul>
+      </nav>
+          </div>
+        </div>
+
+        <div class='rightBox'>
+          <div class="readingTime">
+                    Tiempo de lectura 14 min
+          </div>
+
+          
+        </div>
+
+        <div class='lesson'>
+          
+          <h1 id="dom" tabindex="-1">DOM <a class="anchor-link" href="#dom"></a></h1>
+<h4 id="introducci%C3%B3n-al-dom" tabindex="-1">Introducción al <em>DOM</em> <a class="anchor-link" href="#introducci%C3%B3n-al-dom"></a></h4>
+<div class="hide">
+En esta Lesson se verán los siguientes temas:
+<ul>
+<li><code>DOM</code></li>
+<li><code>script</code></li>
+<li><code>document</code></li>
+<li><code>document</code> Selectors</li>
+<li>Element Methods</li>
+<li>Event Handlers</li>
+</ul>
+</div>
+<p>El nombre <code>DOM</code> proviene de sus siglas en ingles de ‘Document Object Model’. Cuando un navegador carga una página web, toma todo el contenido HTML y genera un modelo para dicho contenido. Utilizando código Javascript podemos acceder y manipular ese modelo ya sea agregando o quitando elementos, cambiando sus atributos y también modificando sus estilos.</p>
+<h2 id="el-elemento-script" tabindex="-1">El elemento <em>script</em> <a class="anchor-link" href="#el-elemento-script"></a></h2>
+<p>Es posible inyectar código Javascript dentro de una página HTML utilizando el elemento <code>script</code>. Para ello existen dos formas distintas de realizarlo:</p>
+<ol>
+<li>Insertando la etiqueta <code>&lt;script&gt;</code> en el <code>&lt;head&gt;</code> de la página HTML:</li>
+</ol>
+<pre class="language-html"><code class="hljs language-html">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript"><br>                <span class="token comment">// Acá es donde irá el código Javascript</span><br>                <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Inyectando código Javascript'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>            </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<ol start="2">
+<li>Utilizar la etiqueta <code>&lt;script&gt;</code> para inyectar código Javascript contenido en un archivo externo en nuestra página HTML:</li>
+</ol>
+<pre class="language-html"><code class="hljs language-html">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./index.js<span class="token punctuation">"</span></span> <span class="token attr-name">async</span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<p><em>Nota: el atributo <code>type</code> debe colocarse como “text/javascript” y en el <code>src</code> se debe indicar la ubicación del archivo con código Javascript que queremos inyectar. Es posible también incluir la palabra <code>async</code> al final de la etiqueta para indicarle al navegador que debe cargar dicho script de forma asincrónica</em></p>
+<h2 id="document" tabindex="-1">Document <a class="anchor-link" href="#document"></a></h2>
+<p>Mediante la ejecución de Javascript tenemos la posibilidad de acceder a un objeto global denominado <code>document</code> que contiene las propiedades del DOM y métodos de su prototipo que nos permiten acceder a los elementos del DOM y manipularlos.</p>
+<blockquote>
+<p>En el motor de JS que se ejecuta en el browser, el objeto global es <code>document</code>, es decir que <code>this</code> apunta a <code>document</code> cuando lo usamos en el contexto global.</p>
+</blockquote>
+<h2 id="selectors" tabindex="-1">Selectors <a class="anchor-link" href="#selectors"></a></h2>
+<p>Cuando el Browser parsea el documento HTML, crea una estructura de árbol (el DOM), pensemos que el DOM es un modelo de la página en forma de objetos. JavaScript no sabe cómo trabajar con HTML, pero sí con objetos. Por lo tanto, cada elemento html que esté en el dom, podremos usarlo como un objeto, que tendrá sus propiedades y métodos. Dentro de todos los métodos que contiene <code>document</code> en su prototipo los más útiles son los <strong>selectores</strong>. Los <strong>selectores</strong> nos permitiran buscar y recuperar un elemento del DOM. (como cuando buscabamos un elemento en un árbol de búsqueda), sólo que ahora el elemento retornado es un objeto JS que representa una entidad HTML.</p>
+<p>Los principales 5 selectores son los siguientes:</p>
+<h3 id="getelementsbyclassname" tabindex="-1">getElementsByClassName <a class="anchor-link" href="#getelementsbyclassname"></a></h3>
+<p><code>document.getElementsByClassName</code> se encarga de encontrar elementos en función del nombre de su clase. Devuelve un array conteniendo los objetos que coincidieron con la búsqueda que puede ser iterado. Debemos brindarle como parámetro un string con el nombre de la clase que deseamos buscar. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> divs <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'divClass'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><em>En este ejemplo estamos buscando los elementos que contengan ‘divClass’ como su clase definida</em></p>
+<h3 id="getelementbyid" tabindex="-1">getElementById <a class="anchor-link" href="#getelementbyid"></a></h3>
+<p><code>document.getElementById</code> se encarga de encontrar un único elemento en función de su id, por lo que devolverá dicho elemento. Debemos brindarle como parámetro un string con el id del elemento que deseamos buscar. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'divId'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><em>En este ejempo estamos buscando el elemento cuyo id es igual a ‘divId’</em></p>
+<h2 id="queryselecto" tabindex="-1">querySelecto <a class="anchor-link" href="#queryselecto"></a></h2>
+<p><code>document.querySelector</code> es un método que busca los elementos basándose en uno o más selectores CSS. Recordemos que es posible hacer referencia a clases utilizando un <code>.</code>, a ids con <code>#</code> y a elementos usando el nombre de su etiqueta directamente. Es recomendable utilizar sólo ids con <code>querySelector</code> ya que sólo retornará el primer elemento que coincida con el selector indicado. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.divId'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><em>En este ejemplo obtendremos el primer elemento con la clase ‘divId’ pero si hay más elementos con dicha clase no los tendrá en cuenta</em></p>
+<h3 id="queryselectorall" tabindex="-1">querySelectorAll <a class="anchor-link" href="#queryselectorall"></a></h3>
+<p><code>document.querySelectorAll</code> funciona de la misma forma que <code>querySelector</code> pero en vez de devolver únicamente el primer elemento que coincida con el selector devolverá un array con todos los elementos que coincidan it returns an array like object containing all elements that match the selector. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> divs <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'.divId'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><em>En este ejemplo obtendremos un array con todos los elementos que contengan la clase ‘divId’</em></p>
+<h3 id="createelement" tabindex="-1">createElement <a class="anchor-link" href="#createelement"></a></h3>
+<p>En el caso de que queramos crear un elemento para agregarlo al <code>DOM</code> podemos utilizar <code>document.createElement</code>. Este método recibe como parámetro un string indicando el tipo de elemento que deseamos crear y devuelve un elemento vacío de dicho tipo. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> newDiv <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><em>En este ejemplo estamos creando un nuevo elemento ‘div’ vacío</em></p>
+<h2 id="element-methods" tabindex="-1">Element Methods <a class="anchor-link" href="#element-methods"></a></h2>
+<p>Una vez seleccionado el elemento podemos utilizar distintos métodos y propiedades para modificarlo como por ejemplo cambiar su estilo, cambiar de atributos, agregar/eliminar elementos anidados, agregar/eliminar <code>event listeners</code>. Algunos de los métodos más comunes son:</p>
+<h3 id=".innerhtml" tabindex="-1">.innerHTML <a class="anchor-link" href="#.innerhtml"></a></h3>
+<p>Con el método <code>innerHTML</code> podemos acceder a la información que se encuentra entre las etiquetas de apertura y cierre de un elemento HTML tanto para simplemente lectura o para su modificación. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> p <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#pId'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>innerHtml<span class="token punctuation">)</span> <span class="token comment">// Va a imprimir el texto dentro del párrafo con el id 'pID'</span><br><br>    p<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'Nuevo texto'</span><span class="token punctuation">;</span> <span class="token comment">// Acá estamos modificando el texto del párrafo mencionado anteriormente</span><br><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>innerHTML<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Va a imprimir el nuevo texto que le seteamos, es decir: "Nuevo texto"</span></code></pre>
+<h3 id=".%5Battribute%5D-y-.setattribute" tabindex="-1">.[attribute] y .setAttribute <a class="anchor-link" href="#.%5Battribute%5D-y-.setattribute"></a></h3>
+<p>Podemos llamar al método <code>.setAttribute</code> para agregar un atributo a un elemento o sobreescribirlo en el caso de que ya se encuentre definido. Otra forma equivalente de realizarlo pero más corta sería llamando a <code>.[nombre del atributo] = [nuevo valor]</code>. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> a <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#linkEjemplo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Obtengo el elemento a cuyo id es 'linkEjemplo'</span><br><br>    a<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">,</span> <span class="token string">'https://example.com/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Seteo el atributo href del elemento a para que redireccione a la página principal de ejemplo</span><br><br>    a<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">'https://example.com/'</span><span class="token punctuation">;</span> <span class="token comment">// Equivalente al anterior pero más corto</span></code></pre>
+<h3 id=".style" tabindex="-1">.style <a class="anchor-link" href="#.style"></a></h3>
+<p>Podemos modificar el estilo de un elemento utilizando <code>.style</code>. Cabe mencionar que con esto no estamos accediendo al estilo CSS sino que lo que estamos haciendo es agregarle la propiedad <code>style</code> dentro de la etiqueta HTML. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#divId'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    div<span class="token punctuation">.</span>style<span class="token punctuation">.</span>height <span class="token operator">=</span> <span class="token string">'300px'</span><span class="token punctuation">;</span> <span class="token comment">// Le damos una altura de 300 pixeles al div cuyo id es 'divId'</span><br>    div<span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token string">'red'</span><span class="token punctuation">;</span> <span class="token comment">// Le seteamos el color de fondo en rojo a dicho div</span></code></pre>
+<h3 id=".classname-y-.id" tabindex="-1">.className y .id <a class="anchor-link" href="#.classname-y-.id"></a></h3>
+<p>Podemos utilizar <code>.className</code> y <code>.id</code> para acceder y modificar las clases o ids de los elementos. Esto es útil cuando ya tenemos definido en los estilos CSS un estilo en particular asociado a una clase o id y queremos simplemente modificando la clase o id del elemento cambiar su estilo sin tener que modificar propiedad por propiedad. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#divId'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>div<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Utilizando ',id' accedemos al nombre de su id, en este caso 'divId'</span><br>    div<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'nuevaClase'</span><span class="token punctuation">;</span> <span class="token comment">// Le seteamos la clase 'nuevaClase'</span><br>    div<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token string">'nuevoId'</span><span class="token punctuation">;</span> <span class="token comment">// Le seteamos el id 'nuevoId'</span></code></pre>
+<h3 id=".appendchild" tabindex="-1">.appendChild <a class="anchor-link" href="#.appendchild"></a></h3>
+<p>Es posible agregar elementos directamente al <code>DOM</code> utilizando <code>.appendChild</code> sobre el elemento que queremos que sea su padre. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> body <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'body'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">const</span> newDiv <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Creamos un nuevo elemento div</span><br><br>    body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>newDiv<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Agregarmos el div recién creado dentro del body de la paǵina</span><br></code></pre>
+<h2 id="event-listeners" tabindex="-1">Event Listeners <a class="anchor-link" href="#event-listeners"></a></h2>
+<p>Un <code>Event Listener</code> es una función que se ejecuta luego de que ocurra un determinado evento. Existen diferentes tipos de eventos, entre ellos se encuentran: un click, un desplazamiento del mouse por encima del elemento, el apretado de una tecla, etc. Para ver la lista completa pueden consultar el siguiente <a href="https://developer.mozilla.org/es/docs/Web/Events">link</a></p>
+<h3 id="click" tabindex="-1">Click <a class="anchor-link" href="#click"></a></h3>
+<p>El evento más común es el de ‘click’ y en particular es el único que posee la propiedad <code>.onclick</code> para asignarle una función que será ejecutada al clickear el componente indicado. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#divId'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    div<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'clickeado'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p><em>En este ejemplo lo que estamos haciendo es indicarle que cuando se clickee el div cuyo id es ‘divId’ se ejecute la función ahí definida que lo único que hará en este caso es escribir por consola “clickeado”</em></p>
+<h3 id="addeventlistener-y-otros-eventos" tabindex="-1">addEventListener y otros eventos <a class="anchor-link" href="#addeventlistener-y-otros-eventos"></a></h3>
+<p><code>.addEventListener</code> es un método que recibe como primer parámetro el tipo de evento que va a estar esperando y como segundo parámetro una función callback que es la que va a ejecutarse cuando ocurra dicho evento. Nota: es mejor utilizar addEventListener en todos los casos incluyendo los clicks. Ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">    <span class="token keyword">const</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#divId'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    div<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mouseenter'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'El mouse entró!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><em>En este ejemplo lo que estamos haciendo es indicarle que cuando el mouse ingrese al div cuyo id es ‘divId’ se ejecute la función ahí definida que lo único que hará en este caso es escribir por consola “El mouse entró!”</em></p>
+<h2 id="homework" tabindex="-1">Homework <a class="anchor-link" href="#homework"></a></h2>
+<p>Completa la tarea descrita en el archivo <a href="./homework/README.md">README</a></p>
+
+        </div>
+
+      </main>
+
+      
+
+      <div class="footerContainer">
+        <div class="footerContained">
+          <p>Material de estudio personal</p>
+        </div>
+      </div>
+
+      <div class="readerBarDiv">
+        
+  <!-- up button -->
+  <div>
+    <button
+      id="upBtn"
+      style="position:fixed; width:32px; height:32px; border-radius:50%; border:none; background-color:black; right:20px; bottom:55px; color:white; z-index:999; focus:outline-none; cursor:pointer; transition-duration:500ms; opacity:0; pointer-events:none;"
+    ><i class="arrow up"></i></button>
+  </div>
+  
+  <style>
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  </style>
+
+  <script>
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      upBtn.style.opacity = 1;
+      upBtn.style.pointerEvents = 'auto';     
+    }
+    else {
+      upBtn.style.opacity = 0;
+      upBtn.style.pointerEvents = 'none';
+    }
+  })
+
+  upBtn.addEventListener('click', () => {
+    let start = document.querySelector('.reader-bar-start')
+    start.scrollIntoView({behavior: "smooth"})
+  })
+  </script>
+
+  <!-- reader bar -->
+  <div id="readerBarContainer" style="height:3px;width:100%;background-color:black;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;">
+    <div id="readerBar" style="height:3px;width:0;background-color:#2E4F8F;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;"></div>
+  </div>
+
+  <script>
+    let winH = window.innerHeight;
+    const content = document.querySelector('.reader-bar-start');
+
+    let contentH = content.offsetHeight;
+    let contentS = contentH - winH;
+    let readerBar = document.getElementById('readerBar');
+    window.addEventListener('load', () => {
+      document.addEventListener ('scroll', updateBar);
+    })
+    window.addEventListener('resize', redefine)
+
+    function redefine() {
+      winH = window.innerHeight;
+      contentH = content.offsetHeight;
+      contentS = contentH - winH;
+      updateBar();
+    }
+
+    function updateBar() {
+      const pagePos = window.scrollY; 
+      const updatedBar = pagePos * 100 / contentS;
+      readerBar.style.width = updatedBar + "%";
+    }
+  </script>
+  
+      </div>
+
+    </body>
+  </html>

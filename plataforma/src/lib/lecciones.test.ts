@@ -24,6 +24,18 @@ describe('listarUnidades', () => {
     expect(u!.modulo).toBe('Introductorio');
   });
 
+  it('genera la url de Eleventy con el prefijo del modulo', () => {
+    const u = listarUnidades().find((x) => x.id === '02-JS-I');
+    expect(u!.url).toBe('/lecciones/introductorio/JavaScript_I');
+  });
+
+  it('evita la colision de /CSS/, que existe en dos modulos', () => {
+    const urls = listarUnidades()
+      .filter((u) => u.titulo === 'CSS')
+      .map((u) => u.url);
+    expect(new Set(urls).size).toBe(urls.length);
+  });
+
   it('marca que 02-JS-I tiene homework', () => {
     const u = listarUnidades().find((x) => x.id === '02-JS-I');
     expect(u!.tieneHomework).toBe(true);

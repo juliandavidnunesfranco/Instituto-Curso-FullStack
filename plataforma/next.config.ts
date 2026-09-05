@@ -6,16 +6,26 @@ const config: NextConfig = {
   // competirían con el CLAUDE.md del repositorio, que es el que manda.
   agentRules: false,
 
-  // Las lecciones viven un nivel arriba, fuera del Root Directory que
-  // Vercel construye. Hay que ampliar la raíz del rastreo para alcanzarlas.
+  // El material del curso vive un nivel arriba, fuera del Root Directory
+  // que Vercel construye. Hay que ampliar la raíz del rastreo.
   outputFileTracingRoot: path.join(__dirname, '..'),
 
-  // `/` y `/unidad/[id]` se prerenderizan en el build (SSG): leen el disco
-  // al compilar, no en producción, así que NO necesitan declararse aquí.
-  // Incluirlas solo engordaría la función sin motivo.
-  //
-  // La ruta de descarga sí lee en tiempo de ejecución, porque cada ZIP se
-  // arma con el identificador del alumno. Se declarará al crearla (Fase 3).
+  async rewrites() {
+    return [
+      // Las lecciones las genera Eleventy en public/lecciones/<modulo>/
+      // <Leccion>/index.html. Next sirve archivos estáticos pero no
+      // resuelve la URL de un directorio a su index.html, así que
+      // /lecciones/introductorio/JavaScript_I daría 404.
+      //
+      // El patrón excluye las rutas que contienen un punto para no tocar
+      // los recursos reales —imágenes, css, js— que viven dentro de esas
+      // mismas carpetas.
+      {
+        source: '/lecciones/:ruta((?!.*\\.).*)',
+        destination: '/lecciones/:ruta/index.html',
+      },
+    ]
+  },
 }
 
 export default config

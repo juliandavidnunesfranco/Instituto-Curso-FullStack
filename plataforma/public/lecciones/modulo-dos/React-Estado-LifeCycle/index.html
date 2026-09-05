@@ -1,0 +1,1488 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>React-LifeCycle | Módulo 2 - Frontend</title>
+    
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+    /* border: 2px dashed green; */
+    font-family: 'Avenir-Roman';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: justify;
+    padding: 0 2rem 4rem 300px;
+    width: 100%;
+    max-width: 98vw;
+    margin-top: 60px;
+  }
+  
+  .lesson .hide {
+    display: none;
+  }
+  
+  .lesson :target:before {
+    content: '';
+    display: block;
+    height: 85px;
+  }
+  
+  .lesson img[alt~='HenryLogo'] {
+    display: none;
+  }
+  
+  .lesson h1 {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #2e2e2e;
+  
+    border-bottom-style: solid;
+    border-bottom-width: 25px;
+    border-bottom-color: #ffff01;
+  
+    height: 64px;
+    margin: 0px 0 50px 0;
+  }
+  
+  .lesson h1 + h4 {
+    margin: -40px 0 3rem 0;
+    font-family: 'Avenir-Black';
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+  }
+  
+  .lesson h1 + h2 {
+    margin-top: 0;
+  }
+  
+  .lesson h2 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h2#homework {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #1fa32a;
+  }
+  
+  .lesson h3 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 24px;
+    font-display: swap;
+    line-height: 24px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h4 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson img {
+    width: auto;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson img[alt~='logo'] {
+    box-shadow: none;
+    width: 350px;
+  }
+  
+  .lesson img[alt~='no-box'] {
+    box-shadow: none;
+  }
+  
+  .lesson ul {
+    list-style: square;
+  }
+  
+  .lesson li {
+    font-family: 'Avenir-Heavy';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+  }
+  
+  .lesson a {
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+  }
+  
+  .lesson .iframeContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson .sandboxContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+  .lesson iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lesson table {
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    text-align: center !important;
+  }
+  
+  .lesson th {
+    background-color: rgb(170, 170, 170);
+    padding: 8px;
+    text-align: center !important;
+  }
+  
+  .lesson thead {
+    text-align: center !important;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+  
+  .lesson td {
+    padding: 5px;
+    text-align: center !important;
+  }
+  
+  tr + td {
+    border-right: 1px solid gray !important;
+  }
+  
+  .rightBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    width: 97vw;
+    max-width: 1500px;
+    margin-top: 5rem;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .homeworkBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .homeworkBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .homeworkBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: green;
+  }
+  
+  .quizzBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .quizzBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .quizzBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: rgb(128, 79, 0);
+  }
+  
+  .readingTime {
+    font-family: 'Avenir-Book';
+    font-size: 14px;
+    font-display: swap;
+    line-height: 119.6%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reader-bar-start">
+
+      <div class="headerResponsive">
+        <div class="leftContent">
+          <img class="brandLogo" src="/lecciones/modulo-dos/_src/assets/logo.png" alt="Módulo 2 - Frontend">
+          <span>React-LifeCycle</span>
+        </div>
+        <div class="menuDiv">
+          <input type="checkbox">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times"></i>
+          <nav>
+            <ul><li><a href="/lecciones/modulo-dos/">Intro</a></li>
+<li><a href="/lecciones/modulo-dos/DOM/">DOM</a></li>
+<li><a href="/lecciones/modulo-dos/CSS/">CSS</a></li>
+<li><a href="/lecciones/modulo-dos/ES6/">ES6</a></li>
+<li><a href="/lecciones/modulo-dos/Ajax/">Ajax</a></li>
+<li><a href="/lecciones/modulo-dos/Bundlers/">Bundlers</a></li>
+<li><a href="/lecciones/modulo-dos/React-Intro/">React</a></li>
+<li><a href="/lecciones/modulo-dos/React-Estilos/">React-Estilos</a></li>
+<li><a href="/lecciones/modulo-dos/React-Estado-LifeCycle/">React-LifeCycle</a></li>
+<li><a href="/lecciones/modulo-dos/React-Routing/">React-Routing</a></li>
+<li><a href="/lecciones/modulo-dos/React-Forms/">Forms</a></li>
+<li><a href="/lecciones/modulo-dos/Redux/">Redux</a></li>
+<li><a href="/lecciones/modulo-dos/React-Redux/">React-Redux</a></li>
+<li><a href="/lecciones/modulo-dos/React-Hooks/">Hooks</a></li></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="headerContainer">
+        <div class="headerContained">
+          <img class="brandLogo" src="/lecciones/modulo-dos/_src/assets/logo.png" alt="Módulo 2 - Frontend">
+          <div>
+            <span class="lessonTitle">React-LifeCycle</span> | <span>Módulo 2 - Frontend</span>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="topnav" id='myTopnav' >
+          
+          <ul class="nav">
+      
+      <li class="link">
+        <a href="/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <a href="/DOM/" class="nav-link" role="menuitem">DOM</a>
+      </li>
+<li class="link">
+        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+      </li>
+<li class="link">
+        <a href="/ES6/" class="nav-link" role="menuitem">ES6</a>
+      </li>
+<li class="link">
+        <a href="/Ajax/" class="nav-link" role="menuitem">Ajax</a>
+      </li>
+<li class="link">
+        <a href="/Bundlers/" class="nav-link" role="menuitem">Bundlers</a>
+      </li>
+<li class="link">
+        <a href="/React-Intro/" class="nav-link" role="menuitem">React</a>
+      </li>
+<li class="link">
+        <a href="/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">React-LifeCycle</span>
+      </li>
+<li class="link">
+        <a href="/React-Routing/" class="nav-link" role="menuitem">React-Routing</a>
+      </li>
+<li class="link">
+        <a href="/React-Forms/" class="nav-link" role="menuitem">Forms</a>
+      </li>
+<li class="link">
+        <a href="/Redux/" class="nav-link" role="menuitem">Redux</a>
+      </li>
+<li class="link">
+        <a href="/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
+      </li>
+<li class="link">
+        <a href="/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
+      </li>
+    </ul>
+        </div>
+
+        <div class='sidebar'>
+          <div class="tocTitle">
+            Contenido de la clase
+            </div>
+          <div class="tocBox">
+            
+            <nav class="toc" >
+        <ul><li><a href="#la-mejor-manera%3A-webpack">La mejor manera: Webpack </a></li><li><a href="#introduccion-a-hooks">Introduccion a Hooks </a></li><li><a href="#estado-de-un-componente">Estado de un Componente </a></li><li><a href="#anidando-componentes">Anidando Componentes </a></li><li><a href="#etiquetas-html-y-componentes">Etiquetas HTML y Componentes </a><ul><li><a href="#separando-componentes">Separando Componentes </a></li></ul></li><li><a href="#react-y-funciones-puras">React y Funciones Puras </a><ul><li><a href="#organizando-las-carpetas-de-un-proyecto">Organizando las carpetas de un Proyecto </a></li></ul></li><li><a href="#propiedades-y-estados">Propiedades y Estados </a></li><li><a href="#estados">Estados </a><ul><li><a href="#actualizando-el-estado-en-una-clase">Actualizando el Estado en una clase </a></li><li><a href="#actualizando-el-estado-en-una-funcion">Actualizando el Estado en una funcion </a></li></ul></li><li><a href="#diferencia-entre-estados-y-props">Diferencia entre Estados y props </a></li><li><a href="#react-life-cycle-events">React Life Cycle Events </a><ul><li><a href="#el-life-cycle-completo">El Life Cycle Completo </a></li><li><a href="#eventos-cuando-el-componente-recibe-nuevos-datos">Eventos cuando el componente recibe nuevos Datos </a></li></ul></li><li><a href="#homework">Homework </a></li></ul>
+      </nav>
+          </div>
+        </div>
+
+        <div class='rightBox'>
+          <div class="readingTime">
+                    Tiempo de lectura 55 min
+          </div>
+
+          
+        </div>
+
+        <div class='lesson'>
+          
+          <h1 id="react-estado-lifecycle" tabindex="-1">React Estado LifeCycle <a class="anchor-link" href="#react-estado-lifecycle"></a></h1>
+<h2 id="la-mejor-manera%3A-webpack" tabindex="-1">La mejor manera: Webpack <a class="anchor-link" href="#la-mejor-manera%3A-webpack"></a></h2>
+<p>Cuando empiezas a trabajar en un proyecto la manera anterior de incluir React no es la mejor, de hecho no puede escalar. Cuando tenemos muchas lineas de código en un sólo archivo, o muchos archivos chicos de Js, el hecho de tener que juntar todo se empieza a complicar. Por suerte, desde hace varios años existen herramientas que nos van a automatizar este proceso, haciendo que todo el workflow sea óptimo y sobre todo mantenible.</p>
+<p>Algunas tareas de las que se encargan estos gestores de proceso pueden ser:</p>
+<ul>
+<li>Juntar código de varios archivos en uno sólo.</li>
+<li>Transpilar código. Por ejemplo, de CoffeeScript, o TypeScript a Javascript.</li>
+<li>Minificar código.</li>
+<li>Concatenar archivos.</li>
+<li>Correr los tests automáticamente.</li>
+<li>etc…</li>
+</ul>
+<blockquote>
+<p>Existen varios gestores de procesos buenos y populares, los más usados son: <a href="http://gruntjs.com/">Grunt</a>, <a href="http://gulpjs.com/">Gulp!</a> y <a href="http://webpack.github.io/">Webpack</a>. Nosotros vamos a usar <em>Webpack</em>, pero podrían hacer lo mismo con los otros.</p>
+</blockquote>
+<hr>
+<p>Ahora también se utiliza el concepto de <strong>módulos</strong> en el frontend, para lograrlo se utilizan librerías como <a href="">Browserify</a> o <a href="">CommonJS</a>. Básicamente en vez de incluir librerías usando HTML, lo hacemos en el mismo JS, después estas librerías que mencionamos se encarga de incluir realmente el código necesario para que funcione.</p>
+<p>Un ejemplo en el frontend se vería algo así:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">//algunModulo.js</span><br>module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function-variable function">doSomething</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token string">'foo'</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><span class="token comment">//algunOtroModulo.js</span><br><span class="token keyword">const</span> someModule <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'someModule'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function-variable function">doSomething</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> someModule<span class="token punctuation">.</span><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'bar'</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<hr>
+<p>Vamos a empezar instalando y configurando Webpack. Voy a aclarar al principio que Webpack es una herramienta muy poderosa, por ende compleja, y lamentablemente su documentación no es la mejor. Por lo tanto, nos va a parecer complejo al principio, pero rápidamente nos vamos a encariñar con todas las cosas que podemos hacer con Webpack.</p>
+<pre class="language-shell"><code class="hljs language-shell"><span class="token function">npm</span> i <span class="token parameter variable">-D</span> webpack webpack-cli</code></pre>
+<p>Como dijimos, Webpack es una herramienta que va a aplicar ciertas <em>transformaciones</em> a nuestro código, por ende para funcionar webpack necesita saber:</p>
+<ol>
+<li>Conocer el starting point de nuestra app, o el archivo javascript raíz.</li>
+<li>Debe saber qué transformaciones tiene que hacer al código.</li>
+<li>Tiene que saber dónde guardar el nuevo código transformado.</li>
+</ol>
+<p>Todo esta información va a estar contenida en un archivo de configuración llamado <code>webpack.config.js</code>, que deberíamos crear en la raíz del directorio de nuestro proyecto. Este archivo va a ser en realidad un módulo, que va a exportar un objeto con las configuraciones de webpack, asi que podríamos empezar escribiendo lo siguiente en ese archivo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// dentro de webpack.config.js</span><br>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre>
+<p>Ahora empezemos a agregar la información que mencionamos antes, empezemos por el punto 1 : el entry point.</p>
+<pre class="language-javascript"><code class="hljs language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">'./app/index.js'</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
+<p>Como ven, los entry points se definen dentro del objeto que exportamos bajo el nombre <code>entry</code>, y cuyo valor es un arreglo. Dentro de este explicito los paths de todos los archivos que sirvan como entry points de nuestra app. Por ahora vamos a escribir sólo uno.</p>
+<p>Bien, ahora para el segundo punto, tenemos que definir qué tipo de transformaciones vamos a hacer, para esto entran en juego los <code>loaders</code>, estos son los módulos encargados de realizar tranformaciones, existen varios tipos de <code>loaders</code>, ya que la comunidad va creando nuevos a medida que surgen nuevas necesidades.</p>
+<blockquote>
+<p>Para usar un loader, es necesario tenerlo instalado antes. Para eso vamos a usar <code>npm</code>. Por ejemplo, si quiero usar el <code>loader</code> de babel debería hacer: <code>npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader</code>.</p>
+</blockquote>
+<pre class="language-javascript"><code class="hljs language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">'./app/index.js'</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">loaders</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token punctuation">{</span><span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.coffee$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">"coffee-loader"</span><span class="token punctuation">}</span><br>    <span class="token punctuation">]</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span></code></pre>
+<p>En el ejemplo, usamos un <code>loader</code> de <em>coffeeScript</em>. Como se ve, también agreamos una propiedad llamada <code>module</code> que será un objeto dentro del cual aparecerá la propiedad <code>loaders</code> que será un arreglo de objetos. Cada objeto dentro de este arreglo representa una transformacion.<br>
+Vemos que ese objeto tiene tres propiedades: <code>test</code>, <code>exclude</code>, y <code>loader</code>. La primera hace referencia a qué archivos deberán pasar por la transformación, y recibe como valor una <strong>expresión regular</strong>, en nuestro ejemplo estamos diciendo que pasarán por la transformación todos los archivos terminados en <code>.coffee</code>. La segunda, <code>exclude</code> le indica a webpack qué directorios excluir, en nuestro ejemplo (y siempre lo haremos) excluimos <code>node_modules</code>, donde sabemos que no habrá código para transformar. Finalmente, en la propiedad <code>loader</code> vamos a poner el nombre del loader que queremos usar, en este caso el nombre es “coffee-loader”.</p>
+<blockquote>
+<p>Siempre busquen los loaders que necesiten dentro del ecosistema npm.</p>
+</blockquote>
+<p>Por último, vamos a agregar donde queremos que webpack deposite los archivos luego de la transformación:</p>
+<pre class="language-javascript"><code class="hljs language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">'./app/index.js'</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">loaders</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token punctuation">{</span><span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.coffee$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">"coffee-loader"</span><span class="token punctuation">}</span><br>    <span class="token punctuation">]</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">path</span><span class="token operator">:</span> __dirname <span class="token operator">+</span> <span class="token string">'/dist'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'bundle.js'</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span></code></pre>
+<p>Ya podrán imaginarse que quieren decir las cosas que hemos agregado ahora. Por empezar una nueva propiedad <code>output</code> que contiene un objeto, en este último vamos a especificar el nombre del archivo de salida (<code>filename</code>) y la carpeta donde queremos que se guarde (<code>path</code>).</p>
+<p>Bien, entonces intentemos reproducir el mismo ejemplo que hicimos en el HTML, pero ahora usando este proceso. Por lo tanto, lo primero que hacemos es sacar el código escrito en React que estaba embebido en el HTML y lo pasamos a un archivo <code>js</code>. El primer cambio que tenemos que hacer es importar los módulos <code>react</code> y <code>react-dom</code> que antes requeríamos a través del tag <code>script</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span><br><br><span class="token keyword">class</span> <span class="token class-name">HelloWorld</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>div<span class="token operator">></span><br>        ¡Hola<span class="token operator">!</span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">function</span> <span class="token function">HelloWorldFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span><span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div<span class="token operator">></span><br>      Hola<span class="token punctuation">,</span> Mi Curso<span class="token operator">!</span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br>ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>HelloWorld <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'app'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Genial, ahora tenemos que construir el archivos de configuración de webpack, para que funcione con <code>babel</code>. Básicamente tenemos que transformar el código que usa EcmaScript6 y JSX a JS plano.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// webpack.config.js</span><br><br>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">'./app/index.js'</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">path</span><span class="token operator">:</span> __dirname <span class="token operator">+</span> <span class="token string">'/dist'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'bundle.js'</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token punctuation">{</span><br>        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(js|jsx)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>        <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>        <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>          <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span><br>          <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>            <span class="token literal-property property">presets</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'@babel/preset-react'</span><span class="token punctuation">,</span> <span class="token string">'@babel/preset-env'</span><span class="token punctuation">]</span><br>          <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>      <span class="token punctuation">}</span><br>    <span class="token punctuation">]</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Por último vamos a tener que usar <code>npm</code> para instalar las dependencias:</p>
+<pre class="language-shell"><code class="hljs language-shell"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-D</span> @babel/core @babel/preset-env @babel/preset-react babel-loader</code></pre>
+<pre class="language-shell"><code class="hljs language-shell"><span class="token function">npm</span> <span class="token function">install</span> react react-dom <span class="token parameter variable">--save</span></code></pre>
+<p>Para poder ejecutar webpack, debemos agregar dentro de <code>scripts</code> en nuestro <code>package.json</code> lo siguiente:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token string-property property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token string-property property">"build"</span><span class="token operator">:</span> <span class="token string">"webpack -w"</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span><br><span class="token string-property property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token string-property property">"@babel/core"</span><span class="token operator">:</span> <span class="token string">"^7.9.0"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"@babel/preset-env"</span><span class="token operator">:</span> <span class="token string">"^7.9.0"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"@babel/preset-react"</span><span class="token operator">:</span> <span class="token string">"^7.9.4"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"babel-loader"</span><span class="token operator">:</span> <span class="token string">"^8.1.0"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"webpack"</span><span class="token operator">:</span> <span class="token string">"^4.42.1"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"webpack-cli"</span><span class="token operator">:</span> <span class="token string">"^3.3.11"</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token string-property property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token string-property property">"react"</span><span class="token operator">:</span> <span class="token string">"^16.13.1"</span><span class="token punctuation">,</span><br>    <span class="token string-property property">"react-dom"</span><span class="token operator">:</span> <span class="token string">"^16.13.1"</span><br>  <span class="token punctuation">}</span></code></pre>
+<p>Para probar si todo funciona bien, iremos a la carpeta donde tenemos definidos todos estos archivos, y vamos a escribir <code>npm run build</code>.</p>
+<p><img src="/_src/assets/08-React-Estado-LifeCycle/webpack.png" alt="Webpack"></p>
+<p>Si todo funcionó bien, veremos un mensaje como el de la imagen! Y además encontraremos un archivo nuevo en la carpeta <code>dist</code>.</p>
+<p>Bien, ahora por último tenemos que agregar ese archivo generado a un HTML para poder correrlo:</p>
+<pre class="language-html"><code class="hljs language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Descubre React<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./dist/index_bundle.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<p>Si abren este archivo van a ver que vemos exactamente lo mismo que en el primer archivo HTMl que creamos. La ventaja de esta forma, es que tenemos separado el código JS de todo lo demás, podemos tener múltiples archivos y Webpack se encargará de unirlos y depositarlos en el archivo de salida.</p>
+<p>Bien, ahora que lo hicimos funcionar y más o menos vimos cómo se escribe, aprendamos un poco más sobre React.</p>
+<h2 id="introduccion-a-hooks" tabindex="-1">Introduccion a Hooks <a class="anchor-link" href="#introduccion-a-hooks"></a></h2>
+<p>Los Hooks en React fueron introducidos en su version 16.8, nos permiten el uso de estados y otras caracteristicas sin el uso de clases. Estas además de dificultar la reutilización y organización del código, pueden ser una gran barrera para el aprendizaje de React. Se tiene que entender como funciona el ‘this’ en JavaScript, que es muy diferente a cómo funciona en la mayoría de los lenguajes. Agregar bind a tus manejadores de eventos hace que,por lo general, el código sea muy verboso. Para resolver estos problemas, Hooks te permiten usar más de las funciones de React sin clases. Conceptualmente, los componentes de React siempre han estado más cerca de las funciones. Los Hooks abarcan funciones, pero sin sacrificar el espíritu práctico de React.</p>
+<h2 id="estado-de-un-componente" tabindex="-1">Estado de un Componente <a class="anchor-link" href="#estado-de-un-componente"></a></h2>
+<p>Dijimos que las <em>props</em> era la <em>configuración inicial</em> del Componente y que no se pueden cambiar, que son <em>inmutables</em>. Van a existir muchos casos donde un Componente mantenga adentro suyo algún dato que pueda cambiar con el tiempo, como por ejemplo lo que queremos hacer ahora de cambiar el nombre del saludo. Para hacer esto, cada Componente es capaz de mantener datos guardados en lo que React llama el <em>Estado</em> de un Componente. Un Componente por lo tanto va a poder actualizar su propio <em>Estado</em> sin restricciones. Para empezar, comencemos dandole un <em>Estado</em> inicial al Componente, lo hacemos definiendo dentro del constructor de la clase el <code>this.state</code> que va a ser un objeto con todas las propiedades que queramos almacenar como estado interno. Cada propiedad puede almacenar cualquier tipo de dato que quedamos. Para nuestro ejemplo, vamos a darle como <em>Estado</em> inicial un objeto que contenga la propiedad <code>name</code> y que sea igual a <code>this.props.name</code>, o sea que vamos a hacer que una <em>prop</em> sea un <em>estado</em>, esto es así porque sabemos que va a cambiar en el futuro.</p>
+<p>Genial, ya tenemos <em>Estado</em>, ahora lo único que nos falta es <em>cambiar</em> el <em>Estado</em> cuando el usuario haga click. Para hacerlo vamos a tener que usar una función llamada <code>setState</code>. No podemos simplemente asignarle un valor nuevo a <code>this.state.name</code>, esto es así por matener la arquitectura del Virtual DOM de react. Veamos cómo quedaría el ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span><br><br><span class="token keyword">class</span> <span class="token class-name">HelloWorld</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>name<span class="token punctuation">}</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>onButtonClick <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onButtonClick</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">onButtonClick</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>refs<span class="token punctuation">.</span>name<span class="token punctuation">.</span>value<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>      <span class="token literal-property property">name</span><span class="token operator">:</span> name<br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>div<span class="token operator">></span><br>        <span class="token operator">&lt;</span>form onSubmit<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onButtonClick<span class="token punctuation">}</span><span class="token operator">></span><br>          <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">'text'</span> ref<span class="token operator">=</span><span class="token string">'name'</span> <span class="token operator">/</span><span class="token operator">></span><br>          <span class="token operator">&lt;</span>button<span class="token operator">></span>Poner Nombre<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span><br>        <span class="token operator">&lt;</span><span class="token operator">/</span>form<span class="token operator">></span><br>        Hola<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token operator">!</span><span class="token operator">!</span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>  <br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br>ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>HelloWorld name<span class="token operator">=</span><span class="token string">'Mi Curso'</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'app'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Como vemos, ahora tenemo un Componente que maneja un <em>Estado</em> interno, que se inicializa usando una <em>prop</em> y que está pensado en cambiar en el futuro.<br>
+Siguiendo el ejemplo usando un componente de funcion:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState<span class="token punctuation">,</span> useRef <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span><br><br><span class="token keyword">function</span> <span class="token function">HelloWorld</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> nameState <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>name<span class="token punctuation">)</span><br>  <span class="token keyword">const</span> textInput <span class="token operator">=</span> <span class="token function">useRef</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  <span class="token keyword">const</span> <span class="token function-variable function">onButtonClick</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">const</span> name <span class="token operator">=</span> textInput<span class="token punctuation">.</span>current<span class="token punctuation">.</span>value<br>    nameState<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div<span class="token operator">></span><br>      <span class="token operator">&lt;</span>form onSubmit<span class="token operator">=</span><span class="token punctuation">{</span>onButtonClick<span class="token punctuation">}</span><span class="token operator">></span><br>        <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">'text'</span> ref<span class="token operator">=</span><span class="token punctuation">{</span>textInput<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><br>        <span class="token operator">&lt;</span>button<span class="token operator">></span>Poner Nombre<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>form<span class="token operator">></span><br>      Hola<span class="token punctuation">,</span> <span class="token punctuation">{</span>nameState<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token operator">!</span><span class="token operator">!</span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br>ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>HelloWorld name<span class="token operator">=</span><span class="token string">'Mi Curso'</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'app'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Aca vemos el uso de el Hook <code>useState</code>. Lo llamamos dentro de un componente funcional para agregarle un estado local. React mantendrá este estado entre re-renderizados. useState devuelve un array con 2 elementos: el valor de estado actual y una función que le permite actualizarlo. Puedes llamar a esta función desde un controlador de eventos o desde otro lugar. Es similar a this.setState en una clase, excepto que no combina el estado antiguo y el nuevo.<br>
+El único argumento para useState es el estado inicial. En el ejemplo anterior, es ‘<a href="http://props.name">props.name</a>’. Ten en cuenta que a diferencia de this.state, el estado aquí no tiene que ser un objeto — aunque puede serlo si quisieras. El argumento de estado inicial solo se usa durante el primer renderizado.<br>
+Ahora veremos el mismo ejemplo escribiendo <code>useState</code> de una forma mas entendible, usando <code>array destructuring</code>. Para darle el primer valor del array nuestro state inicial y al segundo valor sera nuestra funcion para actualizar el estado.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState<span class="token punctuation">,</span> useRef <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span><br><br><span class="token keyword">function</span> <span class="token function">HelloWorld</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> <span class="token punctuation">[</span>name<span class="token punctuation">,</span> setName<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>name<span class="token punctuation">)</span><br>  <span class="token keyword">const</span> textInput <span class="token operator">=</span> <span class="token function">useRef</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  <span class="token keyword">const</span> <span class="token function-variable function">onButtonClick</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">const</span> name <span class="token operator">=</span> textInput<span class="token punctuation">.</span>current<span class="token punctuation">.</span>value<br>    <span class="token function">setName</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div<span class="token operator">></span><br>      <span class="token operator">&lt;</span>form onSubmit<span class="token operator">=</span><span class="token punctuation">{</span>onButtonClick<span class="token punctuation">}</span><span class="token operator">></span><br>        <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">'text'</span> ref<span class="token operator">=</span><span class="token punctuation">{</span>textInput<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><br>        <span class="token operator">&lt;</span>button<span class="token operator">></span>Poner Nombre<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>form<span class="token operator">></span><br>      Hola<span class="token punctuation">,</span> <span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token operator">!</span><span class="token operator">!</span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br>ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>HelloWorld name<span class="token operator">=</span><span class="token string">'Mi Curso'</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'app'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="anidando-componentes" tabindex="-1">Anidando Componentes <a class="anchor-link" href="#anidando-componentes"></a></h2>
+<p>Como dijimos antes, en React <em>todo</em> es un copomente, por lo tanto es lógico pensar que vamos a tener <em>componentes dentro de componentes</em> todo el tiempo. Veamos con un ejemplo como funciona esto, y como se le pueden pasar datos (en React le decimos <em>props</em>) a los componentes.</p>
+<p>Ahora armemos un ejemplo un poco más complejo, en este vamos a tener dos componentes. Uno va a llamar al otro y le va a pasar algunas propiedades, veamos como hacerlo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">class</span> <span class="token class-name">ContenedorAmigos</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">'Mi Curso'</span><span class="token punctuation">;</span><br>    <span class="token keyword">const</span> amigos <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Toni'</span><span class="token punctuation">,</span> <span class="token string">'Franco'</span><span class="token punctuation">,</span> <span class="token string">'Emi'</span><span class="token punctuation">,</span> <span class="token string">'Solano'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>div<span class="token operator">></span><br>        <span class="token operator">&lt;</span>h3<span class="token operator">></span> Nombre<span class="token operator">:</span> <span class="token punctuation">{</span>name<span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span><br>        <span class="token operator">&lt;</span>MostrarLista names<span class="token operator">=</span><span class="token punctuation">{</span>amigos<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>    <span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>En este componente hemos definido un método <code>render</code> un poco más complejo, en el tenemos dos variables (<code>name</code> y <code>amigos</code>) y retornamos un XML que utiliza estas dos variables. Como ven, podemos acceder a un <em>prop</em> del mismo Componente usando los <code>{}</code>, de esta forma <code>{name}</code> va a ser reemplazado por <code>Mi Curso</code>. Luego llamamos a un componente que todavía no hemos definido con el nombre de <code>mostrarLista</code> y le pasamos como propiedad el arreglo <code>amigos</code>. Por lo tanto dentro de <code>mostrarLista</code> vamos a disponer de ese arreglo como una <em>prop</em>.</p>
+<p>Definamos el elemento hijo o <em>child</em>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">class</span> <span class="token class-name">MostrarLista</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">const</span> lista <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>names<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">amigo</span> <span class="token operator">=></span> <span class="token operator">&lt;</span>li<span class="token operator">></span> <span class="token punctuation">{</span>amigo<span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>div<span class="token operator">></span><br>        <span class="token operator">&lt;</span>h3<span class="token operator">></span> Amigos <span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span><br>        <span class="token operator">&lt;</span>ul<span class="token operator">></span><br>          <span class="token punctuation">{</span>lista<span class="token punctuation">}</span><br>        <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">></span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Lo primero que notamos es que usamos <em>JS</em> para crear elementos HTMl más complejos. En esta caso usamos la función <code>map</code>, para crear un elemento <code>&lt;li&gt;</code> por cada <em>amigo</em> en la lista o arreglo.<br>
+Viendo el ejemplo anterior usando funciones:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">ContenedorAmigos</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">'Mi Curso'</span><span class="token punctuation">;</span><br>  <span class="token keyword">const</span> amigos <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Santi'</span><span class="token punctuation">,</span> <span class="token string">'Guille'</span><span class="token punctuation">,</span> <span class="token string">'Facu'</span><span class="token punctuation">,</span> <span class="token string">'Solano'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div<span class="token operator">></span><br>      <span class="token operator">&lt;</span>h3<span class="token operator">></span> Nombre<span class="token operator">:</span> <span class="token punctuation">{</span>name<span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span><br>      <span class="token operator">&lt;</span>MostrarLista names<span class="token operator">=</span><span class="token punctuation">{</span>amigos<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">function</span> <span class="token function">MostrasLista</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> names <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> lista <span class="token operator">=</span> names<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">amigo</span> <span class="token operator">=></span> <span class="token operator">&lt;</span>li<span class="token operator">></span> <span class="token punctuation">{</span>amigo<span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div<span class="token operator">></span><br>      <span class="token operator">&lt;</span>h3<span class="token operator">></span> Amigos <span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span><br>      <span class="token operator">&lt;</span>ul<span class="token operator">></span><br>        <span class="token punctuation">{</span>lista<span class="token punctuation">}</span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">></span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Aca podemos usar <code>destructuring</code> para pasar las props directamente con el nombre de la variable <code>names</code></p>
+<blockquote>
+<p>Por si no se acuerdan como funciona map:</p>
+</blockquote>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">const</span> amigos <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Santi'</span><span class="token punctuation">,</span> <span class="token string">'Guille'</span><span class="token punctuation">,</span> <span class="token string">'Facu'</span><span class="token punctuation">,</span> <span class="token string">'Solano'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br><span class="token keyword">const</span> lista <span class="token operator">=</span> amigos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">amigo</span> <span class="token operator">=></span> <span class="token string">"&lt;li> "</span> <span class="token operator">+</span> amigo <span class="token operator">+</span> <span class="token string">"&lt;/li>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>lista<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//['&lt;li> Santi&lt;/li>', '&lt;li> Guille&lt;/li>', '&lt;li> Facu&lt;/li>', '&lt;li> Solano&lt;/li>'];</span></code></pre>
+<p>Justamente ese nuevo conjunto de <code>li</code>s que hemos creado, lo vamos a usar envuelto en tags <code>&lt;ul&gt;</code> para formar la lista de amigos.</p>
+<h2 id="etiquetas-html-y-componentes" tabindex="-1">Etiquetas HTML y Componentes <a class="anchor-link" href="#etiquetas-html-y-componentes"></a></h2>
+<p>Los componentes que creamos en React despues los usamos escribiendolos como un tag HTML, en realidad es un tag <a href="https://www.quora.com/What-is-the-difference-between-HTML-and-XML">XML</a>. Por ejemplo: el tag <code>MostrarLista</code> es un Componente que creamos antes y lo usamos así:</p>
+<pre class="language-html"><code class="hljs language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span> Nombre: {name} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>MostrarLista</span> <span class="token attr-name">names</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>{amigos}</span> <span class="token punctuation">/></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>Luego ese tag se renderizará a lo que sea que hayamos escrito en el método <code>render</code> de ese componente, transformandose así en HTML finalmente.<br>
+Existe una convención en React para distinguir entre Componentes React y elemento HTML nativos. Para el primero usamos BumpyCase y lowercase para el último. Por ejemplo:</p>
+<pre class="language-jsx"><code class="hljs language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">MostrarLista</span></span> <span class="token punctuation">/></span></span> BumpyCase<br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">            lowercase</code></pre>
+<h3 id="separando-componentes" tabindex="-1">Separando Componentes <a class="anchor-link" href="#separando-componentes"></a></h3>
+<p>Seguro estarán pensando que si tenemos Componentes, lo mejor sería poder tenerlos también en archivos y carpetas distintas. Lo bueno de React es que es TODO JavaScript, asi que vamos a poder usar <code>CommonJS</code> para exportar Componentes como módulos y luego requerirlos:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span><br><br><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Lista</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">const</span> lista <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>names<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">amigo</span> <span class="token operator">=></span> <span class="token operator">&lt;</span>li<span class="token operator">></span> <span class="token punctuation">{</span>amigo<span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>div<span class="token operator">></span><br>        <span class="token operator">&lt;</span>h3<span class="token operator">></span> Amigos <span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span><br>        <span class="token operator">&lt;</span>ul<span class="token operator">></span><br>          <span class="token punctuation">{</span>lista<span class="token punctuation">}</span><br>        <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">></span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Luego en el archivo donde lo necesitemos simplemente lo requerimos y lo empezamos a usar:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Lista <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./MostrarLista.js'</span><span class="token punctuation">;</span></code></pre>
+<p>En este caso usamos las llaves en ‘{ Lista }’ porque le dimos nombre a nuestro export:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Lista</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span></code></pre>
+<p>De haber sido un export default podemos hacer un import simple porque le indica que es lo unico que se importará.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// Presentational</span><br><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Lista</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><br><br><span class="token comment">// Container</span><br><span class="token keyword">import</span> Lista <span class="token keyword">from</span> <span class="token string">'./MostrarLista.js'</span><span class="token punctuation">;</span></code></pre>
+<p>De esta forma vamos a poder organizar muy bien nuestros componentes en distintos archivos y carpetas.</p>
+<h2 id="react-y-funciones-puras" tabindex="-1">React y Funciones Puras <a class="anchor-link" href="#react-y-funciones-puras"></a></h2>
+<p>Como vimos recién vamos a poder usar todo lo que sabemos de JS para codear con React. Pensemoslo así, en vez de tener <em>funciones</em> que tomen argumentos y  retornen  valores y objetos, en React vamos a tener <em>funciones</em> que tomen argumentos y retornen <strong>UI (user interfaces)</strong>.  Podemos resumir este concepto en <code>f(d) = V</code>, es decir, una función toma <code>d</code> argumentos y retorna una <strong>View</strong>. Esta es una buena forma de desarrollar interfaces, porque ahora toda tu interfaz este compuesta de invocaciones a funciones, que es la forma en que estamos acostumbrados a programar nuestras aplicaciones. Veamos este concepto en código:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">const</span> <span class="token function-variable function">getFoto</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">username</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token string">'https://photo.fb.com/'</span> <span class="token operator">+</span> username<br><span class="token punctuation">}</span><br><span class="token keyword">const</span> <span class="token function-variable function">getLink</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">username</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token string">'https://www.fb.com/'</span> <span class="token operator">+</span> username<br><span class="token punctuation">}</span><br><span class="token keyword">const</span> <span class="token function-variable function">getData</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">username</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">foto</span><span class="token operator">:</span> <span class="token function">getFoto</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token function">getLink</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><span class="token function">getData</span><span class="token punctuation">(</span><span class="token string">'atralice'</span><span class="token punctuation">)</span></code></pre>
+<p>Si vemos el código de arriba, notamos que tenemos tres funciones y una invocación a una función. De esta forma logramos que el código sea modular y entendible. Cada función tiene un propósito específico y luego las componemos en otra función en donde generemos un comportamiento que utiliza cada una de estas para lograr el comportamiento que deseamos.</p>
+<p>Bien, ahora modifiquemos ese código para que devuelvan un <em>UI</em> en vez de sólo datos:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'React'</span><span class="token punctuation">;</span><br><br><span class="token keyword">class</span> <span class="token class-name">Foto</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'https://photo.fb.com/'</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>username<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">class</span> <span class="token class-name">Link</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'https://www.fb.com/'</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>username<span class="token punctuation">}</span><br>        <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>username<span class="token punctuation">}</span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span><br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">class</span> <span class="token class-name">Avatar</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token parameter">username</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div<span class="token operator">></span><br>      <span class="token operator">&lt;</span>Foto username<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>username<span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">></span><br>      <span class="token operator">&lt;</span>Link username<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>username<span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">></span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token operator">&lt;</span>Avatar username<span class="token operator">=</span><span class="token string">'atralice'</span><span class="token operator">/</span><span class="token operator">></span></code></pre>
+<p>Ahora, en vez de crear componer funciones que retornen datos, estamos componiendo funciones que retornan <em>UIs</em>. Esta idea es tan importante que React en la versión <code>0.14</code> introdujo lo que se conoce como <code>Stateless Functional Components</code>, que nos permite escribir el código de arriba como simples funciones.</p>
+<blockquote>
+<p>Lee <a href="https://medium.com/@housecor/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc#.ev3zuvyvf">acá</a> que tienen de bueno las <code>Stateless Functional Components</code>.</p>
+</blockquote>
+<p>Reescribamos nuestro código usando <code>Stateless Functional Components</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'React'</span><span class="token punctuation">;</span><br><br><span class="token keyword">const</span> <span class="token function-variable function">Foto</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'https://photo.fb.com/'</span> <span class="token operator">+</span> props<span class="token punctuation">.</span>username<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">const</span> <span class="token function-variable function">Link</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'https://www.fb.com/'</span> <span class="token operator">+</span> props<span class="token punctuation">.</span>username<span class="token punctuation">}</span><br>      <span class="token punctuation">{</span>props<span class="token punctuation">.</span>username<span class="token punctuation">}</span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">const</span> <span class="token function-variable function">Avatar</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div<span class="token operator">></span><br>      <span class="token operator">&lt;</span>Foto username<span class="token operator">=</span><span class="token punctuation">{</span>props<span class="token punctuation">.</span>username<span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">></span><br>      <span class="token operator">&lt;</span>Link username<span class="token operator">=</span><span class="token punctuation">{</span>props<span class="token punctuation">.</span>username<span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">></span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token operator">&lt;</span>Avatar username<span class="token operator">=</span><span class="token string">'atralice'</span><span class="token operator">/</span><span class="token operator">></span></code></pre>
+<p>Ahora cada componente es lo que llamamos una <a href="https://en.wikipedia.org/wiki/Pure_function"><code>pure function</code></a>. Este concepto viene de <code>Functional Programming</code>, básicamente, las funciones puras son consistente y predecible, porque tienen las siguientes características:</p>
+<ul>
+<li>Una función pura siempre retorna el mismo resultado para los mismos argumentos.</li>
+<li>La ejecución de una función pura <strong>NO</strong> depende del <em>estado</em> de la aplicación.</li>
+<li>Las funciones puras <strong>NO</strong> modifican el estado ni ninguna variable afuera de su scope.</li>
+</ul>
+<p>En React el método <code>render</code> necesita ser una función pura, y por ende, todos los beneficios de programar funciones puras se transladan ahora a tu <strong>UI</strong>.  De esta forma logramos tener lo que en React se conoce como: <code>Stateless Functional Components</code>. Si vemos le ejemplo, todos los Componentes que armamos no tiene estado, y que no hacen nada más que recibir datos a través de <code>proprs</code> y renderizar una <strong>UI</strong>, esto es, básicamente, Componentes que sólo tienen el método <code>render</code>. De esto nace un paradigma en el que se diferencian dos tipos de Componentes, los que acabamos de mencionar son los llamados <code>Presentational Components</code> y los segundos son <code>Containers Components</code>.</p>
+<p>Como se pueden imaginar, los <code>Presentational Components</code> se preocupan en como <strong>se ven las cosas</strong> y los <code>Container Componentes</code> en <strong>como funcionan las cosas</strong>. Organizar nuestro código de esta forma trae varias ventajas:</p>
+<ul>
+<li>Mejor separación de temas. Vas a entender mejor tu aplicación y tu UI escribiendo Componentes de este modo.</li>
+<li>Mejor reusabilidad. Podes usar los mismos Presentational Componentes en distintos Containers.</li>
+<li>Podes tener a los diseñadores trabajando en los Presentational Componentes sin tener que meterse a la lógica de la aplicación.</li>
+</ul>
+<blockquote>
+<p>Esto es sólo un paradigma, seguramente hay otros que tengan otras características. Si querés poder leer más de este paradigma <a href="https://medium.com/@learnreact/container-components-c0e67432e005#.8fh6laskl">acá</a>.</p>
+</blockquote>
+<h3 id="organizando-las-carpetas-de-un-proyecto" tabindex="-1">Organizando las carpetas de un Proyecto <a class="anchor-link" href="#organizando-las-carpetas-de-un-proyecto"></a></h3>
+<p>Antes mencionamos el patrón de separar Componentes según mantengan <em>Estados</em> (<strong>Containers</strong>) o sólo sirvan para renderizar algo (<strong>Presentational</strong>). Vamos a organizar nuestra estructura de carpetas de proyecto alrededor de este.</p>
+<p>Básicamente, vamos a guardar cada Componente en un archivo <code>.js</code> separado y <em>exportarlo</em>. Los <em>Presentational</em> van a ir en una carpeta llamada <code>components</code>, y los <em>Containers</em> en otra carpeta llamada <code>containers</code>. Como sabemos, los <em>Containers</em> van a incluir o <em>requerir</em> a los <em>Presentational</em> en su código, y  desde código denuestra app vamos a <em>requerir</em> a los <em>Containers</em>.</p>
+<blockquote>
+<p>Por convención vamos a llamar a los archivos que contengan un componente con la primera letra en Mayúsculas. Por ejemplo: <code>Header.jsx</code> o <code>Profile.js</code>.</p>
+</blockquote>
+<p>Cuando comenzamos un proyecto nuevo de React, en vez de empezar de cero, podemos guardar un esqueleto que ya tenga todas las tareas que deberíamos repetir en cada proyecto, en inglés esto se conoce como  <code>boilerplates project</code>. De hecho, podemos hacer nuestro propio <code>boilerplate</code> o buscar online alguna que se ajuste a nuestras necesidades. En general que están publicados online traen muchas cosas que tal vez no vayamos a usar, aquí algunos ejemplos:</p>
+<ul>
+<li><a href="https://github.com/KleoPetroff/react-webpack-boilerplate">react-webpack-boilerplate</a></li>
+<li><a href="https://github.com/kriasoft/react-starter-kit">react-starter-kit</a></li>
+<li><a href="https://github.com/mcnamee/react-native-starter-app">react-native-starter</a></li>
+<li><a href="https://github.com/srn/react-webpack-boilerplate">react-webpack-boilerplate</a></li>
+</ul>
+<blockquote>
+<p>Hace poco salió <a href="https://github.com/facebookincubator/create-react-app">Create React APP</a> una mini app del equipo de Facebook que te ayuda a comenzar un proyecto nuevo de React en segundos (yo todavía no la probé pero parece interesante!).</p>
+</blockquote>
+<p>Tambien pusimos nuestro propio ejemplo de un boilerPlate simplificado <a href="../boilerplates/ReactBoilerplate">acá</a>. Básicamente trae un archivo de <em>webpack</em> preconfigurado y un mini servidor <em>express</em> para levantar el archivo desde la carpeta del output de <em>webpack</em>, super simple!</p>
+<blockquote>
+<p>Como siempre, todo viene en muchos <em>sabores</em> y hay que probar y elegir el que mas le gusta a cada uno, ninguno es el mejor, todos van a tener pros y cons.</p>
+</blockquote>
+<h2 id="propiedades-y-estados" tabindex="-1">Propiedades y Estados <a class="anchor-link" href="#propiedades-y-estados"></a></h2>
+<p>Ya vimos que en React las propiedades se pasan de componentes padres a hijos a través de la variable <code>props</code>. Veamos algunas propiedades más avanzadas del comportamiento de <code>props</code>.</p>
+<h2 id="estados" tabindex="-1">Estados <a class="anchor-link" href="#estados"></a></h2>
+<p>La otra forma de que los Componentes de React tengan información es a través del <code>State</code>. Este <code>Estado</code> se encuentra disponible en el objeto <code>State</code> de cada Componente, es decir que podermos acceder a el a través de <code>this.State</code>. Los estados <strong>no</strong> son inmutables, es decir que estan pensados para <em>cambiar</em> eventualmente. Justamente por esto, es que los Componentes que tienen Estados son menos <em>performantes</em> que los que no.</p>
+<p>Cuando creamos un Componente cualquiera, su estado o <code>this.State</code> es igual a <code>null</code>, o sea que no tiene Estado por defecto!. Para agregar un estado vamos a usar el método <code>getInitialState</code>, el cual retorna un objeto que contiene el estado inicial de ese Componente. Por ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">class</span> <span class="token class-name">Componente</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span><br>      <span class="token literal-property property">nombre</span> <span class="token operator">:</span> <span class="token string">"Toni"</span><span class="token punctuation">,</span><br>      <span class="token literal-property property">trabajo</span>  <span class="token operator">:</span> <span class="token string">"Profesor"</span><br>    <span class="token punctuation">}</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>div<span class="token operator">></span><br>        Mi nombre es <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>nombre<span class="token punctuation">}</span><br>        y soy el  <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>trabajo<span class="token punctuation">}</span><span class="token punctuation">.</span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br>ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Componente <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'appEstado'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>En un componente de funcion la nueva forma de tener un <code>State</code> es a traves del Hook <code>useState</code> que vimos anteriormente. Siguiendo con el ejemplo anterior:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">Componente</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> <span class="token punctuation">[</span>nombre<span class="token punctuation">,</span> setNombre<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">"Toni"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token keyword">const</span> <span class="token punctuation">[</span>trabajo<span class="token punctuation">,</span> setTrabajo<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">"Profesor"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div<span class="token operator">></span><br>      Mi nombre es <span class="token punctuation">{</span>nombre<span class="token punctuation">}</span><br>      y soy el  <span class="token punctuation">{</span>trabajo<span class="token punctuation">}</span><span class="token punctuation">.</span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><br>ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Componente <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'appEstado'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="actualizando-el-estado-en-una-clase" tabindex="-1">Actualizando el Estado en una clase <a class="anchor-link" href="#actualizando-el-estado-en-una-clase"></a></h3>
+<p>Para actualizar o cambiar el estado de un Componente llamamos a la función <code>this.SetState</code>, pasandole por parámetros un nuevo estado, es decir un objeto con las nuevas propiedades:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// Agregamos este método al código anterior</span><br><span class="token operator">...</span><br><br><span class="token function">handleClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>    <span class="token literal-property property">nombre</span> <span class="token operator">:</span> <span class="token string">"Guille"</span><br>  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span><span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleClick<span class="token punctuation">}</span><span class="token operator">></span><br>      Mi nombre es <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>nombre<span class="token punctuation">}</span><br>      <span class="token punctuation">,</span> y soy el  <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>trabajo<span class="token punctuation">}</span><span class="token punctuation">.</span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span class="token punctuation">;</span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="actualizando-el-estado-en-una-funcion" tabindex="-1">Actualizando el Estado en una funcion <a class="anchor-link" href="#actualizando-el-estado-en-una-funcion"></a></h3>
+<p>Para actualizar el <code>state</code> en un componente de function, como vimos, llamamos a la funcion que nos devuelve el Hook <code>useState</code>. Y le pasamos por parametro el nuevo <code>estado</code>. Por ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// Agregamos este método al código anterior</span><br><span class="token operator">...</span><br><br><span class="token keyword">const</span> <span class="token function-variable function">handleClick</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>  <span class="token function">setNombre</span><span class="token punctuation">(</span><span class="token string">"Guille"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br>  <span class="token keyword">return</span><span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div onClick<span class="token operator">=</span><span class="token punctuation">{</span>handleClick<span class="token punctuation">}</span><span class="token operator">></span><br>      Mi nombre es <span class="token punctuation">{</span>nombre<span class="token punctuation">}</span><br>      <span class="token punctuation">,</span> y soy el  <span class="token punctuation">{</span>trabajo<span class="token punctuation">}</span><span class="token punctuation">.</span><br>    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>Cuando se cambia el estado de un Componente usando <code>setState</code> o el Hook ‘useState’, React re-renderiza todo el Componente. Hay que interntar hacerlo lo menos posible!</p>
+</blockquote>
+<h2 id="diferencia-entre-estados-y-props" tabindex="-1">Diferencia entre Estados y props <a class="anchor-link" href="#diferencia-entre-estados-y-props"></a></h2>
+<p>Seguramente se preguntarán cúal es la diferencia entre props y estados, en realidad las dos mantiene información o datos que va a usar el Componente. La diferencia es el uso de cada una. Las pros de un Componente van a ser pasadas por el padre del mismo y <em>deberían</em> ser <em>inmutables</em>, es decir, que si se cambian las props (o sea que el padre las cambia), el Componente se debería renderizar de nuevo con las nuevas props. Podría decir que las props son un tipo de <em>configuración</em> del Componente.</p>
+<p>Los estados, encambio, son manejados exclusivamente e internamente por un Componente, nada tiene que ver con el estado de otros Copmonentes, es decir el estado es  <em>privado</em>, además los estados <strong>no</strong> son <em>inmutables</em>!</p>
+<h2 id="react-life-cycle-events" tabindex="-1">React Life Cycle Events <a class="anchor-link" href="#react-life-cycle-events"></a></h2>
+<h3 id="el-life-cycle-completo" tabindex="-1">El Life Cycle Completo <a class="anchor-link" href="#el-life-cycle-completo"></a></h3>
+<p>Como sabemos, es critico para una app tener estados, es decir poder hacer Ajax requests, etc… Dijimos que el método render de los Componentes tiene que ser <em>stateless</em>, es decir que en él no vamos a poder agregar este comportamiento.<br>
+Para poder hacerlo vamos a incorporar el concepto de ciclo de vida de React y sus métodos. Con ellos, vamos a poder dar comportamiento a nuestros Componentes según sucedan ciertos eventos en nuestra app y en nuestros Componentes ( por ejemplo, cuando se renderiza el Componente, o cuando le llegan datos nuevos, etc).</p>
+<p>En la imagen de abajo, vemos el ciclo de vida Completo de cualquier Componente de React. En ella vemos también los estados en los que puede estar un Componente y qué cosas o funciones activarán el paso de estados y por ende la invocación de los métodos que nos provee React:</p>
+<p><img src="/_src/assets/08-React-Estado-LifeCycle/lifecycle.png" alt="LifeCycle"></p>
+<blockquote>
+<p>Pueden ver este <a href="https://gist.github.com/fay-jai/fc8a5093c0b5124d4b2d#file-react-lifecycle-parent-child-jsx">Gist</a> y probarlo localmente para tener un mayor entendimiento de <em>cuando</em> se invoca cada método de React.</p>
+</blockquote>
+<p>Veamos algunos de estos eventos, primero los vamos a separa en dos categorias que cubren la mayoría de ellos:</p>
+<ul>
+<li>Cuando un Componente es Montado o Desmontado en el DOM.</li>
+<li>Cuando un Componente recibe nuevos datos.</li>
+</ul>
+<h4 id="montando-%2F-desmontado" tabindex="-1">Montando / Desmontado <a class="anchor-link" href="#montando-%2F-desmontado"></a></h4>
+<p>Cuando un Componente es agregado al DOM decime que fue Montado (mounted) y cuando es removido del DOM decimos que fue Desmontado (unmounted). Por definición estos eventos son llamados por React <em>solo</em> una vez en el ciclo de vida del Componente ( cuando ‘nace’ y cuando ‘muere’). Por lo tanto nos van a servir para setear ciertas condiciones iniciales de un Compoente o bien, cerrar o eliminar ciertos listeners que sólo le servían al Componente en cuestión, en general la mayoría de las veces haremos lo siguiente en estos Eventos:</p>
+<ul>
+<li>Establecer algunas <em>props</em> por defecto.</li>
+<li>Establecer algunos Estados iniciales del Componente.</li>
+<li>Hacer alguna petición AJAX para traer datos necesarios para el Componente.</li>
+<li>Crear listeners si son necesarios.</li>
+<li>Remover listeners que ya no sirven más.</li>
+</ul>
+<p>Para poder hacer uso de estos Eventos, React nos da una serie de método que son invocados según el momento del ciclo de vida del Componente. Dentro de estos métodos nosotros vamos a agregar la funcionalidad que necesitamos para nuestro Componente.</p>
+<h6>Establecer props por defecto</h6>
+<p>Varias veces vamos a tener Componentes que nos van a servir para varias cosas, por lo tanto, cuando los instanciamos vamos a querer darles distintas <em>props</em> por defecto (se toman estas props si no le pasamos una en particular). Para hacerlo, React nos provee el método <code>defaultProps</code>, en que asignamos un objeto con las <em>props</em> que finalmente tendrá nuestro Componente cuando se renderize, por ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">class</span> <span class="token class-name">Cargando</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token operator">...</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token operator">...</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br>Cargando<span class="token punctuation">.</span>defaultProps <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'cargando...'</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span></code></pre>
+<p>Al igual que en una clase, tenemos el ejemplo en una <code>function</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">Cargando</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">...</span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><br><br>Cargando<span class="token punctuation">.</span>defaultProps <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'cargando...'</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span></code></pre>
+<p>En este ejemplo, si no le pasamos la <em>prop</em> <code>text</code> al Componente <code>Cargando</code>, esta tomará el valor por defecto: <code>cargando...</code>.</p>
+<h6>Establecer un estado Inicial</h6>
+<p>Cuando queremos que nuestro Componente maneje algún tipo de Estado le tenemos que setear el <em>Estado Inicial</em> del mismo. Esto lo podemos lograr desde el constructor mediante <code>this.state</code> que se le asigna un objeto con el estado inicial. Esta será llamada cuando el Componente es montado al DOM por primera vez.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">class</span> <span class="token class-name">Login</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Components</span><span class="token punctuation">{</span><br>  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span><br>      <span class="token literal-property property">email</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span><br>      <span class="token literal-property property">password</span><span class="token operator">:</span> <span class="token string">''</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token operator">...</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Al usar un componente de funcion, seteamos el <em>Estado Inicial</em> con el Hook <code>useState</code>, en donde el primer elemento del array que nos retorna es nuestro estado, y el segundo es una funcion para cambiar el estado:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">Login</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> <span class="token punctuation">[</span>email<span class="token punctuation">,</span> setEmail<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><br>  <span class="token keyword">const</span> <span class="token punctuation">[</span>password<span class="token punctuation">,</span> setPassword<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><br><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">...</span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h6>Hacer alguna petición AJAX para traer datos necesarios para el Componente</h6>
+<p>Este es un caso muy común, el Componente necesita datos que son traídos a través de un request tipo AJAX. En un componente de clase, React nos da el método <code>componentDidMount</code>, este método es llamado justo después que el componente se montó al DOM:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><br><span class="token keyword">class</span> <span class="token class-name">Lista</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> Axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>callback<span class="token punctuation">)</span> <span class="token comment">// AJAX request con Axios</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token operator">...</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Al usar una funcion, introducimos el Hook <code>useEffect</code>. Este recibe un callback que se ejecuta despues de cada renderizado en el componente, y nos permite hacer peticiones de datos, establecimiento de suscripciones y actualizaciones manuales del DOM en componentes de React. Por lo general llamamos a estas operaciones “efectos secundarios” (o simplemente “efectos”). Este Hook equivale a los ciclos de vida de clase: componentDidMount, componentDidUpdate y componentWillUnmount combinados. El segundo argumento que recibe es un <code>array</code>, al pasar un array vacio <code>[]</code>, esto le indica a React que <code>useEffect</code> no depende de ningún valor proveniente de las props o el estado, de modo que no necesita volver a ejecutarse.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">Lista</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    Axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>callback<span class="token punctuation">)</span> <span class="token comment">// AJAX request con Axios</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><br><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">...</span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br>###### Crear listeners si son necesarios<br><br>Como se pueden imaginar<span class="token punctuation">,</span> también vamos a hacerlo usando el método <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">componentDidMount</span><span class="token template-punctuation string">`</span></span> y el Hook <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">useEffect</span><span class="token template-punctuation string">`</span></span><span class="token operator">:</span><br><br><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span>`javascript<br><br><span class="token keyword">class</span> <span class="token class-name">Lista</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    ee<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'evento'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// creamos un event listener para un 'evento'</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token operator">...</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-javascript"><code class="hljs language-javascript"><br><span class="token keyword">function</span> <span class="token function">Lista</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> <span class="token punctuation">[</span>state<span class="token punctuation">,</span> setState<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><br>  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    ee<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'evento'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// creamos un event listener para un 'evento'</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><br><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">...</span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h6>Remover listeners que ya no sirven más</h6>
+<p>Análogamente, existe el método <code>componentWillUnmount</code> que es invocado justo antes de remover el Componente del DOM:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">class</span> <span class="token class-name">FriendsList</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><br>  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    ee<span class="token punctuation">.</span><span class="token function">off</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//sacamos el listener que habiamos puesto.</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token operator">...</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Para el caso de una function, usamos el mismo Hook, <code>useEffect</code>, Quizás puedas estar pensando que necesitaríamos un efecto aparte para llevar a cabo el remove del event. Pero el código para añadir y eliminarlo está tan estrechamente relacionado que useEffect está diseñado para mantenerlo unido. Si tu efecto devuelve una función, React la ejecutará en el momento correcto:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">FriendList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> <span class="token punctuation">[</span>state<span class="token punctuation">,</span> setState<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><br>  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    ee<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'evento'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><br><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>      ee<span class="token punctuation">.</span><span class="token function">off</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//sacamos el listener que habiamos puesto.</span><br>    <span class="token punctuation">}</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><br><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>  <span class="token operator">...</span><br>  <span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>En este caso, cuando retornamos una funcion en <code>useEffect</code>, esta es ejecutada antes de que el componente sea removido de la UI.</p>
+<h3 id="eventos-cuando-el-componente-recibe-nuevos-datos" tabindex="-1">Eventos cuando el componente recibe nuevos Datos <a class="anchor-link" href="#eventos-cuando-el-componente-recibe-nuevos-datos"></a></h3>
+<p>El primero método que veremos es <code>componentWillReceiveProps</code>, este evento se activa cuando el Componente recibe nuevas <em>props</em>.</p>
+<p>El segundo, y más avanzado es <code>shouldComponentUpdate</code>. Ya sabiamos que React le pone mucho importancia a re-renderizar nuevos Componentes (ya que esto implica mucho trabajo para el cliente), por lo tanto nos da este método para que nosotros podamos controlar este comportamiento. Justamente, <code>shouldComponentUpdate</code> devuelve un <strong>Booleano</strong>, si es <code>true</code>, entonces se re-redenrizará el Componente (y por ende todos sus hijos), en caso de ser <code>false</code> no se hará tal cosa.</p>
+<p>En el caso en donde tenemos un componente de funcion. Utilizaremos el Hook <code>useEffect</code> para el primer caso. Este Hook puede recibir como segundo parametro un array <code>[]</code>. Por ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">Ejemplo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> <span class="token punctuation">[</span>name<span class="token punctuation">,</span> setName<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">"Toni"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    document<span class="token punctuation">.</span>title <span class="token operator">=</span> name<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>input value<span class="token operator">=</span><span class="token punctuation">{</span>name<span class="token punctuation">}</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token parameter">event</span> <span class="token operator">=></span> <span class="token function">setName</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><br>  <span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>En el ejemplo anterior, no necesitamos actualizar el título del documento (nuestro efecto) después de cada representación, sino solo cuando el nombre de la variable del state cambie su valor. Es por eso que pasamos array con el valor de <code>name</code> como segundo parámetro:<br>
+Aca si solo queremos que nuestro Hook se invoque solo después del primer render, tenemos que pasar una matriz vacía [] (que nunca cambia) como segundo parámetro.<br>
+En el segundo caso podemos utilizar <code>React.memo</code> que es un HOC (High Order Component) que ayuda en la performance de renderizado de un componente, evitar un re-renderizado. Si un componente devuelve el mismo resultado, es decir, no cambian sus props. Envolver el componente en <code>React.memo</code> puede ayudar mucho a la performance. Esta funcion puede recibir como segundo argumento una funcion de comparacion personalizada, que reciba las props viejas y las nuevas. Si retorna true, se obvia la actualización. Por ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">Ejemplo</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token punctuation">(</span><br>    <span class="token operator">&lt;</span>div<span class="token operator">></span><span class="token punctuation">{</span>props<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>  <span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">const</span> <span class="token function-variable function">fnComparacion</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">prevProps<span class="token punctuation">,</span> nextProps</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> prevProps<span class="token punctuation">.</span>name <span class="token operator">===</span> nextProps<span class="token punctuation">.</span>name<span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">export</span> <span class="token keyword">default</span> React<span class="token punctuation">.</span><span class="token function">memo</span><span class="token punctuation">(</span>Ejemplo<span class="token punctuation">,</span> fnComparacion<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="homework" tabindex="-1">Homework <a class="anchor-link" href="#homework"></a></h2>
+<p>Completa la tarea descrita en el archivo <a href="./homework/README.md">README</a></p>
+
+        </div>
+
+      </main>
+
+      
+
+      <div class="footerContainer">
+        <div class="footerContained">
+          <p>Material de estudio personal</p>
+        </div>
+      </div>
+
+      <div class="readerBarDiv">
+        
+  <!-- up button -->
+  <div>
+    <button
+      id="upBtn"
+      style="position:fixed; width:32px; height:32px; border-radius:50%; border:none; background-color:black; right:20px; bottom:55px; color:white; z-index:999; focus:outline-none; cursor:pointer; transition-duration:500ms; opacity:0; pointer-events:none;"
+    ><i class="arrow up"></i></button>
+  </div>
+  
+  <style>
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  </style>
+
+  <script>
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      upBtn.style.opacity = 1;
+      upBtn.style.pointerEvents = 'auto';     
+    }
+    else {
+      upBtn.style.opacity = 0;
+      upBtn.style.pointerEvents = 'none';
+    }
+  })
+
+  upBtn.addEventListener('click', () => {
+    let start = document.querySelector('.reader-bar-start')
+    start.scrollIntoView({behavior: "smooth"})
+  })
+  </script>
+
+  <!-- reader bar -->
+  <div id="readerBarContainer" style="height:3px;width:100%;background-color:black;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;">
+    <div id="readerBar" style="height:3px;width:0;background-color:#2E4F8F;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;"></div>
+  </div>
+
+  <script>
+    let winH = window.innerHeight;
+    const content = document.querySelector('.reader-bar-start');
+
+    let contentH = content.offsetHeight;
+    let contentS = contentH - winH;
+    let readerBar = document.getElementById('readerBar');
+    window.addEventListener('load', () => {
+      document.addEventListener ('scroll', updateBar);
+    })
+    window.addEventListener('resize', redefine)
+
+    function redefine() {
+      winH = window.innerHeight;
+      contentH = content.offsetHeight;
+      contentS = contentH - winH;
+      updateBar();
+    }
+
+    function updateBar() {
+      const pagePos = window.scrollY; 
+      const updatedBar = pagePos * 100 / contentS;
+      readerBar.style.width = updatedBar + "%";
+    }
+  </script>
+  
+      </div>
+
+    </body>
+  </html>

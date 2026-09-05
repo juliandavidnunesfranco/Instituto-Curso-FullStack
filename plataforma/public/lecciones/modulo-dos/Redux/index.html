@@ -1,0 +1,1430 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Redux | Módulo 2 - Frontend</title>
+    
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+    /* border: 2px dashed green; */
+    font-family: 'Avenir-Roman';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: justify;
+    padding: 0 2rem 4rem 300px;
+    width: 100%;
+    max-width: 98vw;
+    margin-top: 60px;
+  }
+  
+  .lesson .hide {
+    display: none;
+  }
+  
+  .lesson :target:before {
+    content: '';
+    display: block;
+    height: 85px;
+  }
+  
+  .lesson img[alt~='HenryLogo'] {
+    display: none;
+  }
+  
+  .lesson h1 {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #2e2e2e;
+  
+    border-bottom-style: solid;
+    border-bottom-width: 25px;
+    border-bottom-color: #ffff01;
+  
+    height: 64px;
+    margin: 0px 0 50px 0;
+  }
+  
+  .lesson h1 + h4 {
+    margin: -40px 0 3rem 0;
+    font-family: 'Avenir-Black';
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+  }
+  
+  .lesson h1 + h2 {
+    margin-top: 0;
+  }
+  
+  .lesson h2 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h2#homework {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #1fa32a;
+  }
+  
+  .lesson h3 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 24px;
+    font-display: swap;
+    line-height: 24px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h4 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson img {
+    width: auto;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson img[alt~='logo'] {
+    box-shadow: none;
+    width: 350px;
+  }
+  
+  .lesson img[alt~='no-box'] {
+    box-shadow: none;
+  }
+  
+  .lesson ul {
+    list-style: square;
+  }
+  
+  .lesson li {
+    font-family: 'Avenir-Heavy';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+  }
+  
+  .lesson a {
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+  }
+  
+  .lesson .iframeContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson .sandboxContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+  .lesson iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lesson table {
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    text-align: center !important;
+  }
+  
+  .lesson th {
+    background-color: rgb(170, 170, 170);
+    padding: 8px;
+    text-align: center !important;
+  }
+  
+  .lesson thead {
+    text-align: center !important;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+  
+  .lesson td {
+    padding: 5px;
+    text-align: center !important;
+  }
+  
+  tr + td {
+    border-right: 1px solid gray !important;
+  }
+  
+  .rightBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    width: 97vw;
+    max-width: 1500px;
+    margin-top: 5rem;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .homeworkBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .homeworkBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .homeworkBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: green;
+  }
+  
+  .quizzBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .quizzBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .quizzBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: rgb(128, 79, 0);
+  }
+  
+  .readingTime {
+    font-family: 'Avenir-Book';
+    font-size: 14px;
+    font-display: swap;
+    line-height: 119.6%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reader-bar-start">
+
+      <div class="headerResponsive">
+        <div class="leftContent">
+          <img class="brandLogo" src="/lecciones/modulo-dos/_src/assets/logo.png" alt="Módulo 2 - Frontend">
+          <span>Redux</span>
+        </div>
+        <div class="menuDiv">
+          <input type="checkbox">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times"></i>
+          <nav>
+            <ul><li><a href="/lecciones/modulo-dos/">Intro</a></li>
+<li><a href="/lecciones/modulo-dos/DOM/">DOM</a></li>
+<li><a href="/lecciones/modulo-dos/CSS/">CSS</a></li>
+<li><a href="/lecciones/modulo-dos/ES6/">ES6</a></li>
+<li><a href="/lecciones/modulo-dos/Ajax/">Ajax</a></li>
+<li><a href="/lecciones/modulo-dos/Bundlers/">Bundlers</a></li>
+<li><a href="/lecciones/modulo-dos/React-Intro/">React</a></li>
+<li><a href="/lecciones/modulo-dos/React-Estilos/">React-Estilos</a></li>
+<li><a href="/lecciones/modulo-dos/React-Estado-LifeCycle/">React-LifeCycle</a></li>
+<li><a href="/lecciones/modulo-dos/React-Routing/">React-Routing</a></li>
+<li><a href="/lecciones/modulo-dos/React-Forms/">Forms</a></li>
+<li><a href="/lecciones/modulo-dos/Redux/">Redux</a></li>
+<li><a href="/lecciones/modulo-dos/React-Redux/">React-Redux</a></li>
+<li><a href="/lecciones/modulo-dos/React-Hooks/">Hooks</a></li></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="headerContainer">
+        <div class="headerContained">
+          <img class="brandLogo" src="/lecciones/modulo-dos/_src/assets/logo.png" alt="Módulo 2 - Frontend">
+          <div>
+            <span class="lessonTitle">Redux</span> | <span>Módulo 2 - Frontend</span>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="topnav" id='myTopnav' >
+          
+          <ul class="nav">
+      
+      <li class="link">
+        <a href="/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <a href="/DOM/" class="nav-link" role="menuitem">DOM</a>
+      </li>
+<li class="link">
+        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+      </li>
+<li class="link">
+        <a href="/ES6/" class="nav-link" role="menuitem">ES6</a>
+      </li>
+<li class="link">
+        <a href="/Ajax/" class="nav-link" role="menuitem">Ajax</a>
+      </li>
+<li class="link">
+        <a href="/Bundlers/" class="nav-link" role="menuitem">Bundlers</a>
+      </li>
+<li class="link">
+        <a href="/React-Intro/" class="nav-link" role="menuitem">React</a>
+      </li>
+<li class="link">
+        <a href="/React-Estilos/" class="nav-link" role="menuitem">React-Estilos</a>
+      </li>
+<li class="link">
+        <a href="/React-Estado-LifeCycle/" class="nav-link" role="menuitem">React-LifeCycle</a>
+      </li>
+<li class="link">
+        <a href="/React-Routing/" class="nav-link" role="menuitem">React-Routing</a>
+      </li>
+<li class="link">
+        <a href="/React-Forms/" class="nav-link" role="menuitem">Forms</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">Redux</span>
+      </li>
+<li class="link">
+        <a href="/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
+      </li>
+<li class="link">
+        <a href="/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
+      </li>
+    </ul>
+        </div>
+
+        <div class='sidebar'>
+          <div class="tocTitle">
+            Contenido de la clase
+            </div>
+          <div class="tocBox">
+            
+            <nav class="toc" >
+        <ul><li><a href="#los-tres-principios-de-redux">Los tres principios de Redux </a><ul><li><a href="#%C3%BAnica-fuente-de-verdad-(single-source-of-truth)">Única fuente de verdad (Single source of truth) </a></li><li><a href="#los-estados-son-s%C3%B3lo-lectura-(state-is-read-only)">Los Estados son sólo lectura (State is read-only) </a></li><li><a href="#los-cambios-se-hacen-con-funciones-puras-(changes-are-made-with-pure-functions)">Los cambios se hacen con funciones puras (Changes are made with pure functions) </a></li></ul></li><li><a href="#nuestra-propia-implementaci%C3%B3n-de-redux">Nuestra propia implementación de Redux </a><ul><li><a href="#reducers">Reducers </a></li><li><a href="#argumentos-en-las-acciones">Argumentos en las acciones </a></li><li><a href="#usando-el-store">Usando el Store </a></li><li><a href="#pedirle-al-store-que-nos-notifique-los-cambios">Pedirle al Store que nos notifique los cambios </a></li></ul></li><li><a href="#instalando-redux">Instalando Redux </a></li><li><a href="#workflow-de-redux">Workflow de Redux </a><ul><li><a href="#acciones">Acciones </a></li><li><a href="#action-creators">Action Creators </a></li><li><a href="#dispatch">Dispatch </a></li><li><a href="#reducers-1">Reducers </a></li><li><a href="#store">Store </a></li></ul></li><li><a href="#homework">Homework </a></li></ul>
+      </nav>
+          </div>
+        </div>
+
+        <div class='rightBox'>
+          <div class="readingTime">
+                    Tiempo de lectura 27 min
+          </div>
+
+          
+        </div>
+
+        <div class='lesson'>
+          
+          <h1 id="redux" tabindex="-1">Redux <a class="anchor-link" href="#redux"></a></h1>
+<p  align='center'>
+    <img alt="logo" src='https://camo.githubusercontent.com/f28b5bc7822f1b7bb28a96d8d09e7d79169248fc/687474703a2f2f692e696d6775722e636f6d2f4a65567164514d2e706e67'/>
+</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token comment">//Redux is a predictable state container for JavaScript apps.</span></code></pre>
+<p>Redux es una librería que nos va a ayudar a mantener el estado <em>global</em> de nuestra aplicación.</p>
+<blockquote>
+<p>Podemos usar Redux fuera de React, y React sin redux también. Pero ambas funcionan muy bien juntas, por esto la comunidad las adoptó rápidamente para usarlas juntas.</p>
+</blockquote>
+<p>Si bien, podemos crear <em>containers</em> que mantengan el estado estado de sus <em>childrens</em>, lo que termina ocurriendo es que los Componentes <em>presentacionales</em> terminan demasiado acoplados a los <em>containers</em>, bajando su <em>resusabilidad</em>. Otro tema, es que en estos <em>containers</em> vamos a tener que escribir funciones que manejen el estado de varios Componentes, haciendo que este archivo se convierta en inmanejable de forma rápida. Justamente, <code>Redux</code> nos va a ayudar a resolver estos problemas con el paradigma que implementa.</p>
+<h2 id="los-tres-principios-de-redux" tabindex="-1">Los tres principios de Redux <a class="anchor-link" href="#los-tres-principios-de-redux"></a></h2>
+<blockquote>
+<p>Vamos a ir introducciendo cierta terminología específica de Redux, pueden leer el <a href="http://redux.js.org/docs/Glossary.html">glosario completo aca</a></p>
+</blockquote>
+<h3 id="%C3%BAnica-fuente-de-verdad-(single-source-of-truth)" tabindex="-1">Única fuente de verdad (Single source of truth) <a class="anchor-link" href="#%C3%BAnica-fuente-de-verdad-(single-source-of-truth)"></a></h3>
+<blockquote>
+<p>El <strong>estado</strong> de toda tu aplicación está guardado en un árbol en una sola <strong>store</strong>.</p>
+</blockquote>
+<p>Esto hace que sea fácil crear apps universales, ya que el <em>estado</em> de tu servidor puede ser <em>serializado</em> fácilmente a todos los clientes sin efuerzo extra. Además hace que sea más fácil <em>debuggear</em> e <em>inspeccionar</em> tu aplicación.</p>
+<pre class="language-javascript"><code class="hljs language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><br><span class="token comment">/* Prints<br>{<br>  visibilityFilter: 'SHOW_ALL',<br>  todos: [<br>    {<br>      text: 'Consider using Redux',<br>      completed: true,<br>    },<br>    {<br>      text: 'Keep all state in a single tree',<br>      completed: false<br>    }<br>  ]<br>}<br>*/</span></code></pre>
+<h3 id="los-estados-son-s%C3%B3lo-lectura-(state-is-read-only)" tabindex="-1">Los Estados son sólo lectura (State is read-only) <a class="anchor-link" href="#los-estados-son-s%C3%B3lo-lectura-(state-is-read-only)"></a></h3>
+<blockquote>
+<p>La única forma de cambiar un estado es emitiendo una <strong>acción</strong>, que es un objeto que describe lo que ocurrió.</p>
+</blockquote>
+<p>Esto asegura que ni la vista, ni ningún callback escriban directamente sobre el <em>estado</em>. En cambio, tienen que expresar una <em>intención</em> de transformar el estado. Como todas los cambios están <em>centralizados</em> y ocurren en un orden estricto, no vamos a tener que preocuparnos por qué cosas suceden primero (debido a la naturaleza <em>asincrónica</em>). Como las acciones son <em>objetos</em>, pueden ser logeados, serializados, guardados y pueden ser reproducidas en el futuro para <em>debuggear</em> o <em>testear</em> la aplicación.</p>
+<pre class="language-javascript"><code class="hljs language-javascript">store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'COMPLETE_TODO'</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">index</span><span class="token operator">:</span> <span class="token number">1</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><br><br>store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'SET_VISIBILITY_FILTER'</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">filter</span><span class="token operator">:</span> <span class="token string">'SHOW_COMPLETED'</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h3 id="los-cambios-se-hacen-con-funciones-puras-(changes-are-made-with-pure-functions)" tabindex="-1">Los cambios se hacen con funciones puras (Changes are made with pure functions) <a class="anchor-link" href="#los-cambios-se-hacen-con-funciones-puras-(changes-are-made-with-pure-functions)"></a></h3>
+<blockquote>
+<p>Para especificar cómo se transforma el <em>árbol de estado</em> se escriben funciones llamadas <strong>reducers</strong>.</p>
+</blockquote>
+<p>Las funciones <em>reducers</em> son funciones puras, que toman el <em>estado anterior</em> y un <em>acción</em> y retornan el <em>nuevo estado</em>. Estas funciones deben retornar <em>nuevos objetos de estado</em> y no <em>mutar el estado anterior</em>. Como las <em>reducers</em> son sólo funciones, podemos manejar el orden en el que se ejecutan, pasar datos adicionales, o inclusive hacer <em>reducers</em> reutilizables para tareas comunes.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">visibilityFilter</span><span class="token punctuation">(</span>state <span class="token operator">=</span> <span class="token string">'SHOW_ALL'</span><span class="token punctuation">,</span> action<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">case</span> <span class="token string">'SET_VISIBILITY_FILTER'</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> action<span class="token punctuation">.</span>filter<br>    <span class="token keyword">default</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state<br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">function</span> <span class="token function">todos</span><span class="token punctuation">(</span><span class="token parameter">state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">case</span> <span class="token string">'ADD_TODO'</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> <span class="token punctuation">[</span><br>        <span class="token operator">...</span>state<span class="token punctuation">,</span><br>        <span class="token punctuation">{</span><br>          <span class="token literal-property property">text</span><span class="token operator">:</span> action<span class="token punctuation">.</span>text<span class="token punctuation">,</span><br>          <span class="token literal-property property">completed</span><span class="token operator">:</span> <span class="token boolean">false</span><br>        <span class="token punctuation">}</span><br>      <span class="token punctuation">]</span><br>    <span class="token keyword">case</span> <span class="token string">'COMPLETE_TODO'</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">todo<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> action<span class="token punctuation">.</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>          <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> todo<span class="token punctuation">,</span> <span class="token punctuation">{</span><br>            <span class="token literal-property property">completed</span><span class="token operator">:</span> <span class="token boolean">true</span><br>          <span class="token punctuation">}</span><span class="token punctuation">)</span><br>        <span class="token punctuation">}</span><br>        <span class="token keyword">return</span> todo<br>      <span class="token punctuation">}</span><span class="token punctuation">)</span><br>    <span class="token keyword">default</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state<br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">import</span> <span class="token punctuation">{</span> combineReducers<span class="token punctuation">,</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'redux'</span><br><span class="token keyword">let</span> reducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">{</span> visibilityFilter<span class="token punctuation">,</span> todos <span class="token punctuation">}</span><span class="token punctuation">)</span><br><span class="token keyword">let</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducer<span class="token punctuation">)</span></code></pre>
+<h2 id="nuestra-propia-implementaci%C3%B3n-de-redux" tabindex="-1">Nuestra propia implementación de Redux <a class="anchor-link" href="#nuestra-propia-implementaci%C3%B3n-de-redux"></a></h2>
+<p>Para entender bien el concepto de <em>Redux</em>, vamos a crear nuestra propia mini-implementación del paradigma que utiliza. Luego vamos a usar la librería <code>redux</code>.</p>
+<p>Para hacerlo, empecemos repasando las ideas principiales que tenemos que implementar:</p>
+<ul>
+<li>Toda la data mantenida por nuestra aplicación tiene que estar contenida en una única estructura de datos llamada el <code>state</code> de nuestra app. Esta estructura de datos debe estar guardada en el <code>store</code>.</li>
+<li>Nuestra app lee el <strong>state</strong> desde nuestra <strong>store</strong>.</li>
+<li>El <strong>store</strong> no puede ser manipulado directamente por el usuario.</li>
+<li>Los usuarios disparan <strong>acciones</strong> que describen qué sucedió.</li>
+<li>Un <em>nuevo estado</em> es generado, resultado de combinar el <em>viejo estado</em> y la <em>acción</em> del usuario. Este proceso lo realiza una función llamada <strong>reducer</strong>.</li>
+</ul>
+<p><img src="/_src/assets/11-Redux/redux----redux-diagram.png" alt="no-box"></p>
+<h3 id="reducers" tabindex="-1">Reducers <a class="anchor-link" href="#reducers"></a></h3>
+<p>Un <em>reducer</em> toma un estado <em>viejo (actual)</em> y una <em>acción</em> y devuelve un <em>estado nuevo</em>. Un <em>reducer</em> <strong>debe ser una <em>función pura</em></strong>, es decir:</p>
+<ul>
+<li>No debe mutar directamente el estado.</li>
+<li>No debe usar datos que no hayan sido pasada por argumentos.</li>
+</ul>
+<p>Los <em>reducers</em> siempre deben tratar el <em>estado actual</em> como <strong>sólo lectura</strong>. De hecho, el <em>reducer</em> <strong>no cambia el estado</strong>, si no que <strong>devuelve un estado nuevo</strong>.<br>
+Para crear nuestro primer reducer, entonces, vamos a necesitar:</p>
+<ul>
+<li>Una <strong>acción</strong>, que nos define que hacer (opcionalmente con argumentos).</li>
+<li>El <strong>estado</strong>, que <em>guarda</em> toda la información de nuestro <em>app</em>.</li>
+<li>El <strong>reducer</strong> <em>per se</em> que recibe el <em>estado</em> y la <em>acción</em> y retorna el <em>nuevo estado</em>.</li>
+</ul>
+<h4 id="creando-un-reducer" tabindex="-1">Creando un Reducer <a class="anchor-link" href="#creando-un-reducer"></a></h4>
+<p>Empezemos por el <em>reducer</em> más simple posible, es el que devuelve el <strong>estado actual</strong>. Similar a la función <a href="https://es.wikipedia.org/wiki/Funci%C3%B3n_identidad">Identidad</a>.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">reducer</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> state<span class="token punctuation">;</span><br><span class="token punctuation">}</span> </code></pre>
+<p>Para los siguientes ejemplos, consideremos que el <strong>estado</strong> es un entero y que empieza en 0, podríamos llamarlo <code>counter</code>.</p>
+<blockquote>
+<p>En el común de los casos, los estados van a ser <em>sumamente</em> más complejos que sólo un entero!</p>
+</blockquote>
+<p>Para incrementar o decrementar en uno nuestro estado, vamos a necesitar definir una <strong>acción</strong>, para que el usuario pueda indicar que tiene la <em>intención</em> de cambiar el estado de nuestra app.</p>
+<p>Una acción sólo necesita una propiedad <code>type</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// incrementar en uno el counter</span><br><span class="token keyword">var</span> <span class="token constant">INCREMENTAR_COUNTER</span> <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'INCREMENTAR_COUNTER'</span><br><span class="token punctuation">}</span><br><span class="token comment">// decrementar en uno el counter</span><br><span class="token keyword">var</span> <span class="token constant">DECREMENTAR_COUNTER</span> <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'DECREMENTAR_COUNTER'</span><br><span class="token punctuation">}</span></code></pre>
+<p>Ahora que tenemos estas acciones las usemos en nuestros <em>reducers</em>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">reducer</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>  <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">case</span> <span class="token string">"INCREMENTAR_COUNTER"</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span><br>    <span class="token keyword">case</span> <span class="token string">"DECREMENTAR_COUNTER"</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span><br>    <span class="token keyword">default</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state<span class="token punctuation">;</span> <span class="token comment">// caso por defecto</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Listo! Ahora vamos a tener el <em>nuevo estado</em> retornado según qué acciones hayamos pasado al reducer.</p>
+<blockquote>
+<p>Noten que dejamos el caso por <strong>defecto</strong> de tal modo que si no pasamos una acción <em>conocida</em>, el reducer vuelva el estado como estaba.</p>
+</blockquote>
+<h3 id="argumentos-en-las-acciones" tabindex="-1">Argumentos en las acciones <a class="anchor-link" href="#argumentos-en-las-acciones"></a></h3>
+<p>En el ejemplo anterior, la acción siempre incrementaba en uno. Pero a veces, para describir la acción es necesario contar una serie de parámetros, por ejemplo en el caso que querramos incrementar nuestro <code>counter</code>, pero en un valor mayor a uno. Primero vamos a definir una <strong>acción</strong> en la cual podamos incrementar <code>7</code> veces el <code>counter</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// incrementar en uno el counter</span><br><span class="token keyword">var</span> <span class="token constant">INCREMENTAR_COUNTER</span> <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'INCREMENTAR_COUNTER'</span><br><span class="token punctuation">}</span><br><span class="token comment">// decrementar en uno el counter</span><br><span class="token keyword">var</span> <span class="token constant">DECREMENTAR_COUNTER</span> <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'DECREMENTAR_COUNTER'</span><br><span class="token punctuation">}</span><br><span class="token comment">// incrementar el counter en n</span><br><span class="token keyword">var</span> <span class="token constant">INCREMENTAR_7</span> <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'INCREMENTAR_N'</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">payload</span><span class="token operator">:</span> <span class="token number">7</span><br><span class="token punctuation">}</span></code></pre>
+<p>y la agregamos en nuestro <strong>reducer</strong>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">reducer</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>  <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">case</span> <span class="token string">"INCREMENTAR_COUNTER"</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span><br>    <span class="token keyword">case</span> <span class="token string">"DECREMENTAR_COUNTER"</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span><br>    <span class="token keyword">case</span> <span class="token string">"INCREMENTAR_N"</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state <span class="token operator">+</span> action<span class="token punctuation">.</span>payload<span class="token punctuation">;</span><br>    <span class="token keyword">default</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state<span class="token punctuation">;</span> <span class="token comment">// caso por defecto</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>En el ejemplo vemos que el type de accion es <code>INCREMENTAR_N</code>, pero sólo hemos creado la acción de ese tipo, pero con el <code>payload</code> en un número fijo, para generar varias acciones de este tipo vamos a hacer un <em>generador de acciones</em>, que no es otra cosa que una <code>factory</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span>  <span class="token function">increment</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'INCREMENTAR_N'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">payload</span><span class="token operator">:</span> n<br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Ahora podríamos invocar a nuestro reducer de la siguiente manera:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> state <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><br><span class="token function">reducer</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> <span class="token function">increment</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Incrementa siete // 7</span><br><span class="token function">reducer</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> <span class="token constant">INCREMENTAR_COUNTER</span><span class="token punctuation">)</span> <span class="token comment">// incrementa de a uno. // 1</span></code></pre>
+<p>Si vemos el ejemplo, notamos que a pesar de pasar por los <em>reducers</em>, nuestro estado sigue siendo <code>0</code> siempre! Por lo tanto nos vemos en la necesidad de implementar un <code>Store</code>, que es la forma de guardar el estado en la filosofía <code>redux</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"> <span class="token keyword">class</span> <span class="token class-name">Store</span> <span class="token punctuation">{</span><br>   <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">estadoInicial<span class="token punctuation">,</span> reducer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>     <span class="token keyword">this</span><span class="token punctuation">.</span>_state <span class="token operator">=</span> estadoInicial<span class="token punctuation">;</span><br>     <span class="token keyword">this</span><span class="token punctuation">.</span>reducer <span class="token operator">=</span> reducer<span class="token punctuation">;</span><br>   <span class="token punctuation">}</span><br><br>   <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_state<span class="token punctuation">;</span><br>   <span class="token punctuation">}</span><br><br>   <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token parameter">action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>     <span class="token keyword">this</span><span class="token punctuation">.</span>_state <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">reducer</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_state<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">;</span><br>   <span class="token punctuation">}</span><br> <span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>En Redux, generalmente, tenemos un Store y un top level reducer.</p>
+</blockquote>
+<p>Veamos que contiene nuestra <strong>Store</strong>:</p>
+<ul>
+<li>Cuando la inicializamos vamos a pasarle un <em>Estado Inicial</em> y un <em>reducer</em>.</li>
+<li><code>getState()</code> retorna el <em>Estado Actual</em>.</li>
+<li>Por último tenemos la función <code>dispatch</code> que recibe una acción e invoca al <code>reducer</code> con el estado actual y la acción, y actualiza el estado con lo que retorna el <code>reducer</code> (el nuevo estado).</li>
+</ul>
+<p>Noten que <code>dispatch</code> no retorna nada, simplemente <em>actualiza</em> el estado de la aplicación. Esto es un concepto importante de <code>redux</code>: cuando <em>despachamos</em> una acción, lo hacemos y nos olvidamos. <strong>Despachar una acción no es una manipulación directa del estado, y no devuelve el nuevo estado</strong>.</p>
+<h3 id="usando-el-store" tabindex="-1">Usando el Store <a class="anchor-link" href="#usando-el-store"></a></h3>
+<p>Veamos como podemos usar nuestro <code>Store</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Store</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> reducer<span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//0</span><br>store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span> <span class="token constant">INCREMENTAR_7</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//7</span><br>store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span> <span class="token constant">INCREMENTAR_COUNTER</span> <span class="token punctuation">)</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//8</span><br>store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span> <span class="token constant">DECREMENTAR</span> <span class="token punctuation">)</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//7</span></code></pre>
+<p>Empezamos por crear una <code>Store</code> nueva y la guardamos, en este caso, en una variable también llamada <code>store</code>. Luego usaremos el objeto que guardamos para consultar el estado en el que se encuentra nuestra aplicación.</p>
+<h3 id="pedirle-al-store-que-nos-notifique-los-cambios" tabindex="-1">Pedirle al Store que nos notifique los cambios <a class="anchor-link" href="#pedirle-al-store-que-nos-notifique-los-cambios"></a></h3>
+<p>Si vemos el ejemplo anterior, siempre que queremos ver el estado del <code>Store</code> tenemos que pedirle explicitamente. Sería interesante que nos enteremos que una acción fue despachada para que podamos responder si es necesario. Para esto vamos a implementar el <a href="https://es.wikipedia.org/wiki/Observer_(patr%C3%B3n_de_dise%C3%B1o)">patrón Observador</a>, es decir que vamos a <em>suscribir</em> un callback para que escuche por cambios.</p>
+<p>Esto es lo que queremos hacer:</p>
+<ul>
+<li>Registrar una función <em>listener</em> usando <code>suscribe</code>.</li>
+<li>Cuando <code>dispatch</code> es invocada, iteraremos sobre todos los <em>listeners</em> que tenga subscriptos y los invocaremos, notificandolos que el Estado ha cambiado.</li>
+</ul>
+<p>Para esto vamos a agregar la funcionalidad de <code>suscribe</code> y <code>unsuscribe</code> a nuestro <code>Store</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"> <span class="token keyword">class</span> <span class="token class-name">Store</span> <span class="token punctuation">{</span><br>   <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">estadoInicial<span class="token punctuation">,</span> reducer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>     <span class="token keyword">this</span><span class="token punctuation">.</span>_state <span class="token operator">=</span> estadoInicial<span class="token punctuation">;</span><br>     <span class="token keyword">this</span><span class="token punctuation">.</span>reducer <span class="token operator">=</span> reducer<span class="token punctuation">;</span><br>     <span class="token keyword">this</span><span class="token punctuation">.</span>_listeners <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// Empezamos con un arreglo vacío. </span><br>   <span class="token punctuation">}</span><br><br>   <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_state<span class="token punctuation">;</span><br>   <span class="token punctuation">}</span><br><br>   <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token parameter">action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>     <span class="token keyword">this</span><span class="token punctuation">.</span>_state <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">reducer</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_state<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">;</span><br>   <span class="token punctuation">}</span><br><br>   <span class="token function">suscribe</span><span class="token punctuation">(</span>listener<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      _listeners<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>listener<span class="token punctuation">)</span><span class="token punctuation">;</span><br>      <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token comment">// retorna una función unsuscribe</span><br>         <span class="token keyword">this</span><span class="token punctuation">.</span>_listeners <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_listeners<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">l</span><span class="token punctuation">)</span><span class="token punctuation">{</span>l <span class="token operator">!==</span> listener<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>      <span class="token punctuation">}</span><span class="token punctuation">;</span><br>   <span class="token punctuation">}</span><br> <span class="token punctuation">}</span></code></pre>
+<p>La función <code>suscribe</code> recibe una función como listener, y retorna una función que al ser ejecutada, va a <code>filtrar</code> el listener con el que fue generada de la lista de listeners.</p>
+<p>Ahora, para notificar a los listeners suscriptos, vamos a invocarlos cuando se ejecute el método <code>dispatch</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token parameter">action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>     <span class="token keyword">this</span><span class="token punctuation">.</span>_state <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">reducer</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_state<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">;</span><br>     <span class="token keyword">this</span><span class="token punctuation">.</span>_listeners<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">listener</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>        <span class="token function">listener</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>      <span class="token punctuation">}</span><span class="token punctuation">)</span><br>   <span class="token punctuation">}</span></code></pre>
+<p>Ahora que nos podemos suscribir para obtener novedades, probemos lo siguiente:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Store</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> reducer<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> unsuscribe <span class="token operator">=</span> store<span class="token punctuation">.</span><span class="token function">suscribe</span><span class="token punctuation">(</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><br><br>store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span> <span class="token constant">INCREMENTAR_7</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// --> 7 </span><br>store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span> <span class="token constant">INCREMENTAR_COUNTER</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// --> 8</span><br>store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span> <span class="token constant">DECREMENTAR</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// --> 7</span><br><br><span class="token function">unsuscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// dejamos de recibir notificaciones;</span><br><br>store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span> <span class="token constant">DECREMENTAR</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 6</span></code></pre>
+<p>Si entendiste lo anterior, entonces ya tienes una idea de las bases sobre las que siente <code>redux</code>. La librería implementa otros patrones más complejos, y resuelve problemas comunes que pueden llegar a aparecer.</p>
+<h2 id="instalando-redux" tabindex="-1">Instalando Redux <a class="anchor-link" href="#instalando-redux"></a></h2>
+<p>Redux viene en un paquete con el mismo nombre, asi que para instalarlo podemos hacer <code>npm install redux react-redux</code>. Con esto instalamos la librería de redux en sí, y los <code>helpers</code> de <code>react-redux</code>, donde están las funciones <code>bindActionsCreator</code>, <code>connect</code>, etc…</p>
+<blockquote>
+<p>Redux se instala así, asumiendo que ya tenemos un proyecto de React funcionando, con su webpack configurado.</p>
+</blockquote>
+<h2 id="workflow-de-redux" tabindex="-1">Workflow de Redux <a class="anchor-link" href="#workflow-de-redux"></a></h2>
+<p>Lo primero que tenemos que incorporar para trabajar con Redux, es el workflow que nos propone. Básicamente, nuestra aplicación debería funcionar siempre siguiente este ciclo de vida, en el medio van a aparecer elementos de la API de redux que vamos a ir explicando.</p>
+<blockquote>
+<p>Se podría considerar a <code>redux</code> cómo una implementación del patrón <code>flux</code> para react, también se podría considerar cómo un patrón por si mismo. ( De hecho, <a href="http://redux.js.org/docs/introduction/PriorArt.html#flux">ni sus autores se ponen de acuerdo en eso</a> ) Lo cierto es que está influenciado por el patrón <code>flux</code>, usando por facebook.</p>
+</blockquote>
+<p><img src="/_src/assets/11-Redux/ui_workflow.png" alt="no-box"></p>
+<ol>
+<li>El <code>árbol de Estado</code> define la UI y las acciones posibles a través de <code>props</code>.</li>
+<li>Acciones realizadas por los usuarios son enviadas a un <code>action creator</code> que las normaliza.</li>
+<li>Estas acciones normalizadas son pasadas a un <code>reducer</code>, que es donde se ejecuta el código que contiene la lógica de la acción.</li>
+<li>El reducer crea un nuevo Estado y lo devuelve (<code>dispatches it</code>) al <code>Store</code>.</li>
+<li>La UI es actualizada acorde al nuevo estado.</li>
+</ol>
+<h3 id="acciones" tabindex="-1">Acciones <a class="anchor-link" href="#acciones"></a></h3>
+<p>Las <strong>acciones</strong> representan una <em>inteción</em> de cambiar el estado de nuestra <code>store</code>. Las <em>acciones</em> son las <strong>únicas</strong> fuente de información que llega a nuestras <code>stores</code>.</p>
+<p>Las <strong>acciones</strong> son <strong>objetos JavaScript planos</strong>, deben tener una propiedad llamada <code>type</code>, que indica o describa la acción que se realiza. Por convención los <code>type</code>s debe estar escritos como <code>string constants</code>, es decir, todo en mayúsuclas y con SNAKE_CASE. Además del type, las acciones van a contener cualquier otra propiedad que necesitemos para su funcionamiento. Se recomienda que las acciones tengan la menor cantidad de propiedades posibles.</p>
+<p>Podemos ver algunas recomendaciones de cómo diseñar nuestras acciones en <a href="https://github.com/acdlite/flux-standard-action">esta guía</a>.</p>
+<blockquote>
+<p>Cuando tu app empieze a crecer, es buena idea separar las acciones en distintos módulos (archivos).</p>
+</blockquote>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// incrementas likes</span><br><span class="token keyword">const</span> <span class="token constant">INCREMENT_LIKES</span> <span class="token operator">=</span>  <span class="token punctuation">{</span><br>    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'INCREMENT_LIKES'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">index</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span><br>  <span class="token punctuation">}</span><br><br><span class="token comment">// agregar comentarios</span><br><span class="token keyword">const</span> <span class="token constant">ADD_COMMENT</span> <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'ADD_COMMENT'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">postId</span><span class="token operator">:</span> <span class="token string">'X4Yb4'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">author</span><span class="token operator">:</span> <span class="token string">'Toni'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">comment</span><span class="token operator">:</span> <span class="token string">'Esto es una acción en particular.'</span><span class="token punctuation">,</span><br>  <span class="token punctuation">}</span><br><span class="token comment">// remover comentarios</span><br><span class="token keyword">const</span> <span class="token constant">REMOVE_COMMENT</span> <span class="token operator">=</span>  <span class="token punctuation">{</span><br>    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'REMOVE_COMMENT'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">postId</span><span class="token operator">:</span> <span class="token string">'X4Yb5'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">index</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span><br>  <span class="token punctuation">}</span></code></pre>
+<h3 id="action-creators" tabindex="-1">Action Creators <a class="anchor-link" href="#action-creators"></a></h3>
+<p>Los <code>actions creators</code> son funciones que <strong>crean</strong> acciones, o sea que <em>retornan</em> un objeto que representa una acción. Es fácil confundir los términos <em>action</em> y <em>action creator</em> así que hay que usarlos con cuidado.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// incrementas likes</span><br><span class="token keyword">export</span> <span class="token keyword">function</span>  <span class="token function">increment</span><span class="token punctuation">(</span><span class="token parameter">index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'INCREMENT_LIKES'</span><span class="token punctuation">,</span><br>    index<br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><span class="token comment">// agregar comentarios</span><br><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">addComment</span><span class="token punctuation">(</span><span class="token parameter">postId<span class="token punctuation">,</span> author<span class="token punctuation">,</span> comment</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'ADD_COMMENT'</span><span class="token punctuation">,</span><br>    postId<span class="token punctuation">,</span><br>    author<span class="token punctuation">,</span><br>    comment<br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><span class="token comment">// remover comentarios</span><br><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">removeComment</span><span class="token punctuation">(</span><span class="token parameter">postId<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'REMOVE_COMMENT'</span><span class="token punctuation">,</span><br>    postId<span class="token punctuation">,</span><br>    index<br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="dispatch" tabindex="-1">Dispatch <a class="anchor-link" href="#dispatch"></a></h3>
+<p>Las <em>acciones</em> tienen que ser enviadas al <em>Store</em> para que surgan efecto. La función <a href="http://redux.js.org/docs/api/Store.html#dispatch"><code>dispatch</code></a> base es un método de <code>store</code>, esta manda una acción de forma sincrónica a los reductores del store, junto con el estado previo retornado por el store, para calcular el nuevo estado. Espera que las acciones que les pasemos sean objetos planos, listas para ser consumidas por los reducers.</p>
+<p>También se puede envolver a los dispatchers en una serie de <a href="http://redux.js.org/docs/Glossary.html#middleware">Middlewares</a>, esto permite que los dispatchers puedan manejar <em>acciones asincrónicas</em>, además de poder transformar, demorar, ignorar o interpretar acciones antes de pasarla al siguiente Middleware.</p>
+<blockquote>
+<p>Cuando usamos redux con react, las funciones de dispatchers vienen bindeadas al componente <Provider></p>
+</blockquote>
+<h3 id="reducers-1" tabindex="-1">Reducers <a class="anchor-link" href="#reducers-1"></a></h3>
+<p>Las <em>acciones</em> describen que algo sucedió en nuestra app, pero no especifican <em>cómo</em> esta accion impacta en el estado actual. Saber eso es el trabajo de los <strong>reducers</strong>.</p>
+<p>Un <em>reducer</em> es una función que recibe el estado previo de un Store y un acción y retorna el nuevo estado. Justamente se llama reducer, porque toma al estado cómo una <em>acumulación</em> de acciones.<br>
+Los reducers tienen que ser siempre funciones <strong>puras</strong>, estas son cosas que <strong>nunca</strong> deberías hacer en un reducer:</p>
+<ul>
+<li>Mutar sus argumentos.</li>
+<li>Realizar cosas que tengan efectos secundarios, como llamadas a APIs, o routeo.</li>
+<li>Llamar a funciones no puras adentro, como <code>Math.random()</code> o <code>Date.now()</code></li>
+</ul>
+<blockquote>
+<p><strong>Given the same arguments, a reducer should calculate the next state and return it. No surprises. No side effects. No API calls. No mutations. Just a calculation.</strong></p>
+</blockquote>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">posts</span><span class="token punctuation">(</span> <span class="token parameter">state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">case</span> <span class="token string">'INCREMENT_LIKES'</span><span class="token operator">:</span><br>      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'increment Likes'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>      <span class="token keyword">const</span> i <span class="token operator">=</span> action<span class="token punctuation">.</span>index<span class="token punctuation">;</span><br>      <span class="token keyword">return</span> <span class="token punctuation">[</span><br>        <span class="token operator">...</span>state<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// antes del que estamos actualizando</span><br>        <span class="token punctuation">{</span><span class="token operator">...</span>state<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token literal-property property">likes</span><span class="token operator">:</span> state<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>likes <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span><br>        <span class="token operator">...</span>state<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment">// despues del actualizado</span><br>      <span class="token punctuation">]</span><br>    <span class="token keyword">default</span><span class="token operator">:</span><br>      <span class="token keyword">return</span> state<span class="token punctuation">;</span><br>    <br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">export</span> <span class="token keyword">default</span> posts<span class="token punctuation">;</span></code></pre>
+<p>Cuando la app es grande, podemos poner cada reducer en archivos separados, agrupandolos según los datos que manejen, haciendolos independientes entre ellos. Para hacer esto, redux nos ofrece la funcionalidad de <a href="http://redux.js.org/docs/api/combineReducers.html"><code>combineReducers()</code></a>, lo que hace es convertir un objeto que tiene varios reducers en una sola función reducers que los contiene, y que puede ser pasada a <code>createStore</code>.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// Redux sólo puede tener un reducer.</span><br><span class="token comment">// por eso vamosa  tener el Root Reducer</span><br><span class="token comment">// donde vamos a incorporar los demas</span><br><br><span class="token keyword">import</span> <span class="token punctuation">{</span> combineReducers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'redux'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token punctuation">{</span> routerReducer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-router-redux'</span><span class="token punctuation">;</span><br><br><span class="token keyword">import</span> posts <span class="token keyword">from</span> <span class="token string">'./posts.js'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> comments <span class="token keyword">from</span> <span class="token string">'./comments.js'</span><span class="token punctuation">;</span><br><br><span class="token keyword">const</span> rootReducer <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span> <span class="token punctuation">{</span>posts<span class="token punctuation">,</span> comments<span class="token punctuation">,</span> <span class="token literal-property property">routing</span><span class="token operator">:</span> routerReducer <span class="token punctuation">}</span><span class="token punctuation">)</span><br><br><span class="token keyword">export</span> <span class="token keyword">default</span> rootReducer<span class="token punctuation">;</span></code></pre>
+<h3 id="store" tabindex="-1">Store <a class="anchor-link" href="#store"></a></h3>
+<p>La <strong>Store</strong> tiene la siguientes responsabilidades:</p>
+<ul>
+<li>Mantiene el estado de la aplicación.</li>
+<li>Permite el acceso al estado a través de <code>getState()</code>.</li>
+<li>Permite actualizar el estado a través de <code>dispatch(action)</code>.</li>
+<li>Registra <em>listeners</em> con <code>subscribe(listener)</code>.</li>
+<li>Maneja la desuscripción de <em>listeners</em>.</li>
+</ul>
+<p>Hay que notar que vamos a tener exactamente <em>una</em> Store por cada applicación que hagamos usando Redux. Para crear una Store, vamos a usar la función <code>createStore</code> que recibe un reducer como argumento, y opcionalmente el <em>estado inicial</em> de la app.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore<span class="token punctuation">,</span> compose <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'redux'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token punctuation">{</span> syncHistoryWithStore<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-router-redux'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token punctuation">{</span> browserHistory <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-router'</span><span class="token punctuation">;</span><br><br><span class="token comment">// Import root reducer</span><br><span class="token keyword">import</span> rootReducer  <span class="token keyword">from</span> <span class="token string">'./reducers/index.js'</span><span class="token punctuation">;</span><br><br><span class="token keyword">import</span> comments <span class="token keyword">from</span> <span class="token string">'./data/comments.js'</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> posts <span class="token keyword">from</span> <span class="token string">'./data/posts.js'</span><span class="token punctuation">;</span><br><br><span class="token keyword">const</span> defaultState <span class="token operator">=</span> <span class="token punctuation">{</span><br>  posts<span class="token punctuation">,</span><br>  comments<br><span class="token punctuation">}</span><br><br><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>rootReducer<span class="token punctuation">,</span> defaultState<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="homework" tabindex="-1">Homework <a class="anchor-link" href="#homework"></a></h2>
+<p>Completa la tarea descrita en el archivo <a href="./homework/README.md">README</a></p>
+
+        </div>
+
+      </main>
+
+      
+
+      <div class="footerContainer">
+        <div class="footerContained">
+          <p>Material de estudio personal</p>
+        </div>
+      </div>
+
+      <div class="readerBarDiv">
+        
+  <!-- up button -->
+  <div>
+    <button
+      id="upBtn"
+      style="position:fixed; width:32px; height:32px; border-radius:50%; border:none; background-color:black; right:20px; bottom:55px; color:white; z-index:999; focus:outline-none; cursor:pointer; transition-duration:500ms; opacity:0; pointer-events:none;"
+    ><i class="arrow up"></i></button>
+  </div>
+  
+  <style>
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  </style>
+
+  <script>
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      upBtn.style.opacity = 1;
+      upBtn.style.pointerEvents = 'auto';     
+    }
+    else {
+      upBtn.style.opacity = 0;
+      upBtn.style.pointerEvents = 'none';
+    }
+  })
+
+  upBtn.addEventListener('click', () => {
+    let start = document.querySelector('.reader-bar-start')
+    start.scrollIntoView({behavior: "smooth"})
+  })
+  </script>
+
+  <!-- reader bar -->
+  <div id="readerBarContainer" style="height:3px;width:100%;background-color:black;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;">
+    <div id="readerBar" style="height:3px;width:0;background-color:#2E4F8F;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;"></div>
+  </div>
+
+  <script>
+    let winH = window.innerHeight;
+    const content = document.querySelector('.reader-bar-start');
+
+    let contentH = content.offsetHeight;
+    let contentS = contentH - winH;
+    let readerBar = document.getElementById('readerBar');
+    window.addEventListener('load', () => {
+      document.addEventListener ('scroll', updateBar);
+    })
+    window.addEventListener('resize', redefine)
+
+    function redefine() {
+      winH = window.innerHeight;
+      contentH = content.offsetHeight;
+      contentS = contentH - winH;
+      updateBar();
+    }
+
+    function updateBar() {
+      const pagePos = window.scrollY; 
+      const updatedBar = pagePos * 100 / contentS;
+      readerBar.style.width = updatedBar + "%";
+    }
+  </script>
+  
+      </div>
+
+    </body>
+  </html>

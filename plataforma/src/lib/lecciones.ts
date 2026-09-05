@@ -5,13 +5,15 @@ import path from 'node:path';
 const RAIZ = path.resolve(process.cwd(), '..');
 
 /** Solo estas carpetas tienen lecciones. Los Extras_* son datasets. */
-const MODULOS = [
-  'Introductorio',
-  'Modulo_Uno',
-  'Modulo_Dos',
-  'Modulo_Tres',
-  'Modulo_Cuatro',
-];
+const MODULOS: Record<string, string> = {
+  Introductorio: 'introductorio',
+  Modulo_Uno: 'modulo-uno',
+  Modulo_Dos: 'modulo-dos',
+  Modulo_Tres: 'modulo-tres',
+  Modulo_Cuatro: 'modulo-cuatro',
+};
+
+const ORDEN_MODULOS = Object.keys(MODULOS);
 
 export type Unidad = {
   id: string;
@@ -21,6 +23,8 @@ export type Unidad = {
   rutaMd: string;
   tieneHomework: boolean;
   manual: boolean;
+  /** URL de la pagina que genera Eleventy, ya con su prefijo de modulo */
+  url: string;
 };
 
 /**
@@ -31,7 +35,7 @@ export type Unidad = {
 export function listarUnidades(): Unidad[] {
   const unidades: Unidad[] = [];
 
-  for (const modulo of MODULOS) {
+  for (const modulo of ORDEN_MODULOS) {
     // turbopackIgnore: estas rutas se resuelven en tiempo de compilacion.
     // Las paginas que llaman aqui se prerenderizan (SSG), asi que en
     // produccion nadie lee el disco. Sin este marcador, el analisis
@@ -72,9 +76,17 @@ export function listarUnidades(): Unidad[] {
 
       const dirHomework = path.join(dirModulo, carpeta, 'homework');
 
+      // El permalink solo sirve para construir la URL de Eleventy; el
+      // identificador sigue siendo el nombre de carpeta, que es unico.
+      const permalink =
+        typeof meta.permalink === 'string'
+          ? meta.permalink.replace(/^\/|\/$/g, '')
+          : '';
+
       unidades.push({
         id: carpeta,
         modulo,
+        url: `/lecciones/${MODULOS[modulo]}/${permalink}`,
         titulo,
         orden: typeof nav?.order === 'number' ? nav.order : 999,
         rutaMd,
@@ -86,7 +98,8 @@ export function listarUnidades(): Unidad[] {
 
   return unidades.sort(
     (a, b) =>
-      MODULOS.indexOf(a.modulo) - MODULOS.indexOf(b.modulo) || a.orden - b.orden,
+      ORDEN_MODULOS.indexOf(a.modulo) - ORDEN_MODULOS.indexOf(b.modulo) ||
+      a.orden - b.orden,
   );
 }
 

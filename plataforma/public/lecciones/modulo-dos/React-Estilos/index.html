@@ -1,0 +1,1351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>React-Estilos | Módulo 2 - Frontend</title>
+    
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+    /* border: 2px dashed green; */
+    font-family: 'Avenir-Roman';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: justify;
+    padding: 0 2rem 4rem 300px;
+    width: 100%;
+    max-width: 98vw;
+    margin-top: 60px;
+  }
+  
+  .lesson .hide {
+    display: none;
+  }
+  
+  .lesson :target:before {
+    content: '';
+    display: block;
+    height: 85px;
+  }
+  
+  .lesson img[alt~='HenryLogo'] {
+    display: none;
+  }
+  
+  .lesson h1 {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #2e2e2e;
+  
+    border-bottom-style: solid;
+    border-bottom-width: 25px;
+    border-bottom-color: #ffff01;
+  
+    height: 64px;
+    margin: 0px 0 50px 0;
+  }
+  
+  .lesson h1 + h4 {
+    margin: -40px 0 3rem 0;
+    font-family: 'Avenir-Black';
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+  }
+  
+  .lesson h1 + h2 {
+    margin-top: 0;
+  }
+  
+  .lesson h2 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h2#homework {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #1fa32a;
+  }
+  
+  .lesson h3 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 24px;
+    font-display: swap;
+    line-height: 24px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h4 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson img {
+    width: auto;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson img[alt~='logo'] {
+    box-shadow: none;
+    width: 350px;
+  }
+  
+  .lesson img[alt~='no-box'] {
+    box-shadow: none;
+  }
+  
+  .lesson ul {
+    list-style: square;
+  }
+  
+  .lesson li {
+    font-family: 'Avenir-Heavy';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+  }
+  
+  .lesson a {
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+  }
+  
+  .lesson .iframeContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson .sandboxContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+  .lesson iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lesson table {
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    text-align: center !important;
+  }
+  
+  .lesson th {
+    background-color: rgb(170, 170, 170);
+    padding: 8px;
+    text-align: center !important;
+  }
+  
+  .lesson thead {
+    text-align: center !important;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+  
+  .lesson td {
+    padding: 5px;
+    text-align: center !important;
+  }
+  
+  tr + td {
+    border-right: 1px solid gray !important;
+  }
+  
+  .rightBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    width: 97vw;
+    max-width: 1500px;
+    margin-top: 5rem;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .homeworkBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .homeworkBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .homeworkBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: green;
+  }
+  
+  .quizzBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .quizzBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .quizzBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: rgb(128, 79, 0);
+  }
+  
+  .readingTime {
+    font-family: 'Avenir-Book';
+    font-size: 14px;
+    font-display: swap;
+    line-height: 119.6%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reader-bar-start">
+
+      <div class="headerResponsive">
+        <div class="leftContent">
+          <img class="brandLogo" src="/lecciones/modulo-dos/_src/assets/logo.png" alt="Módulo 2 - Frontend">
+          <span>React-Estilos</span>
+        </div>
+        <div class="menuDiv">
+          <input type="checkbox">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times"></i>
+          <nav>
+            <ul><li><a href="/lecciones/modulo-dos/">Intro</a></li>
+<li><a href="/lecciones/modulo-dos/DOM/">DOM</a></li>
+<li><a href="/lecciones/modulo-dos/CSS/">CSS</a></li>
+<li><a href="/lecciones/modulo-dos/ES6/">ES6</a></li>
+<li><a href="/lecciones/modulo-dos/Ajax/">Ajax</a></li>
+<li><a href="/lecciones/modulo-dos/Bundlers/">Bundlers</a></li>
+<li><a href="/lecciones/modulo-dos/React-Intro/">React</a></li>
+<li><a href="/lecciones/modulo-dos/React-Estilos/">React-Estilos</a></li>
+<li><a href="/lecciones/modulo-dos/React-Estado-LifeCycle/">React-LifeCycle</a></li>
+<li><a href="/lecciones/modulo-dos/React-Routing/">React-Routing</a></li>
+<li><a href="/lecciones/modulo-dos/React-Forms/">Forms</a></li>
+<li><a href="/lecciones/modulo-dos/Redux/">Redux</a></li>
+<li><a href="/lecciones/modulo-dos/React-Redux/">React-Redux</a></li>
+<li><a href="/lecciones/modulo-dos/React-Hooks/">Hooks</a></li></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="headerContainer">
+        <div class="headerContained">
+          <img class="brandLogo" src="/lecciones/modulo-dos/_src/assets/logo.png" alt="Módulo 2 - Frontend">
+          <div>
+            <span class="lessonTitle">React-Estilos</span> | <span>Módulo 2 - Frontend</span>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="topnav" id='myTopnav' >
+          
+          <ul class="nav">
+      
+      <li class="link">
+        <a href="/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <a href="/DOM/" class="nav-link" role="menuitem">DOM</a>
+      </li>
+<li class="link">
+        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+      </li>
+<li class="link">
+        <a href="/ES6/" class="nav-link" role="menuitem">ES6</a>
+      </li>
+<li class="link">
+        <a href="/Ajax/" class="nav-link" role="menuitem">Ajax</a>
+      </li>
+<li class="link">
+        <a href="/Bundlers/" class="nav-link" role="menuitem">Bundlers</a>
+      </li>
+<li class="link">
+        <a href="/React-Intro/" class="nav-link" role="menuitem">React</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">React-Estilos</span>
+      </li>
+<li class="link">
+        <a href="/React-Estado-LifeCycle/" class="nav-link" role="menuitem">React-LifeCycle</a>
+      </li>
+<li class="link">
+        <a href="/React-Routing/" class="nav-link" role="menuitem">React-Routing</a>
+      </li>
+<li class="link">
+        <a href="/React-Forms/" class="nav-link" role="menuitem">Forms</a>
+      </li>
+<li class="link">
+        <a href="/Redux/" class="nav-link" role="menuitem">Redux</a>
+      </li>
+<li class="link">
+        <a href="/React-Redux/" class="nav-link" role="menuitem">React-Redux</a>
+      </li>
+<li class="link">
+        <a href="/React-Hooks/" class="nav-link" role="menuitem">Hooks</a>
+      </li>
+    </ul>
+        </div>
+
+        <div class='sidebar'>
+          <div class="tocTitle">
+            Contenido de la clase
+            </div>
+          <div class="tocBox">
+            
+            <nav class="toc" >
+        <ul><li><a href="#estilos-inline">Estilos Inline </a></li><li><a href="#clases">Clases </a></li><li><a href="#frameworks">Frameworks </a></li><li><a href="#nuestros-propios-estilos">Nuestros propios estilos </a></li><li><a href="#homework">Homework </a></li></ul>
+      </nav>
+          </div>
+        </div>
+
+        <div class='rightBox'>
+          <div class="readingTime">
+                    Tiempo de lectura 19 min
+          </div>
+
+          
+        </div>
+
+        <div class='lesson'>
+          
+          <h1 id="dando-estilos-en-react" tabindex="-1">Dando Estilos en React <a class="anchor-link" href="#dando-estilos-en-react"></a></h1>
+<p>Este es un tema muy particular, ya que se está cambiando la filosofía que teniamos de usar CSS como lo conocemos para dar estilos, es decir en forma <em>global</em> y <em>en cascada</em>. Ahora hay muchos desarrolladores que creen que esta forma no es <em>Escalable</em> y que hay que adoptar nuevas formas de dar estilos a cada Componente, en particular hablan de tener estilos <em>locales</em> y no globales.</p>
+<blockquote>
+<p>Esta discución de paradigmas todavía no tiene un ganador claro, hay defensores y detractores de ambas formas por todos lados. Tomen con pinzas todo lo que lean online sobre este tema.</p>
+</blockquote>
+<h2 id="estilos-inline" tabindex="-1">Estilos Inline <a class="anchor-link" href="#estilos-inline"></a></h2>
+<p>Una de las formas de dar Estilos a los Componentes es usando el atributo <code>style</code> del mismo. En react esta propiedad recibe un <em>objeto JavaScript</em> y no una <em>Css String</em> como en HTML nativo. Por lo tanto, vamos a tener que cambiar un poco la sintaxis de las reglas <em>CSS</em>. Veamos el ejemplo de la <a href="https://facebook.github.io/react/docs/dom-elements.html#style">documentación</a> de react:</p>
+<pre class="language-jsx"><code class="hljs language-jsx"><span class="token keyword">const</span> divStyle <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">color</span><span class="token operator">:</span> <span class="token string">'blue'</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">backgroundImage</span><span class="token operator">:</span> <span class="token string">'url('</span> <span class="token operator">+</span> imgUrl <span class="token operator">+</span> <span class="token string">')'</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">function</span> <span class="token function">HelloWorldComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>divStyle<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">Hello World!</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Como vemos, no podemos usar los mismos nombres de las propiedades <em>CSS</em> porque tiene conflicto con el operador <code>-</code>, por lo tanto decidieron que es mejor utilizar los nombres de las reglas usando <em>camelCase</em>.</p>
+<blockquote>
+<p>Existen traductores de CSS a CSS JavaScript como <a href="http://staxmanade.com/CssToReact/">este</a>.</p>
+</blockquote>
+<h2 id="clases" tabindex="-1">Clases <a class="anchor-link" href="#clases"></a></h2>
+<p>En los ejemplos anteriores usamos una clase para setear el estilo de un Link activo. La clase la habíamo definido en el <code>index.html</code> en donde se cargaba todo nuestro código, por lo tanto esa definición era accesible por los Links. Del mismo modo, si tenemos clases definidas de esa manera (podríamos usar un framework como Boostrap, por ejemplo), vamos a poder dar el nombre de las clases que tendrán nuestros Componentes y sus childrens, usando el keyword <code>className</code>. Como se imaginan el keyword <code>class</code> está reservado en JavaScript y no se puede utilizar para eso. Por ejemplo</p>
+<pre class="language-jsx"><code class="hljs language-jsx"><span class="token keyword">function</span> <span class="token function">HelloWorldComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>activado<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token plain-text">Hello World!</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="frameworks" tabindex="-1">Frameworks <a class="anchor-link" href="#frameworks"></a></h2>
+<p>Veamos como podemos usar Webpack, para <em>requerir</em> un Framework y utilizarlo dentro de nuestra app. Para esto, vamos a necesitar instalar algunos <code>loaders</code> extras, para que Webpack sepa como manejar un <code>require(./estilo.css)</code> ya que no se tratan de archivos js!</p>
+<p>Para eso vamos a instalar varios <code>loaders</code>:</p>
+<ul>
+<li><strong>css-loader</strong> : Sirve para requerir archivos <code>.css</code> y tenerlos como objetos JS.</li>
+<li><strong>script-loader</strong>: Algunos frameworks utilizan jQuery u otras librerías como dependencias, con este loader vamos a poder incluirlas también en nuestra app.</li>
+<li><strong>style-loader</strong>: Por último nos va a faltar inyectar el CSS en nuestro HTML, lo vamos a hacer usando este loader.</li>
+<li><strong>url-loader</strong>: Bootstrap viene con sus propias fuentes y utiliza archivos como <code>.woff</code> o <code>.ttf</code>, vamos a usar este loader para poder inyectar estos archivos en nuestra página.</li>
+</ul>
+<p>Para instalar los loaders hacemos: <code>npm install css-loader script-loader style-loader url-loader --save</code>.<br>
+Tambien tenemos que instalar, en este caso Bootstrap y jQuery: <code>npm install jquery bootstrap --save</code>.</p>
+<p>Ahora tenemos que configurar de nuevo nuestro <code>webpack.config</code> para hacer uso de los loaders nuevos, para eso vamosa a agregar entradas en el arreglo <code>loaders</code>:</p>
+<pre class="language-js"><code class="hljs language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>        <span class="token string">'./index.js'</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token literal-property property">loaders</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>            <span class="token punctuation">{</span><br>                <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(\.js|\.jsx)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>                <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span><br>                <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>                <span class="token literal-property property">query</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">presets</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'es2015'</span><span class="token punctuation">,</span> <span class="token string">'react'</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><span class="token punctuation">,</span><br>        <span class="token punctuation">{</span><br>          <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>          <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'style-loader!css-loader'</span><br>        <span class="token punctuation">}</span><span class="token punctuation">,</span><br>        <span class="token punctuation">{</span> <br>          <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(png|woff|woff2|eot|ttf|svg)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>          <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'url-loader?limit=100000'</span><br>        <span class="token punctuation">}</span><br>        <span class="token punctuation">]</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">"index_bundle.js"</span><span class="token punctuation">,</span><br>        <span class="token literal-property property">path</span><span class="token operator">:</span> __dirname <span class="token operator">+</span> <span class="token string">'/dist'</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Hemos agregado <code>loaders</code> para tres casos distintos, cuando el archivo es <code>.css</code> vamos a usar primero el <code>style-loader</code> y luego <code>css-loader</code>. Esto requiere el archivo .css y luego lo inyecta a la página como un stylesheet.</p>
+<p>Como dijimos, vamos a usar el <code>url-loader</code> para varios archivos que tienen que ver con fuentes como:  <code>.woff</code>, <code>.ttf</code>, <code>.eot</code>, además de algunas imagenes que puede incluir el framework (<code>.png</code> o <code>.svg</code>).</p>
+<p>Todavía no hemos usado el <code>script-loader</code>, porque por ahora sólo estamos incluyendo <em>Css</em>.</p>
+<p>Por último nos falta agregar Bootstrap en nuestro projecto, por lo tanto en nuestro <code>index.js</code> vamos a agregar la siguiente línea:</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'bootstrap/dist/css/bootstrap.css'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Básicamente, estamos <em>importando</em> el archivo .css de bootstrap que habíamos instalado con <code>npm</code>, y este es pasado por los loaders que hemos definido y así llega a nuestra página.</p>
+<p>Genial! Ahora ya tenemos por cargado Bootstrap en nuestra App, podemos verlo en los estilos de los Headers y Links!</p>
+<p>Ahora agregemos la clase <code>btn btn-default</code> a cada Link de nuestra Nav y vemos cómo queda:</p>
+<pre class="language-jsx"><code class="hljs language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">IndexLink</span></span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn btn-default<span class="token punctuation">"</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">activeClassName</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>active<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span><span class="token plain-text">Home</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">IndexLink</span></span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn btn-default<span class="token punctuation">"</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span> <span class="token attr-name">activeClassName</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>active<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span><span class="token plain-text">Componente2</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn btn-default<span class="token punctuation">"</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/ejemplos<span class="token punctuation">"</span></span> <span class="token attr-name">activeClassName</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>active<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token plain-text">Componente3</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span></code></pre>
+<p>Ahora, vamos a probar agregar una NavBar de Bootstrap, podemos copiarla <a href="http://getbootstrap.com/components/#navbar">acá</a>.</p>
+<blockquote>
+<p>Recuerden cambiar los <code>class</code> por <code>className</code>, y los comentarios de HTML tampoco funcionan en JSX.</p>
+</blockquote>
+<p>Ahora, si abrimos la página vamos a ver que se ve cómo debería, pero por ejemplo, el dropdown no funciona. Esto se debe a que el NavBar de Bootstrap utiliza una librería propia de JS y además jQuery, y nosotros todavía no lo hemos incluido ninguna.</p>
+<p>Veamos como hacerlo.</p>
+<p>Por empezar debemos incluir el archivo <code>.js</code> en nuestro <code>index.js</code>:</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'script-loader!jquery/dist/jquery.min.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'bootstrap/dist/css/bootstrap.css'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'script-loader!bootstrap/dist/js/bootstrap.min.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Ahora sí estamos usando el <code>script-loader</code>, cuando cargamos jQuery. En este caso lo usamos, porque necesitamos que jQuery este accesible de manera global, así el <code>js</code> de bootstrap pueda acceder a él.</p>
+<p>También existen otras formas de hacer lo mismo con webpack, pero indicando qué cosas necesitamos en el <code>webpack.config.js</code>. Para probarlo vamos a comentar las líneas de los requires:</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token comment">//require('script!jquery/dist/jquery.min.js');</span><br><span class="token comment">//require('bootstrap/dist/css/bootstrap.css');</span><br><span class="token comment">//require('bootstrap/dist/js/bootstrap.min.js');</span></code></pre>
+<p>Y vamosa  agregar los siguiente a nuestro <code>webpack.config.js</code>:</p>
+<pre class="language-js"><code class="hljs language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token string">'script-loader!jquery/dist/jquery.min.js'</span><span class="token punctuation">,</span><br>      <span class="token string">'bootstrap/dist/js/bootstrap.min.js'</span><span class="token punctuation">,</span><br>      <span class="token string">'bootstrap/dist/css/bootstrap.css'</span><span class="token punctuation">,</span><br>      <span class="token string">'./index.js'</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">externals</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token literal-property property">jquery</span><span class="token operator">:</span> <span class="token string">'jQuery'</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token literal-property property">loaders</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>            <span class="token punctuation">{</span><br>                <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(\.js|\.jsx)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>                <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span><br>                <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>                <span class="token literal-property property">query</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">presets</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'es2015'</span><span class="token punctuation">,</span> <span class="token string">'react'</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><span class="token punctuation">,</span><br>        <span class="token punctuation">{</span><br>          <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>          <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'style-loader!css-loader'</span><br>        <span class="token punctuation">}</span><span class="token punctuation">,</span><br>        <span class="token punctuation">{</span> <br>          <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(png|woff|woff2|eot|ttf|svg)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>          <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'url-loader?limit=100000'</span><br>        <span class="token punctuation">}</span><br>        <span class="token punctuation">]</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">"index_bundle.js"</span><span class="token punctuation">,</span><br>        <span class="token literal-property property">path</span><span class="token operator">:</span> __dirname <span class="token operator">+</span> <span class="token string">'/dist'</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Lo que hicimos fue decirle a Webpack que nos incluya en el <code>bundle</code> a los archivos necesarios, lo hicimos agregando cada uno de ellos en el arreglo <code>entry</code>. Noten que a jquery <code>.js</code> tuvimos que avisarle que utilize el loader <code>script</code>, ya que necesitamos que sea <em>global</em>.</p>
+<blockquote>
+<p><strong>Webpack</strong> es genial, pero también es muy complejo. A veces se hace díficil pensar que está haciendo por atrás. Además hay miles de formas de hacer lo mismo, lo que no lo hace más sencillo.</p>
+</blockquote>
+<h2 id="nuestros-propios-estilos" tabindex="-1">Nuestros propios estilos <a class="anchor-link" href="#nuestros-propios-estilos"></a></h2>
+<p>Con <em>Webpack</em> encontramos la forma de <em>importar</em> estilos. Veamos que sucede cuando queremos importar nuestro propio <code>.css</code>. Primero comencemos definiendo un archivo <code>estilos.css</code> simple, en una carpeta separa, por ejemplo <code>styles</code>.</p>
+<pre class="language-css"><code class="hljs language-css"><span class="token selector">.prueba</span> <span class="token punctuation">{</span><br>    <span class="token property">background-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Bien, ahora vamos a ir a nuestro Componente <code>Home</code> y vamos a importarlo y usar la clase prueba en un <code>div</code>:</p>
+<pre class="language-jsx"><code class="hljs language-jsx"><span class="token keyword">var</span> React <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'react'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> Link <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'react-router'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Link<span class="token punctuation">;</span><br><br><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../styles/estilos.css'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createClass</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">className</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span> prueba <span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token plain-text"><br>        ¡Hola!<br>      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Antes de mostrar el resultado, vamos a ir a otro Componente, por ejempo <code>About</code> y usar la misma clase ‘prueba’, pero sin <em>importar</em> la hoja de estilos:</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token keyword">var</span> React <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'react'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> Link <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'react-router'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Link<span class="token punctuation">;</span><br><br>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createClass</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>div<span class="token operator">></span><br>        <span class="token operator">&lt;</span>h1<span class="token operator">></span>About<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">></span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Como vemos, el estilo fue importado de manera <em>global</em> y lo podemos usar en cualquier Componente. Esto para algunos puede ser bueno, pero para otros no. Veamos porqué sucedió esto y como utilizar otro patrón.</p>
+<p>Esto ocurre, porque en nuestro <code>webpack.config.js</code> hemos definido que cada archivo <code>.css</code> que sea importado, pase por los loaders: <code>style-loader</code> y <code>css-loader</code>. El primero justamente lo que hace, es importar el <code>css</code> como si fuera una hoja de estilo convencional, por lo tanto le da el comportamiento que todos conocemos.</p>
+<p>Ahora, si no quisieramos que esto ocurra, tendremos que usar otro approach. Vamos a usar uno conocido como <code>CSS-Modules</code>, básicamente lo que vamos a hacer es dejar que webpack haga un poco de <em>magia</em> usando los loaders que ya tenemos, y que cuando importemos el archivo CSS nos devuelva un objeto JS, con estilos listos para usar con react y con un <em>namespace</em> local:</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token punctuation">{</span><br>  <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.ncss$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>  <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'style-loader!css-loader?modules&amp;importLoaders=1&amp;localIdentName=[name]__[local]___[hash:base64:5]'</span> <br><span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<p>Primero vamos a agregar esta entrada en los loaders, vamos a tener que usar otra extensión (<code>.css</code> ya pasa por otro loaders distintos) para que los archivos que usemos como CSS Modules pueden ser indentificados por Webpack, en este caso yo elegí <code>.ncss</code>. Si se fijan, la magia sucede en el string que le pasamos al <code>loader</code>.</p>
+<p>Ahora, vamos a crear un archivo <code>estilos.ncss</code> con el mismo contenido que <code>estilos.css</code>. Y lo vamos a requerir en nuestro Componente <code>Home</code>:</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token keyword">var</span> prueba <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../styles/estilos.ncss'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>prueba<span class="token punctuation">;</span><br><br>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createClass</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>prueba<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>div className<span class="token operator">=</span> <span class="token punctuation">{</span>prueba<span class="token punctuation">}</span><span class="token operator">></span><br>        ¡Hola<span class="token operator">!</span><br>      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Como ven, requerimos el archivo, y el nombre de la clase como propiedad del mismo. Y luego utilizamos la variable donde lo guardamos como <code>className</code>.</p>
+<p>Bien! Hemos logrado importar un archivo css de manera local. El Componente <code>About</code> sigue teniendo la clase <code>prueba</code>, pero no se activa con el CSS que hemos importado. Esto se debe a que Webpack le puso un hash al nombre de la clase para que sea único, en nuestro ejemplo la clase <code>.prueba</code> terminó llamandose <code>.estilos__prueba___2wKns</code>, emulando así un <em>namespace</em> local en CSS.</p>
+<h4 id="m%C3%BAltiples-clases" tabindex="-1">Múltiples clases <a class="anchor-link" href="#m%C3%BAltiples-clases"></a></h4>
+<p>Si usamos este método para importar un archivo <code>.css</code> que contenga múltiples clases, vamos a poder acceder a ellas como <em>propiedades</em> del objeto en donde importes el <strong>css</strong>.</p>
+<p>Por ejemplo, si este fuera el <code>css</code> que importamos:</p>
+<pre class="language-css"><code class="hljs language-css"><span class="token selector">// estilos.ncss<br>.prueba</span> <span class="token punctuation">{</span><br>    <span class="token property">background-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token selector">.title</span> <span class="token punctuation">{</span><br>  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token selector">.size</span> <span class="token punctuation">{</span><br>  <span class="token property">font-size</span><span class="token punctuation">:</span> 25px<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Entonces podríamos usar las clases de la siguiente manera:</p>
+<pre class="language-jsx"><code class="hljs language-jsx"><span class="token keyword">var</span> s <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../styles/estilos.ncss'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createClass</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span><br>      <span class="token operator">&lt;</span>div className<span class="token operator">=</span> <span class="token punctuation">{</span>s<span class="token punctuation">.</span>prueba<span class="token punctuation">}</span><span class="token operator">></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">className</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>s<span class="token punctuation">.</span>title<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">¡Hola!</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><br>        <span class="token operator">&lt;</span>p className<span class="token punctuation">{</span><span class="token punctuation">[</span>s<span class="token punctuation">.</span>title<span class="token punctuation">,</span> s<span class="token punctuation">.</span>size<span class="token punctuation">]</span><span class="token punctuation">.</span>join<span class="token punctuation">[</span><span class="token string">' '</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token operator">></span>Prueba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><br>      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Como vemos, si quisieramos que un mismo elemento tenga múltiples clases, podemos usar el siguiente <em>truco</em>:</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token punctuation">[</span>s<span class="token punctuation">.</span>title<span class="token punctuation">,</span> s<span class="token punctuation">.</span>size<span class="token punctuation">]</span><span class="token punctuation">.</span>join<span class="token punctuation">[</span><span class="token string">' '</span><span class="token punctuation">]</span></code></pre>
+<p>Esto funciona porque lo que hace el <code>style-loader</code> es darle un nombre único a cada clase del archivo <code>css</code>, y lo guarda en el objeto donde importamos bajo en una propiedad con el nombre orignal de la clase, y como valor el valor nuevo de la clase. Por ejemplo, si importamos <code>estilos.ncss</code> en el objeto <code>s</code> este sería algo así:</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token keyword">var</span> s <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../styles/estilos.ncss'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token comment">// s = {</span><br><span class="token comment">//  prueba: '.estilos__prueba___2wKns',</span><br><span class="token comment">//  title: '.estilos__title___3dsns;</span><br><span class="token comment">//  size: '.estilos__size___7d8f8;</span><br><span class="token comment">// }</span></code></pre>
+<blockquote>
+<p>Esto es un ejemplo ilustrativo, probablemente el objeto <code>s</code> no debe ser exactamente así.</p>
+</blockquote>
+<p>Sabiendo esto, si hacemos un <code>join</code> de un arreglo formado por cada clase que usemos, vamos a obtener un string con los nombres únicos de las clases concatenados.</p>
+<hr>
+<blockquote>
+<p>Este cambio de filosofía es relativamente nuevo y todavía están surgiendo ideas nuevas y nuevas formas de hacer las cosas, asi que por ahora está sucediendo lo mismo que en este comic:</p>
+</blockquote>
+<blockquote>
+<p><img src="/_src/assets/07-React-Estilos/standards.png" alt="xkcd"></p>
+</blockquote>
+<blockquote>
+<p>Estan apareciendo muchas formas distintas de incluir CSS en React, todavía no se puede decir cual es la mejor, todas tienen sus pros y sus contras. Así que hay que tener paciencia, probar varias y quedarse con la que más nos gusta. Lo importante es entender que está sucediendo por detrás.</p>
+</blockquote>
+<h2 id="homework" tabindex="-1">Homework <a class="anchor-link" href="#homework"></a></h2>
+<p>Completa la tarea descrita en el archivo <a href="./homework/README.md">README</a></p>
+
+        </div>
+
+      </main>
+
+      
+
+      <div class="footerContainer">
+        <div class="footerContained">
+          <p>Material de estudio personal</p>
+        </div>
+      </div>
+
+      <div class="readerBarDiv">
+        
+  <!-- up button -->
+  <div>
+    <button
+      id="upBtn"
+      style="position:fixed; width:32px; height:32px; border-radius:50%; border:none; background-color:black; right:20px; bottom:55px; color:white; z-index:999; focus:outline-none; cursor:pointer; transition-duration:500ms; opacity:0; pointer-events:none;"
+    ><i class="arrow up"></i></button>
+  </div>
+  
+  <style>
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  </style>
+
+  <script>
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      upBtn.style.opacity = 1;
+      upBtn.style.pointerEvents = 'auto';     
+    }
+    else {
+      upBtn.style.opacity = 0;
+      upBtn.style.pointerEvents = 'none';
+    }
+  })
+
+  upBtn.addEventListener('click', () => {
+    let start = document.querySelector('.reader-bar-start')
+    start.scrollIntoView({behavior: "smooth"})
+  })
+  </script>
+
+  <!-- reader bar -->
+  <div id="readerBarContainer" style="height:3px;width:100%;background-color:black;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;">
+    <div id="readerBar" style="height:3px;width:0;background-color:#2E4F8F;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;"></div>
+  </div>
+
+  <script>
+    let winH = window.innerHeight;
+    const content = document.querySelector('.reader-bar-start');
+
+    let contentH = content.offsetHeight;
+    let contentS = contentH - winH;
+    let readerBar = document.getElementById('readerBar');
+    window.addEventListener('load', () => {
+      document.addEventListener ('scroll', updateBar);
+    })
+    window.addEventListener('resize', redefine)
+
+    function redefine() {
+      winH = window.innerHeight;
+      contentH = content.offsetHeight;
+      contentS = contentH - winH;
+      updateBar();
+    }
+
+    function updateBar() {
+      const pagePos = window.scrollY; 
+      const updatedBar = pagePos * 100 / contentS;
+      readerBar.style.width = updatedBar + "%";
+    }
+  </script>
+  
+      </div>
+
+    </body>
+  </html>

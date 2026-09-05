@@ -1,0 +1,1350 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>JavaScript IV | Curso Introductorio</title>
+    
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+    /* border: 2px dashed green; */
+    font-family: 'Avenir-Roman';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: justify;
+    padding: 0 2rem 4rem 300px;
+    width: 100%;
+    max-width: 98vw;
+    margin-top: 60px;
+  }
+  
+  .lesson .hide {
+    display: none;
+  }
+  
+  .lesson :target:before {
+    content: '';
+    display: block;
+    height: 85px;
+  }
+  
+  .lesson img[alt~='HenryLogo'] {
+    display: none;
+  }
+  
+  .lesson h1 {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #2e2e2e;
+  
+    border-bottom-style: solid;
+    border-bottom-width: 25px;
+    border-bottom-color: #ffff01;
+  
+    height: 64px;
+    margin: 0px 0 50px 0;
+  }
+  
+  .lesson h1 + h4 {
+    margin: -40px 0 3rem 0;
+    font-family: 'Avenir-Black';
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+  }
+  
+  .lesson h1 + h2 {
+    margin-top: 0;
+  }
+  
+  .lesson h2 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h2#homework {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #1fa32a;
+  }
+  
+  .lesson h3 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 24px;
+    font-display: swap;
+    line-height: 24px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h4 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson img {
+    width: auto;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson img[alt~='logo'] {
+    box-shadow: none;
+    width: 350px;
+  }
+  
+  .lesson img[alt~='no-box'] {
+    box-shadow: none;
+  }
+  
+  .lesson ul {
+    list-style: square;
+  }
+  
+  .lesson li {
+    font-family: 'Avenir-Heavy';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+  }
+  
+  .lesson a {
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+  }
+  
+  .lesson .iframeContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson .sandboxContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+  .lesson iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lesson table {
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    text-align: center !important;
+  }
+  
+  .lesson th {
+    background-color: rgb(170, 170, 170);
+    padding: 8px;
+    text-align: center !important;
+  }
+  
+  .lesson thead {
+    text-align: center !important;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+  
+  .lesson td {
+    padding: 5px;
+    text-align: center !important;
+  }
+  
+  tr + td {
+    border-right: 1px solid gray !important;
+  }
+  
+  .rightBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    width: 97vw;
+    max-width: 1500px;
+    margin-top: 5rem;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .homeworkBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .homeworkBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .homeworkBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: green;
+  }
+  
+  .quizzBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .quizzBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .quizzBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: rgb(128, 79, 0);
+  }
+  
+  .readingTime {
+    font-family: 'Avenir-Book';
+    font-size: 14px;
+    font-display: swap;
+    line-height: 119.6%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reader-bar-start">
+
+      <div class="headerResponsive">
+        <div class="leftContent">
+          <img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio">
+          <span>JavaScript IV</span>
+        </div>
+        <div class="menuDiv">
+          <input type="checkbox">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times"></i>
+          <nav>
+            <ul><li><a href="/lecciones/introductorio/">Intro</a></li>
+<li><a href="/lecciones/introductorio/Primeros_Pasos/">Primeros Pasos</a></li>
+<li><a href="/lecciones/introductorio/Git/">Git</a></li>
+<li><a href="/lecciones/introductorio/Git_y_GitHub/">Git y GitHub</a></li>
+<li><a href="/lecciones/introductorio/Conceptos/">Conceptos</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_I/">JS I</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_II/">JS II</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_III/">JS III</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_IV/">JS IV</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_V/">JS V</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_VI/">JS VI</a></li>
+<li><a href="/lecciones/introductorio/HTML/">HTML</a></li>
+<li><a href="/lecciones/introductorio/CSS/">CSS</a></li>
+<li><a href="/lecciones/introductorio/Glosario/">Glosario</a></li></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="headerContainer">
+        <div class="headerContained">
+          <img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio">
+          <div>
+            <span class="lessonTitle">JavaScript IV</span> | <span>Curso Introductorio</span>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="topnav" id='myTopnav' >
+          
+          <ul class="nav">
+      
+      <li class="link">
+        <a href="/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <a href="/Primeros_Pasos/" class="nav-link" role="menuitem">Primeros Pasos</a>
+      </li>
+<li class="link">
+        <a href="/Git/" class="nav-link" role="menuitem">Git</a>
+      </li>
+<li class="link">
+        <a href="/Git_y_GitHub/" class="nav-link" role="menuitem">Git y GitHub</a>
+      </li>
+<li class="link">
+        <a href="/Conceptos/" class="nav-link" role="menuitem">Conceptos</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_I/" class="nav-link" role="menuitem">JS I</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_II/" class="nav-link" role="menuitem">JS II</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_III/" class="nav-link" role="menuitem">JS III</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">JS IV</span>
+      </li>
+<li class="link">
+        <a href="/JavaScript_V/" class="nav-link" role="menuitem">JS V</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_VI/" class="nav-link" role="menuitem">JS VI</a>
+      </li>
+<li class="link">
+        <a href="/HTML/" class="nav-link" role="menuitem">HTML</a>
+      </li>
+<li class="link">
+        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+      </li>
+<li class="link">
+        <a href="/Glosario/" class="nav-link" role="menuitem">Glosario</a>
+      </li>
+    </ul>
+        </div>
+
+        <div class='sidebar'>
+          <div class="tocTitle">
+            Contenido de la clase
+            </div>
+          <div class="tocBox">
+            
+            <nav class="toc" >
+        <ul><li><a href="#introducci%C3%B3n-a-los-objetos">Introducción a los Objetos </a><ul><li><a href="#pares-clave%3Avalor-(key%3Avalue)">Pares Clave:Valor (Key:Value) </a></li><li><a href="#acceder-a-los-valores">Acceder a los valores </a></li><li><a href="#asignaci%C3%B3n-de-valores">Asignación de valores </a></li></ul></li><li><a href="#eliminando-propiedades">Eliminando propiedades </a></li><li><a href="#m%C3%A9todos">Métodos </a></li><li><a href="#bucles-for%E2%80%A6in">Bucles for…in </a></li><li><a href="#la-palabra-clave-this">La palabra clave this </a><ul><li><a href="#this-y-el-execution-context">This y el Execution Context </a></li></ul></li><li><a href="#objetos-en-javascript">Objetos en Javascript </a></li><li><a href="#recursos-adicionales">Recursos adicionales </a></li><li><a href="#homework">Homework </a></li></ul>
+      </nav>
+          </div>
+        </div>
+
+        <div class='rightBox'>
+          <div class="readingTime">
+                    Tiempo de lectura 17 min
+          </div>
+
+          
+        </div>
+
+        <div class='lesson'>
+          
+          <h1 id="javascript-iv" tabindex="-1">JavaScript IV <a class="anchor-link" href="#javascript-iv"></a></h1>
+<h4 id="objetos" tabindex="-1">Objetos <a class="anchor-link" href="#objetos"></a></h4>
+<p>En esta lección cubriremos:</p>
+<ul>
+<li>Introducción a los Objetos</li>
+<li>Métodos</li>
+<li>Bucles <em><strong>for…in</strong></em></li>
+<li>Palabra clave <em><strong>this</strong></em></li>
+<li>Objetos en Javascript</li>
+</ul>
+<!--
+<div class="iframeContainer">
+<iframe src="https://player.vimeo.com/video/424936732?h=a800057660&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="04 - JS IV - Objetos"></iframe>
+</div>
+-->
+<h2 id="introducci%C3%B3n-a-los-objetos" tabindex="-1">Introducción a los Objetos <a class="anchor-link" href="#introducci%C3%B3n-a-los-objetos"></a></h2>
+<p>En la anterior lección aprendimos sobre <em>arrays</em> o matrices. Las matrices son contenedores que sostienen colecciones de datos. En esta lección, introduciremos otro contenedor de datos, el <em>Objeto</em>. Los objetos y las matrices son similares en ciertas cosas, y muy diferentes en otras. Mientras que los array pueden contener múltiples elementos relacionados unos con otros, los objetos contienen mucha información sobre una sola cosa. Los objetos se instancian usando llaves (<code>{}</code>).</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">const</span> nuevoObjeto <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h3 id="pares-clave%3Avalor-(key%3Avalue)" tabindex="-1">Pares Clave:Valor (<em><strong>Key:Value</strong></em>) <a class="anchor-link" href="#pares-clave%3Avalor-(key%3Avalue)"></a></h3>
+<p>A diferencia de las matrices que tienen elementos valorados en índices, los objetos usan un concepto llamado pares de clave:valor. La clave (<strong>key</strong>) es el identificador y el valor (<strong>value</strong>) es el valor que queremos guardar en esa clave. La sintaxis es “clave: valor”. Los objetos pueden contener muchos pares de clave-valor, deben estar separados por una coma (<strong>importante</strong>: sin punto y coma dentro de un objeto). Las claves son únicas en un objeto, solo puede haber una clave de ese nombre, aunque, varias claves pueden tener el mismo valor. Los valores pueden ser cualquier tipo de dato de Javascript; cadena, número, booleano, matriz, función o incluso otro objeto. En esta demostración crearemos un objeto <code>usuario</code>.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">username</span><span class="token operator">:</span> <span class="token string">'juan.perez'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">password</span><span class="token operator">:</span> <span class="token string">'loremipsumpwd123'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">lovesJavascript</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">favoriteNumber</span><span class="token operator">:</span> <span class="token number">42</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h3 id="acceder-a-los-valores" tabindex="-1">Acceder a los valores <a class="anchor-link" href="#acceder-a-los-valores"></a></h3>
+<p>Una vez que tengamos los pares clave-valor, podemos acceder a esos valores llamando al nombre del objeto y la clave. Hay dos formas diferentes de hacer esto, usando puntos o usando corchetes.</p>
+<p>Con la notación de puntos podemos llamar al nombre del objeto, un punto y el nombre de la clave. Así como llamamos a la propiedad <code>.length</code> en una matriz. La propiedad de longitud es un par de clave-valor.</p>
+<pre class="language-javascript"><code class="hljs language-javascript">user<span class="token punctuation">.</span>lovesJavascript<span class="token punctuation">;</span> <span class="token comment">// true</span><br>user<span class="token punctuation">.</span>username<span class="token punctuation">;</span>        <span class="token comment">// juan.perez</span></code></pre>
+<p>La notación de corchetes es como llamar a un elemento en una matriz, aunque con corchetes debemos usar una cadena o número, o una variable que apunte a una cadena o número. Se puede llamar a cada clave envolviéndola con comillas:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">const</span> passString <span class="token operator">=</span> <span class="token string">'password'</span><span class="token punctuation">;</span><br>user<span class="token punctuation">[</span><span class="token string">'lovesJavascript'</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// true</span><br>user<span class="token punctuation">[</span><span class="token string">'username'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token comment">// juan.perez</span><br>user<span class="token punctuation">[</span>passString<span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token comment">// loremipsumpwd123</span></code></pre>
+<p>Generalmente, verás que los corchetes casi siempre se usan con variables.</p>
+<h3 id="asignaci%C3%B3n-de-valores" tabindex="-1">Asignación de valores <a class="anchor-link" href="#asignaci%C3%B3n-de-valores"></a></h3>
+<p>Asignar valores funciona igual que acceder a ellos. Podemos asignarlos, cuando creamos el objeto, con notación de puntos o con notación de corchetes:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">const</span> nuevoUsuario <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">esNuevo</span><span class="token operator">:</span> <span class="token boolean">true</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">const</span> loveJSString <span class="token operator">=</span> <span class="token string">'lovesJavascript'</span><span class="token punctuation">;</span><br><br>nuevoUsuario<span class="token punctuation">.</span>username <span class="token operator">=</span> <span class="token string">'otro.nombre.de.usuario'</span><span class="token punctuation">;</span><br>nuevoUsuario<span class="token punctuation">[</span><span class="token string">'password'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'12345'</span><span class="token punctuation">;</span><br>nuevoUsuario<span class="token punctuation">[</span>loveJSString<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></code></pre>
+<h2 id="eliminando-propiedades" tabindex="-1">Eliminando propiedades <a class="anchor-link" href="#eliminando-propiedades"></a></h2>
+<p>Si queremos eliminar una propiedad, podemos hacerlo usando la palabra clave <code>delete</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">const</span> nuevoObjeto <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">eliminarEstaPropiedad</span><span class="token operator">:</span> <span class="token boolean">true</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">delete</span> nuevoObjeto<span class="token punctuation">.</span>eliminarEstaPropiedad<span class="token punctuation">;</span></code></pre>
+<p>Es raro que veamos el uso de la palabra clave <code>delete</code>, muchos consideran que la mejor práctica es establecer el valor de una palabra clave en <code>undefined</code>. Dependerá de ti cuando llegue el momento.</p>
+<h2 id="m%C3%A9todos" tabindex="-1">Métodos <a class="anchor-link" href="#m%C3%A9todos"></a></h2>
+<p>En los objetos, los valores se pueden establecer en funciones. Las funciones guardadas en un objeto se denominan métodos. Hemos utilizado muchos métodos hasta ahora a lo largo de este curso. <code>.length</code>, <code>.push</code>, <code>.pop</code>, etc., son todos métodos. Podemos establecer una clave para un nombre y el valor para una función. Al igual que otras veces que llamamos métodos, llamaremos a este método usando notación de puntos y paréntesis finales (Nota: podemos llamar a un método con argumentos como lo haríamos con una función normal):</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">const</span> nuevoObjeto <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token function-variable function">decirHola</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Hola a todo el mundo!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br>nuevoObjeto<span class="token punctuation">.</span><span class="token function">decirHola</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//Hola a todo el mundo!</span></code></pre>
+<h2 id="bucles-for%E2%80%A6in" tabindex="-1">Bucles <em><strong>for…in</strong></em> <a class="anchor-link" href="#bucles-for%E2%80%A6in"></a></h2>
+<p>A veces queremos iterar sobre cada par clave-valor en nuestro objeto. Con las matrices, utilizamos un estándar para el bucle y una variable de número de índice. Los objetos no contienen índices numéricos, por lo que el bucle estándar no funcionará para los objetos. Javascript tiene un segundo tipo de bucle for integrado llamado “<em>for … in loop</em>”. Es una sintaxis ligeramente diferente, comienza igual pero entre paréntesis declararemos una variable, la palabra clave <code>in</code> y el nombre del objeto. Esto recorrerá cada clave del objeto y finalizará cuando se hayan iterado todas las claves. Podemos usar esta clave, y la notación de corchetes, en nuestro bucle for para acceder al valor asociado con esa clave.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">const</span> usuario <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">username</span><span class="token operator">:</span> <span class="token string">'juan.perez'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">password</span><span class="token operator">:</span> <span class="token string">'loremipsumpwd123'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">lovesJavascript</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">favoriteNumber</span><span class="token operator">:</span> <span class="token number">42</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> clave <span class="token keyword">in</span> usuario<span class="token punctuation">)</span><span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>clave<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>usuario<span class="token punctuation">[</span>clave<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token comment">// username</span><br><span class="token comment">// 'juan.perez'</span><br><span class="token comment">// password</span><br><span class="token comment">// 'loremipsumpwd123'</span><br><span class="token comment">// lovesJavascript</span><br><span class="token comment">// true</span><br><span class="token comment">// favoriteNumber</span><br><span class="token comment">// 42</span></code></pre>
+<h2 id="la-palabra-clave-this" tabindex="-1">La palabra clave <em><strong>this</strong></em> <a class="anchor-link" href="#la-palabra-clave-this"></a></h2>
+<p>Los objetos tienen una palabra clave autorreferencial que se puede aplicar en cada objeto llamado <code>this</code>. Cuando se llama dentro de un objeto, se refiere a ese mismo objeto. <code>this</code> puede usarse para acceder a otras claves en el mismo objeto, y es especialmente útil en métodos:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">const</span> usuario <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">username</span><span class="token operator">:</span> <span class="token string">'juan.perez'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">password</span><span class="token operator">:</span> <span class="token string">'loremipsumpwd123'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">lovesJavascript</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">favoriteNumber</span><span class="token operator">:</span> <span class="token number">42</span><span class="token punctuation">,</span><br>    <span class="token function-variable function">decirHola</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token keyword">this</span><span class="token punctuation">.</span>username <span class="token operator">+</span> <span class="token string">' manda saludos!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br>usuario<span class="token punctuation">.</span><span class="token function">decirHola</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'juan.perez manda saludos!'</span></code></pre>
+<p>Nota: la palabra clave <code>this</code> a veces puede ser uno de los temas más difíciles en Javascript. Lo estamos usando muy básicamente aquí, pero el tema se vuelve mucho más complejo muy pronto.</p>
+<h3 id="this-y-el-execution-context" tabindex="-1"><em><strong>This</strong></em> y el Execution Context <a class="anchor-link" href="#this-y-el-execution-context"></a></h3>
+<ul>
+<li>
+<h4 id="contexto-global-inicial" tabindex="-1">Contexto global inicial <a class="anchor-link" href="#contexto-global-inicial"></a></h4>
+</li>
+</ul>
+<p>Este es el caso cuando ejecutamos código en el contexto global (afuera de cualquier función). En este caso <code>this</code> hace referencia al objeto <code>global</code>, en el caso del browser hace referencia a <code>window</code>.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// En el browser esto es verdad:</span><br><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">===</span> window<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token operator">&lt;</span> <span class="token boolean">true</span><br><br><span class="token operator">></span> <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">37</span><span class="token punctuation">;</span><br><br><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token operator">&lt;</span> <span class="token number">37</span></code></pre>
+<ul>
+<li>
+<h4 id="en-el-contexto-de-una-funci%C3%B3n" tabindex="-1">En el contexto de una función <a class="anchor-link" href="#en-el-contexto-de-una-funci%C3%B3n"></a></h4>
+</li>
+</ul>
+<p>Cuando estamos dentro de una función, el valor de <code>this</code> va a depender de <em>cómo sea invocada la función</em>.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> <span class="token keyword">function</span> <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br><span class="token operator">></span> <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> window<span class="token punctuation">;</span><br><span class="token operator">&lt;</span> <span class="token boolean">true</span><br><br><span class="token operator">></span> window<span class="token punctuation">.</span><span class="token function">fi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> window<span class="token punctuation">;</span><br><span class="token operator">&lt;</span> <span class="token boolean">true</span></code></pre>
+<p>En este ejemplo la función es invocada por el objeto global por lo tanto this hará referencia a <code>window</code>.</p>
+<blockquote>
+<p>Si usamos el modo <code>strict</code> de Javascript, el ejemplo de arriba va a devolver <code>undefined</code>, ya que no le deja al interprete <em>asumir</em> que <code>this</code> es el objeto global.</p>
+</blockquote>
+<ul>
+<li>
+<h4 id="como-m%C3%A9todo-de-un-objeto" tabindex="-1">Como método de un objeto <a class="anchor-link" href="#como-m%C3%A9todo-de-un-objeto"></a></h4>
+</li>
+</ul>
+<p>Cuando usamos el <em>keyword</em> <code>this</code> dentro de una función que es un método de un objeto, <code>this</code> toma hace referencia al objeto sobre el cual se llamó el método:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> <span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">prop</span><span class="token operator">:</span> <span class="token number">37</span><span class="token punctuation">,</span><br>    <span class="token function-variable function">f</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>      <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>prop<span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token operator">&lt;</span> <span class="token number">37</span><br><span class="token comment">// this hace referencia a `o`</span></code></pre>
+<p>En este caso, <em>no depende</em> donde hayamos definido la función, lo único que importa es que la función haya sido invocada como método de un objeto. Por ejemplo, si definimos la función afuera:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> <span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">prop</span><span class="token operator">:</span> <span class="token number">37</span><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token comment">// declaramos la función</span><br><span class="token operator">></span> <span class="token keyword">function</span> <span class="token function">loguea</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>prop<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br><span class="token comment">//agregamos la función como método del objeto `o`</span><br><span class="token operator">></span> o<span class="token punctuation">.</span>f <span class="token operator">=</span> loguea<span class="token punctuation">;</span><br><br><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token operator">&lt;</span> <span class="token number">37</span><br><span class="token comment">// el resultado es le mismo!</span></code></pre>
+<p>De todos modos, hay que tener cuidado con el keyword <code>this</code>, ya que pueden aparecer casos donde es contra intuitivo ( Como varias cosas de JavaScript ). Veamos el siguiente ejemplo:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> <span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">nombre</span><span class="token operator">:</span> <span class="token string">'Objeto'</span><span class="token punctuation">,</span><br>    <span class="token function-variable function">log</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>      <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> <span class="token string">'Cambiado'</span><span class="token punctuation">;</span> <span class="token comment">// this se refiere a este objeto, a `obj`</span><br>      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>  <span class="token comment">// obj</span><br><br>      <span class="token keyword">var</span> <span class="token function-variable function">cambia</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token parameter">str</span> <span class="token punctuation">)</span><span class="token punctuation">{</span><br>        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> str<span class="token punctuation">;</span>  <span class="token comment">// Uno esperaria que this sea `obj`</span><br>      <span class="token punctuation">}</span><br><br>      <span class="token function">cambia</span><span class="token punctuation">(</span><span class="token string">'Hoola!!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span></code></pre>
+<p>Si ejecutamos el código de arriba, vamos a notar que después de ejecutar el código, la propiedad <code>nombre</code> de <code>obj</code> contiene el valor <code>Cambiado</code> y no <code>'Hoola!!'</code>. Esto se debe a que el keyword <code>this</code> dentro de la función cambia <strong>NO hace referencia a <code>obj</code></strong>, si no que hace referencia al objeto global. No podemos considerar al <code>this</code> como obj porque la función no es método de este Objeto, fíjense que no podemos hacer obj.cambia.</p>
+<p>De hecho, si buscamos dentro del objeto global la variable <code>nombre</code>, vamos a encontrar con el valor <code>'Hoola!!'</code> que seteamos con la función <code>cambia</code>. Esto quiere decir que no importa en donde estuvo declarada la función, si no <strong>cómo la invocamos</strong>.</p>
+<blockquote>
+<p>Prácticamente, no podemos saber a ciencia cierta que valor va a tomar el keyword hasta el momento de ejecución de una función. Porque depende fuertemente de cómo haya sido ejecutada.</p>
+</blockquote>
+<p>Para resolver este tipo de problemas existe un patrón muy común, y se basa en guardar la referencia al objeto que está en <code>this</code> antes de entrar a una función donde no sé a ciencia cierta que valor puede tomar <code>this</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">nombre</span><span class="token operator">:</span> <span class="token string">'Objeto'</span><span class="token punctuation">,</span><br>  <span class="token function-variable function">log</span>   <span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> <span class="token string">'Cambiado'</span><span class="token punctuation">;</span> <span class="token comment">// this se refiere a este objeto, a `obj`</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// obj</span><br><br>    <span class="token keyword">var</span> that <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span> <span class="token comment">// Guardo la referencia a this</span><br><br>    <span class="token keyword">var</span> <span class="token function-variable function">cambia</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token parameter">str</span> <span class="token punctuation">)</span><span class="token punctuation">{</span><br>      that<span class="token punctuation">.</span>nombre <span class="token operator">=</span> str<span class="token punctuation">;</span>  <span class="token comment">// Uso la referencia dentro de esta funcion</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token function">cambia</span><span class="token punctuation">(</span><span class="token string">'Hoola!!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>De esta forma, <code>that</code> (puede tener cualquier nombre) va a apuntar al objeto <code>obj</code> (<code>this</code> apuntaba a ese objeto cuando hicimos la asignación). Ahora si, podemos usar <code>that</code> en vez de <code>this</code> y estar seguros qué es lo que va a tener adentro.</p>
+<h2 id="objetos-en-javascript" tabindex="-1">Objetos en Javascript <a class="anchor-link" href="#objetos-en-javascript"></a></h2>
+<p>En esta lección aprendimos qué son los Objetos y las muchas formas que existen para acceder a los valores, llamar a los métodos y asignar valores. Muchas de estas técnicas parecían muy familiares, como si las hubiéramos usado en prácticamente todos los aspectos de nuestros aprendizajes hasta ahora. Aquí hay un patrón, eso es porque TODO en Javascript es un Objeto. Las matrices son solo objetos con teclas numéricas, las cadenas son objetos bajo el capó con métodos incorporados, las funciones son en realidad objetos con sus propias propiedades especiales, todo el tiempo de ejecución de Javascript es un objeto (<code>window</code> en un navegador o <code>global</code> en el Node.js). Cuanto más trabajes con Javascript, más comenzará a tener sentido para ti. Solo recuerda, todo es un objeto.</p>
+<h2 id="recursos-adicionales" tabindex="-1">Recursos adicionales <a class="anchor-link" href="#recursos-adicionales"></a></h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">MDN: Object</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">MDN: this</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in">MDN: for…in Loop</a></li>
+</ul>
+<h2 id="homework" tabindex="-1">Homework <a class="anchor-link" href="#homework"></a></h2>
+<p>Completa la tarea descrita en el archivo <a href="./homework">README</a></p>
+<hr>
+<h4 id="si-tienes-dudas-sobre-este-tema%2C-puedes-consultarlas-en-el-canal-05_js-iv-de-slack" tabindex="-1">Si tienes dudas sobre este tema, puedes consultarlas en el canal <em><strong>05_js-iv</strong></em> de Slack <a class="anchor-link" href="#si-tienes-dudas-sobre-este-tema%2C-puedes-consultarlas-en-el-canal-05_js-iv-de-slack"></a></h4>
+
+        </div>
+
+      </main>
+
+      
+
+      <div class="footerContainer">
+        <div class="footerContained">
+          <p>Material de estudio personal</p>
+        </div>
+      </div>
+
+      <div class="readerBarDiv">
+        
+  <!-- up button -->
+  <div>
+    <button
+      id="upBtn"
+      style="position:fixed; width:32px; height:32px; border-radius:50%; border:none; background-color:black; right:20px; bottom:55px; color:white; z-index:999; focus:outline-none; cursor:pointer; transition-duration:500ms; opacity:0; pointer-events:none;"
+    ><i class="arrow up"></i></button>
+  </div>
+  
+  <style>
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  </style>
+
+  <script>
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      upBtn.style.opacity = 1;
+      upBtn.style.pointerEvents = 'auto';     
+    }
+    else {
+      upBtn.style.opacity = 0;
+      upBtn.style.pointerEvents = 'none';
+    }
+  })
+
+  upBtn.addEventListener('click', () => {
+    let start = document.querySelector('.reader-bar-start')
+    start.scrollIntoView({behavior: "smooth"})
+  })
+  </script>
+
+  <!-- reader bar -->
+  <div id="readerBarContainer" style="height:3px;width:100%;background-color:black;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;">
+    <div id="readerBar" style="height:3px;width:0;background-color:#2E4F8F;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;"></div>
+  </div>
+
+  <script>
+    let winH = window.innerHeight;
+    const content = document.querySelector('.reader-bar-start');
+
+    let contentH = content.offsetHeight;
+    let contentS = contentH - winH;
+    let readerBar = document.getElementById('readerBar');
+    window.addEventListener('load', () => {
+      document.addEventListener ('scroll', updateBar);
+    })
+    window.addEventListener('resize', redefine)
+
+    function redefine() {
+      winH = window.innerHeight;
+      contentH = content.offsetHeight;
+      contentS = contentH - winH;
+      updateBar();
+    }
+
+    function updateBar() {
+      const pagePos = window.scrollY; 
+      const updatedBar = pagePos * 100 / contentS;
+      readerBar.style.width = updatedBar + "%";
+    }
+  </script>
+  
+      </div>
+
+    </body>
+  </html>

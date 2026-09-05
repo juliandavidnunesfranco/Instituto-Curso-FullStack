@@ -1,28 +1,9 @@
 /*
-  Hoja principal. Solo importa; el estilo vive en partes separadas.
+  Estilos de la PLATAFORMA unicamente.
 
-  Dos grupos:
-  - estilos/curso/   los 10 CSS del material, ahora locales en vez de
-                     descargarse del CDN externo en cada build.
-  - estilos/plataforma/ lo que anade la plataforma: barra de progreso,
-                     cabecera propia, navegacion e indice.
+  Las lecciones las genera Eleventy y traen su propio CSS inline: este
+  archivo no las toca. Aqui solo viven la portada, el panel de notas y las
+  demas pantallas propias de la aplicacion.
 */
-
-/* --- Material del curso (orden original del layout de Eleventy) --- */
-@import '../estilos/curso/fonts.css';
-@import '../estilos/curso/main.css';
-@import '../estilos/curso/header.css';
-@import '../estilos/curso/topbar.css';
-@import '../estilos/curso/sidebar.css';
-@import '../estilos/curso/lesson.css';
-@import '../estilos/curso/code.css';
-@import '../estilos/curso/footer.css';
-@import '../estilos/curso/responsive.css';
-
-/* --- Plataforma (va despues para poder ajustar lo anterior) --- */
 @import '../estilos/plataforma/variables.css';
-@import '../estilos/plataforma/cabecera.css';
-@import '../estilos/plataforma/navegacion.css';
-@import '../estilos/plataforma/barra-progreso.css';
 @import '../estilos/plataforma/indice.css';
-@import '../estilos/plataforma/correcciones.css';

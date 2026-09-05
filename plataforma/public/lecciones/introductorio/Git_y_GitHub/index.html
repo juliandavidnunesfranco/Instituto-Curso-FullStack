@@ -1,0 +1,1428 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Git y GitHub | Curso Introductorio</title>
+    
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+    /* border: 2px dashed green; */
+    font-family: 'Avenir-Roman';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: justify;
+    padding: 0 2rem 4rem 300px;
+    width: 100%;
+    max-width: 98vw;
+    margin-top: 60px;
+  }
+  
+  .lesson .hide {
+    display: none;
+  }
+  
+  .lesson :target:before {
+    content: '';
+    display: block;
+    height: 85px;
+  }
+  
+  .lesson img[alt~='HenryLogo'] {
+    display: none;
+  }
+  
+  .lesson h1 {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #2e2e2e;
+  
+    border-bottom-style: solid;
+    border-bottom-width: 25px;
+    border-bottom-color: #ffff01;
+  
+    height: 64px;
+    margin: 0px 0 50px 0;
+  }
+  
+  .lesson h1 + h4 {
+    margin: -40px 0 3rem 0;
+    font-family: 'Avenir-Black';
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+  }
+  
+  .lesson h1 + h2 {
+    margin-top: 0;
+  }
+  
+  .lesson h2 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h2#homework {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #1fa32a;
+  }
+  
+  .lesson h3 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 24px;
+    font-display: swap;
+    line-height: 24px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h4 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson img {
+    width: auto;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson img[alt~='logo'] {
+    box-shadow: none;
+    width: 350px;
+  }
+  
+  .lesson img[alt~='no-box'] {
+    box-shadow: none;
+  }
+  
+  .lesson ul {
+    list-style: square;
+  }
+  
+  .lesson li {
+    font-family: 'Avenir-Heavy';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+  }
+  
+  .lesson a {
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+  }
+  
+  .lesson .iframeContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson .sandboxContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+  .lesson iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lesson table {
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    text-align: center !important;
+  }
+  
+  .lesson th {
+    background-color: rgb(170, 170, 170);
+    padding: 8px;
+    text-align: center !important;
+  }
+  
+  .lesson thead {
+    text-align: center !important;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+  
+  .lesson td {
+    padding: 5px;
+    text-align: center !important;
+  }
+  
+  tr + td {
+    border-right: 1px solid gray !important;
+  }
+  
+  .rightBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    width: 97vw;
+    max-width: 1500px;
+    margin-top: 5rem;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .homeworkBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .homeworkBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .homeworkBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: green;
+  }
+  
+  .quizzBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .quizzBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .quizzBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: rgb(128, 79, 0);
+  }
+  
+  .readingTime {
+    font-family: 'Avenir-Book';
+    font-size: 14px;
+    font-display: swap;
+    line-height: 119.6%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reader-bar-start">
+
+      <div class="headerResponsive">
+        <div class="leftContent">
+          <img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio">
+          <span>Git y GitHub</span>
+        </div>
+        <div class="menuDiv">
+          <input type="checkbox">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times"></i>
+          <nav>
+            <ul><li><a href="/lecciones/introductorio/">Intro</a></li>
+<li><a href="/lecciones/introductorio/Primeros_Pasos/">Primeros Pasos</a></li>
+<li><a href="/lecciones/introductorio/Git/">Git</a></li>
+<li><a href="/lecciones/introductorio/Git_y_GitHub/">Git y GitHub</a></li>
+<li><a href="/lecciones/introductorio/Conceptos/">Conceptos</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_I/">JS I</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_II/">JS II</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_III/">JS III</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_IV/">JS IV</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_V/">JS V</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_VI/">JS VI</a></li>
+<li><a href="/lecciones/introductorio/HTML/">HTML</a></li>
+<li><a href="/lecciones/introductorio/CSS/">CSS</a></li>
+<li><a href="/lecciones/introductorio/Glosario/">Glosario</a></li></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="headerContainer">
+        <div class="headerContained">
+          <img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio">
+          <div>
+            <span class="lessonTitle">Git y GitHub</span> | <span>Curso Introductorio</span>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="topnav" id='myTopnav' >
+          
+          <ul class="nav">
+      
+      <li class="link">
+        <a href="/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <a href="/Primeros_Pasos/" class="nav-link" role="menuitem">Primeros Pasos</a>
+      </li>
+<li class="link">
+        <a href="/Git/" class="nav-link" role="menuitem">Git</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">Git y GitHub</span>
+      </li>
+<li class="link">
+        <a href="/Conceptos/" class="nav-link" role="menuitem">Conceptos</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_I/" class="nav-link" role="menuitem">JS I</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_II/" class="nav-link" role="menuitem">JS II</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_III/" class="nav-link" role="menuitem">JS III</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_IV/" class="nav-link" role="menuitem">JS IV</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_V/" class="nav-link" role="menuitem">JS V</a>
+      </li>
+<li class="link">
+        <a href="/JavaScript_VI/" class="nav-link" role="menuitem">JS VI</a>
+      </li>
+<li class="link">
+        <a href="/HTML/" class="nav-link" role="menuitem">HTML</a>
+      </li>
+<li class="link">
+        <a href="/CSS/" class="nav-link" role="menuitem">CSS</a>
+      </li>
+<li class="link">
+        <a href="/Glosario/" class="nav-link" role="menuitem">Glosario</a>
+      </li>
+    </ul>
+        </div>
+
+        <div class='sidebar'>
+          <div class="tocTitle">
+            Contenido de la clase
+            </div>
+          <div class="tocBox">
+            
+            <nav class="toc" >
+        <ul><li><a href="#comenzando-a-usar-git">Comenzando a usar Git </a><ul><li><a href="#comandos-b%C3%A1sicos">Comandos básicos </a></li><li><a href="#ciclos-de-vida-o-estados-de-los-archivos-en-git">Ciclos de vida o estados de los archivos en Git </a></li><li><a href="#comandos-para-mover-archivos-entre-los-estados-de-git">Comandos para mover archivos entre los estados de Git </a></li></ul></li><li><a href="#qu%C3%A9-es-un-branch-y-c%C3%B3mo-funciona-un-merge%3F">Qué es un Branch y cómo funciona un Merge? </a></li><li><a href="#crea-un-repositorio-de-git-y-haz-tu-primer-commit">Crea un repositorio de Git y haz tu primer commit </a></li><li><a href="#analizar-cambios-en-los-archivos-de-tu-proyecto">Analizar cambios en los archivos de tu proyecto </a></li><li><a href="#reset-y-checkout">Reset y checkout </a></li><li><a href="#ramas-o-branches">Ramas o branches </a><ul><li><a href="#fusi%C3%B3n-de-ramas-con-git-merge">Fusión de ramas con Git Merge </a></li><li><a href="#resoluci%C3%B3n-de-conflictos-al-hacer-un-merge">Resolución de conflictos al hacer un Merge </a></li></ul></li><li><a href="#uso-de-github">Uso de GitHub </a><ul><li><a href="#manejo-de-ramas-en-github">Manejo de ramas en GitHub </a></li></ul></li></ul>
+      </nav>
+          </div>
+        </div>
+
+        <div class='rightBox'>
+          <div class="readingTime">
+                    Tiempo de lectura 22 min
+          </div>
+
+          
+        </div>
+
+        <div class='lesson'>
+          
+          <h1 id="git-y-github" tabindex="-1">Git y GitHub <a class="anchor-link" href="#git-y-github"></a></h1>
+<h2 id="comenzando-a-usar-git" tabindex="-1">Comenzando a usar Git <a class="anchor-link" href="#comenzando-a-usar-git"></a></h2>
+<h3 id="comandos-b%C3%A1sicos" tabindex="-1">Comandos básicos <a class="anchor-link" href="#comandos-b%C3%A1sicos"></a></h3>
+<ul>
+<li><code>git init</code>: se utiliza para iniciar nuestro repositorio.</li>
+<li><code>git add ArchivoEjemplo.js</code>: crea el archivo pero no lo guarda de forma definitiva, lo almacena en (Staging Area).</li>
+<li><code>git commit -m &quot;versión 1&quot;</code>: aquí se generan cambios de “Staging Area” y con ( -m “”) se deja un mensaje que nos sea útil.</li>
+<li><code>git add .</code>: Agrega los archivos actualizados al repositorio, pero únicamente en la carpeta que te encuentras.</li>
+<li><code>git commit -m &quot;Cambios v1&quot;</code>: sirve para generar cambios sobre la versión antigua.</li>
+<li><code>git status</code>: sirve para revisar si has modificado o guardado los cambios hechos.</li>
+<li><code>git log &quot;archivo.txt&quot;</code>: sirve para ver el historial del archivo.</li>
+<li><code>git push</code>: sirve para enviar cambios al repositorio remoto.</li>
+<li><code>git pull</code>: sirve para recibir cambios de repositorio remoto a local.</li>
+</ul>
+<h3 id="ciclos-de-vida-o-estados-de-los-archivos-en-git" tabindex="-1">Ciclos de vida o estados de los archivos en Git <a class="anchor-link" href="#ciclos-de-vida-o-estados-de-los-archivos-en-git"></a></h3>
+<p>Cuando trabajamos con Git nuestros archivos pueden vivir y moverse entre 4 diferentes estados (cuando trabajamos remoto pueden ser más estados, pero lo estudiaremos más adelante)</p>
+<ul>
+<li>
+<p><strong>Archivos</strong> <em><strong>Tracked</strong></em>: son los archivos que viven dentro de Git, no tienen cambios pendientes y sus últimas actualizaciones han sido guardadas en el repositorio gracias a los comandos git add y git commit.</p>
+</li>
+<li>
+<p><strong>Archivos</strong> <em><strong>Staged</strong></em>: son archivos en staging. Viven dentro de Git y hay registro de ellos por que han sido afectados por el comando git add, aunque no sus últimos cambios. Git ya sabe de la existencia de estos últimos cambios, pero todavía no han sido guardados definitivamente en el repositorio por que falta ejecutar el comando git commit.</p>
+</li>
+<li>
+<p><strong>Archivos</strong> <em><strong>Unstaged</strong></em>: entiendelos como archivos “Traked pero Unstaged”. Son archivos que viven dentro de Git pero no han sido afectados por el comando git add ni mucho menos por git commit. Git tiene un registro de estos archivos, pero esta desactualizado, sus últimas versiones solo estan guardadas en su disco duro.</p>
+</li>
+<li>
+<p><strong>Archivos</strong> <em><strong>Untracked</strong></em>: son archivos que NO viven dentro de Git, solo en el disco duro. Nunca han sido afectados por git add, asi que Git no tiene registro de su existencia.</p>
+</li>
+</ul>
+<p>Recuerda que hay un caso muy raro donde los archivos tienen dos estados al mismo tiempo: Staged y Untracked. Esto pasa cuando guardas los cambios de un archivo en el área de Staging (con el comando git commit), pero antes de hacer commit para guardar los cambios en el repositorio haces nuevos cambios que todavía no han sido guardados en el área de Staging (en realidad, todo sigue funcionando igual pero es un poco divertido).</p>
+<h3 id="comandos-para-mover-archivos-entre-los-estados-de-git" tabindex="-1">Comandos para mover archivos entre los estados de Git <a class="anchor-link" href="#comandos-para-mover-archivos-entre-los-estados-de-git"></a></h3>
+<ul>
+<li>
+<p><code>git status</code>: nos permite ver el estado de todos nuestros archivos y carpetas.</p>
+</li>
+<li>
+<p><code>git add</code>: nos ayuda a mover archivos del Untracked o Unstaged al estado Staged. Podemos usar git nombre del archivo o carpeta para añadir archivos y carpetas individuales o git add -a para mover todos los archivos de nuestro proyecto ( tanto Untrackeds como Unstageds).</p>
+</li>
+<li>
+<p><code>git reset HEAD</code>: nos ayuda a sacar los archivos del estado Staged para devolverlos a su estado anterior. Si los archivos venian de Unstaged, vuelven alli. Y lo mismo si venian de Untracked.</p>
+</li>
+<li>
+<p><code>git commit</code>: nos ayuda a mover archivos de Unstaged a Tracked. Esta es una ocasión especial, los archivos han sido guardados o actualizados en el repositorio. Git nos pedira que dejemos un mensaje para recordar los cambios que hicimos y podemos usar el argumento -m para describirlo ( git commit -m “mensaje”).</p>
+</li>
+<li>
+<p><code>git rm</code>: este comando necesita algunos de los argumentos para poder ejecutarse correctamente:</p>
+</li>
+<li>
+<p><code>git rm --cached</code>: Mueve los archivos que le indiquemos al estado Untracked.</p>
+</li>
+<li>
+<p><code>git rm --force</code>: Elimina los archivos de Git y del disco duro. Git guarda el registro de la existencia de los archivos, por lo que podremos recuperarlos si es necesario (pero debemos usar comandos más avanzados).</p>
+</li>
+</ul>
+<h2 id="qu%C3%A9-es-un-branch-y-c%C3%B3mo-funciona-un-merge%3F" tabindex="-1">Qué es un Branch y cómo funciona un Merge? <a class="anchor-link" href="#qu%C3%A9-es-un-branch-y-c%C3%B3mo-funciona-un-merge%3F"></a></h2>
+<p>Checkout es para cambiar de rama. Sólo la crea con el modificador -b.<br>
+Unir dos Ramas lo conocemos como Merge.</p>
+<p>Estándar de equipos de desarrollo…</p>
+<ul>
+<li>Rama <em><strong>Master</strong></em> o <em><strong>Main</strong></em>: va a producción.</li>
+<li>Rama <em><strong>Development</strong></em>: se alojan las nuevas features, características y experimentos<br>
+(para unirse al Máster cuando estén definitivamente listas).</li>
+<li>Rama <em><strong>Hotfix</strong></em>: issues o errores se solucionan aquí para unirse al Master tan pronto sea posible.</li>
+</ul>
+<h2 id="crea-un-repositorio-de-git-y-haz-tu-primer-commit" tabindex="-1">Crea un repositorio de Git y haz tu primer commit <a class="anchor-link" href="#crea-un-repositorio-de-git-y-haz-tu-primer-commit"></a></h2>
+<p>Le indicaremos a Git que queremos crear un nuevo repositorio para utilizar un sistema<br>
+de control de versiones.<br>
+Solo debemos posicionarnos en la carpeta raíz de nuestro proyecto y ejecutar el comando git init.</p>
+<p>Recuerda que al ejecutar este comando (y de aquí en adelante) vamos a tener una nueva carpeta llamada <strong>.git</strong> con toda la base de datos con cambios atómicos en nuestro proyecto.</p>
+<p>Recuerda que Git está optimizado para trabajar en equipo, por lo tanto, debemos darle un poco de información sobre nosotros. No debemos hacerlo todas las veces que ejecutamos un comando, basta con ejecutar solo una vez los siguientes comandos con tu información:</p>
+<pre class="language-shell"><code class="hljs language-shell"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name <span class="token string">"tu nombre"</span><br><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"tu@email.com"</span></code></pre>
+<p>Existen muchas otras configuraciones de Git que puedes encontrar en el comando git config --list (o solo git config para ver una explicación más detallada)</p>
+<h2 id="analizar-cambios-en-los-archivos-de-tu-proyecto" tabindex="-1">Analizar cambios en los archivos de tu proyecto <a class="anchor-link" href="#analizar-cambios-en-los-archivos-de-tu-proyecto"></a></h2>
+<ul>
+<li><code>git log</code>: muestra la identificación de los commits.</li>
+<li><code>git show</code>: nos muestra los cambios que han existido sobre un archivo y es muy útil para detectar cuando se produjeron ciertos cambios, qué se rompió y cómo lo podemos solucionar. Pero podemos ser mas detallados.</li>
+<li><code>git diff</code>: nos muestra la diferencia entre una version y otra, no necesariamente todos los cambios desde la creación. (Gif diff commitA commitB).</li>
+</ul>
+<h2 id="reset-y-checkout" tabindex="-1">Reset y checkout <a class="anchor-link" href="#reset-y-checkout"></a></h2>
+<ul>
+<li>
+<p><code>git checkout + Id del commit</code>: podemos volver a cualquier versión anterior de un archivo específico o incluso<br>
+de nuestro proyecto entero. Esta es también es la forma de movernos entre ramas.</p>
+</li>
+<li>
+<p><code>git log --stat</code>: commit descriptivo con cantidad de líneas agregadas y removidas por archivo.</p>
+</li>
+<li>
+<p><code>git reset --soft 'commit'</code>: mantiene los archivos en el área de Staging para que podamos aplicar nuestros últimos cambios desde un commit anterior.</p>
+</li>
+<li>
+<p><code>git reset --hard 'commit'</code>: borra toda la información que tengamos en el área de Staging. (Perdiendo todo para siempre).</p>
+</li>
+<li>
+<p><code>git checkout master 'archivo.txt'</code>: volvemos a la versión madre.</p>
+</li>
+</ul>
+<h2 id="ramas-o-branches" tabindex="-1">Ramas o branches <a class="anchor-link" href="#ramas-o-branches"></a></h2>
+<p>Las ramas son la forma de hacer cambios en nuestro proyecto sin afectar el flujo de trabajo de la rama principal. Esto porque queremos trabajar una parte muy específica de la aplicación o simplemente experimentar.</p>
+<p>La cabecera o head representan la rama y el commit de esa rama donde estamos trabajando. Por defecto, esta cabecera aparecerá en el último commit de nuestra rama principal. Pero podemos cambiarlo al crear una rama (git branch rama, git checkout -b rama) o movernos en el tiempo a cualquier otro commit de cualquier otra rama con los comandos ( git reset id-commit, git checkout rama-o-id-commit).</p>
+<pre class="language-shell"><code class="hljs language-shell"><span class="token function">git</span> branch <span class="token string">"nombre de rama"</span> // crea una rama<br><span class="token function">git</span> checkout <span class="token string">"nombre de la rama"</span> // cambiarse de rama</code></pre>
+<p><strong>NOTA</strong>: Hacer commit antes de cambiar de ramas para no perder los datos.</p>
+<h3 id="fusi%C3%B3n-de-ramas-con-git-merge" tabindex="-1">Fusión de ramas con Git Merge <a class="anchor-link" href="#fusi%C3%B3n-de-ramas-con-git-merge"></a></h3>
+<p>El comando git merge nos permite crear un nuevo commit con la combinación de dos ramas, la rama donde nos encontramos cuando ejecutamos el comando y la rama que le pasamos después del comando.</p>
+<pre class="language-shell"><code class="hljs language-shell"><span class="token function">git</span> merge <span class="token string">"cualquier otra rama"</span></code></pre>
+<h3 id="resoluci%C3%B3n-de-conflictos-al-hacer-un-merge" tabindex="-1">Resolución de conflictos al hacer un Merge <a class="anchor-link" href="#resoluci%C3%B3n-de-conflictos-al-hacer-un-merge"></a></h3>
+<p>Git nunca borra nada a menos que se lo indiquemos. Cuando usamos los comandos git merge o git checkout estamos cambiando de rama pero creando un nuevo commit, no borrando ramas ni commits ( recuerda que puedes borrar commits con <code>git reset</code> / <code>git branch -d</code>)</p>
+<p>Los archivos con conflictos por el comando git merge entran en un nuevo estado que conocemos como <em><strong>Unmerged</strong></em>.<br>
+Funcionan muy parecido a los archivos en estado <em><strong>Unstaged</strong></em>, algo así como un estado intermedio entre <em><strong>Untracked</strong></em> y <em><strong>Unstaged</strong></em>, solo debemos ejecutar <code>git add</code> para pasarlos al área de <em><strong>Staging</strong></em> y git commit para aplicar los cambios en el repositorio.</p>
+<h2 id="uso-de-github" tabindex="-1">Uso de GitHub <a class="anchor-link" href="#uso-de-github"></a></h2>
+<p>Github es una plataforma que nos permite guardar repositorios de git que podemos usar como servidores remotos y ejecutar algunos comandos de forma visual e interactiva (sin necesidad de consola de mandos).</p>
+<p>Luego de crear nuestra cuenta, podemos crear o importar repositorios, crear organizadores y proyectos de trabajo, descubrir respositorios de otras personas, contribuir a esos proyectos, dar estrellas y muchas otras cosas.</p>
+<p>El <a href="http://Readme.md">Readme.md</a> es el archivo que veremos por defecto al entrar en un repositorio. Es una muy buena práctica configurarlo para describir el proyecto, los requerimientos y las instrucciones que debemos seguir para contribuir correctamente.</p>
+<p>Para clonar un repositorio desde GitHub (o cualquier otro servidor remoto) debemos copiar el URL (por ahora, usando HTTPS) y ejecutar el comando git clone + la URL que acabamos de copiar. Esto descargara la versión de nuestro proyecto que se encuentra en GitHub.</p>
+<p>Sin embargo, esto solo funciona para las personas que quieren empezar a contribuir en el proyecto. Si queremos conectar el repositorio de GitHub con nuestro repositorio local, el que creamos con git init, debemos ejecutar las siguientes instrucciones:</p>
+<ul>
+<li><strong>Primero:</strong> Guardar la URL del repositorio de GitHub con el nombre de origin</li>
+</ul>
+<pre class="language-bash"><code class="hljs language-bash"><span class="token function">git</span> remote <span class="token function">add</span> origin <span class="token operator">&lt;</span>URL<span class="token operator">></span></code></pre>
+<ul>
+<li><strong>Segundo</strong>: Verificar que la URL se haya guardado correctamente</li>
+</ul>
+<pre class="language-bash"><code class="hljs language-bash"><span class="token function">git</span> remote<br><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre>
+<ul>
+<li><strong>Tercero</strong>: Traer la versión del repositorio remoto y hacer merge para crear un commit con los archivos de ambas partes. Podemos usar git fetch y git merge o solo git pull con el flag --allow-unrelated-histories:</li>
+</ul>
+<pre class="language-bash"><code class="hljs language-bash"><span class="token function">git</span> pull origin master--allow-unrelated-histories</code></pre>
+<ul>
+<li>Por último, ahora sí podemos hacer git push para guardar los cambios de nuestro repositorio local en GitHub</li>
+</ul>
+<pre class="language-bash"><code class="hljs language-bash"><span class="token function">git</span> push origin master</code></pre>
+<h3 id="manejo-de-ramas-en-github" tabindex="-1">Manejo de ramas en GitHub <a class="anchor-link" href="#manejo-de-ramas-en-github"></a></h3>
+<p>Puedes trabajar con ramas que nunca enviamos a GitHub, así como pueden haber ramas importantes en GitHub que nunca usas en el repositorio local. Lo importante es que aprendas a manejarlas para trabajar profesionalmente.</p>
+<ul>
+<li><strong>Crear una rama en el repositorio local</strong>:</li>
+</ul>
+<pre class="language-bash"><code class="hljs language-bash"><span class="token function">git</span> branch <span class="token string">"nombre de la rama"</span> <br>o <br><span class="token function">git</span> checkout <span class="token parameter variable">-b</span> <span class="token string">"nombre de la rama"</span></code></pre>
+<ul>
+<li><strong>Publicar una rama local, al repositorio remoto</strong>:</li>
+</ul>
+<pre class="language-bash"><code class="hljs language-bash"><span class="token function">git</span> push origin <span class="token string">"nombre de la rama"</span></code></pre>
+<p>Recuerda que podemos ver gráficamente nuestro entorno y flujo de trabajo local con Git usando el comando <code>gitk</code>.</p>
+<h4 id="configurar-m%C3%BAltiples-colaboradores-en-un-repositorio-de-github" tabindex="-1">Configurar múltiples colaboradores en un repositorio de GitHub <a class="anchor-link" href="#configurar-m%C3%BAltiples-colaboradores-en-un-repositorio-de-github"></a></h4>
+<p>Por defecto, cualquiera puede clonar o descargar tu proyecto desde GitHub, pero no pueden crear commits, ni ramas ni nada.</p>
+<p>Existen varias formas de solucionar esto para poder aceptar contribuciones. Una de ellas es añadir a cada persona de nuestro equipo como colaborador de nuestro repositorio.</p>
+<p>Solo debemos entrar a la configuración de colaboradores de nuestro proyecto (Repositorio &gt; Settings &gt; Collaborators) y añadir el email o username de los nuevos colaboradores.</p>
+<h4 id="flujo-de-trabajo-profesional-con-pull-requests" tabindex="-1">Flujo de trabajo profesional con <em><strong>pull requests</strong></em> <a class="anchor-link" href="#flujo-de-trabajo-profesional-con-pull-requests"></a></h4>
+<p>En un entorno profesional normalmente se bloquea la rama master, y para enviar código a dicha rama pasa por un code review y luego de su aprobación se unen códigos con los llamados merge request.</p>
+<p>Para realizar pruebas enviamos el código a servidores que normalmente los llamamos Staging develop (servidores de pruebas) luego de que se realizan las pruebas pertinentes tanto de código como de la aplicación estos pasan a el servidor de producción con el ya antes mencionado merge request.</p>
+<h4 id="ignorar-archivos-en-el-repositorio-con-.gitignore" tabindex="-1">Ignorar archivos en el Repositorio con <em><strong>.gitignore</strong></em> <a class="anchor-link" href="#ignorar-archivos-en-el-repositorio-con-.gitignore"></a></h4>
+<p>No todos los archivos que agregas a un proyecto deberían ir a un repositorio, por ejemplo cuando tienes un archivo donde están tus contraseñas que comúnmente tienen la extensión <em><strong>.env</strong></em> o cuando te estas conectando a una base de datos, son archivos que nadie debe ver.</p>
+<h4 id="reconstruir-commits-en-git-con-amend" tabindex="-1">Reconstruir commits en Git con <em><strong>amend</strong></em> <a class="anchor-link" href="#reconstruir-commits-en-git-con-amend"></a></h4>
+<p>A veces hacemos un commit, pero resulta que no queríamos mandarlo porque faltaba algo más. Utilizamos <code>git commit --amend</code>, amend en inglés es remendar y lo que hará es que los cambios que hicimos nos los agrega al commit anterior.</p>
+<h4 id="git-reset-y-reflog%3A-%C3%BAsese-en-caso-de-emergencia" tabindex="-1">Git <em><strong>reset</strong></em> y <em><strong>reflog</strong></em>: úsese en caso de emergencia <a class="anchor-link" href="#git-reset-y-reflog%3A-%C3%BAsese-en-caso-de-emergencia"></a></h4>
+<p>¿Qué pasa cuando todo se rompe y no sabemos qué está pasando?</p>
+<p>Con git reset hashDelHEAD nos devolvemos al estado en que el proyecto funcionaba.</p>
+<ul>
+<li><code>git reset --soft &lt;hashDelHEAD&gt;</code> te mantiene lo que tengas en Staging ahí.</li>
+<li><code>git reset --hard &lt;hashDelHEAD&gt;</code> resetea absolutamente todo incluyendo lo que tengas en Staging.</li>
+</ul>
+<p>Git reset es una mala práctica, no deberías usarlo en ningún momento; debe ser nuestro último recurso.</p>
+<h4 id="buscar-en-archivos-y-commits-de-git-con-grep-y-log" tabindex="-1">Buscar en archivos y commits de Git con <em><strong>grep</strong></em> y <em><strong>log</strong></em> <a class="anchor-link" href="#buscar-en-archivos-y-commits-de-git-con-grep-y-log"></a></h4>
+<p>A medida que nuestro proyecto se hace grande vamos a querer buscar ciertas cosas.</p>
+<p>Por ejemplo: ¿Cuántas veces en nuestro proyecto utilizamos la palabra color?</p>
+<p>Para buscar utilizamos el comando git grep color y nos buscará en todo el proyecto los archivos en donde está la palabra color.</p>
+<ul>
+<li><strong>Con git grep -n color</strong> nos saldrá un output el cual nos dirá en que línea está lo qué estamos buscando.</li>
+<li><strong>Con git grep -c color</strong> nos saldrá un output el cual nos dirá cuantas veces se repite esa palabra y en qué archivo.</li>
+</ul>
+<p>Si queremos buscar cuántas veces utilizamos un atributo de HTML lo hacemos con <strong>git grep -c “atributo”</strong>.</p>
+<hr>
+<h4 id="si-tienes-dudas-sobre-este-tema%2C-puedes-consultarlas-en-el-canal-01b_git-de-slack" tabindex="-1">Si tienes dudas sobre este tema, puedes consultarlas en el canal <em><strong>01b_git</strong></em> de Slack <a class="anchor-link" href="#si-tienes-dudas-sobre-este-tema%2C-puedes-consultarlas-en-el-canal-01b_git-de-slack"></a></h4>
+
+        </div>
+
+      </main>
+
+      
+
+      <div class="footerContainer">
+        <div class="footerContained">
+          <p>Material de estudio personal</p>
+        </div>
+      </div>
+
+      <div class="readerBarDiv">
+        
+  <!-- up button -->
+  <div>
+    <button
+      id="upBtn"
+      style="position:fixed; width:32px; height:32px; border-radius:50%; border:none; background-color:black; right:20px; bottom:55px; color:white; z-index:999; focus:outline-none; cursor:pointer; transition-duration:500ms; opacity:0; pointer-events:none;"
+    ><i class="arrow up"></i></button>
+  </div>
+  
+  <style>
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  </style>
+
+  <script>
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      upBtn.style.opacity = 1;
+      upBtn.style.pointerEvents = 'auto';     
+    }
+    else {
+      upBtn.style.opacity = 0;
+      upBtn.style.pointerEvents = 'none';
+    }
+  })
+
+  upBtn.addEventListener('click', () => {
+    let start = document.querySelector('.reader-bar-start')
+    start.scrollIntoView({behavior: "smooth"})
+  })
+  </script>
+
+  <!-- reader bar -->
+  <div id="readerBarContainer" style="height:3px;width:100%;background-color:black;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;">
+    <div id="readerBar" style="height:3px;width:0;background-color:#2E4F8F;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;"></div>
+  </div>
+
+  <script>
+    let winH = window.innerHeight;
+    const content = document.querySelector('.reader-bar-start');
+
+    let contentH = content.offsetHeight;
+    let contentS = contentH - winH;
+    let readerBar = document.getElementById('readerBar');
+    window.addEventListener('load', () => {
+      document.addEventListener ('scroll', updateBar);
+    })
+    window.addEventListener('resize', redefine)
+
+    function redefine() {
+      winH = window.innerHeight;
+      contentH = content.offsetHeight;
+      contentS = contentH - winH;
+      updateBar();
+    }
+
+    function updateBar() {
+      const pagePos = window.scrollY; 
+      const updatedBar = pagePos * 100 / contentS;
+      readerBar.style.width = updatedBar + "%";
+    }
+  </script>
+  
+      </div>
+
+    </body>
+  </html>

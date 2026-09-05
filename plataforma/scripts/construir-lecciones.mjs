@@ -66,56 +66,72 @@ function construir(modulo, segmento) {
     { cwd: dir, stdio: ['ignore', 'pipe', 'inherit'] },
   );
 
-  const corregidos = corregirRutas(destino, `/lecciones/${segmento}`);
+  const { rutas, logos } = ajustarHtml(destino, `/lecciones/${segmento}`);
   const paginas = contarHtml(destino);
   log(
     `  ✅ ${modulo} → /lecciones/${segmento}  (${paginas} páginas, ` +
-      `${corregidos} rutas corregidas)`,
+      `${rutas} rutas, ${logos} logos enlazados)`,
   );
   return true;
 }
 
 /**
- * Anade el prefijo del modulo a las rutas absolutas que Eleventy dejo sin
- * reescribir.
+ * Retoques sobre el HTML que genera Eleventy. Hace dos cosas en una sola
+ * pasada por archivo:
  *
- * El pathPrefix cubre lo que pasa por el filtro `url`, pero no lo demas:
- * el plugin eleventy-navigation-bootstrap genera la barra superior con
- * rutas como /JavaScript_V/, y las imagenes del material apuntan a
- * /_src/assets/... Sin este paso ambas dan 404 al servirse bajo
- * /lecciones/<modulo>/.
+ * 1. Anade el prefijo del modulo a las rutas absolutas que Eleventy dejo
+ *    sin reescribir. El pathPrefix cubre lo que pasa por su filtro `url`,
+ *    pero no lo demas: el plugin eleventy-navigation-bootstrap genera la
+ *    barra superior con rutas como /JavaScript_V/, y las imagenes del
+ *    material apuntan a /_src/assets/... Sin esto ambas dan 404 al
+ *    servirse bajo /lecciones/<modulo>/.
  *
- * Devuelve cuantas rutas se corrigieron, para que el build lo informe: si
- * alguna vez baja a cero, o el plugin se arreglo o algo se rompio.
+ * 2. Envuelve el logo en un enlace al indice de la plataforma, para poder
+ *    volver desde cualquier leccion. Es un <a> normal y no un Link de
+ *    Next porque estas paginas son HTML estatico, fuera de su router.
+ *
+ * Devuelve el recuento de cada cosa para que el build lo informe: si
+ * alguno cayera a cero, o el material cambio o algo se rompio.
  */
-function corregirRutas(dir, prefijo) {
-  let total = 0;
+function ajustarHtml(dir, prefijo) {
+  let rutas = 0;
+  let logos = 0;
 
   for (const entrada of fs.readdirSync(dir, { withFileTypes: true })) {
     const ruta = path.join(dir, entrada.name);
 
     if (entrada.isDirectory()) {
-      total += corregirRutas(ruta, prefijo);
+      const sub = ajustarHtml(ruta, prefijo);
+      rutas += sub.rutas;
+      logos += sub.logos;
       continue;
     }
     if (!entrada.name.endsWith('.html')) continue;
 
     const original = fs.readFileSync(ruta, 'utf8');
+    let html = original;
 
-    // Solo href/src/action que empiecen por una unica barra y no lleven ya
-    // el prefijo. Se excluye // para no tocar URLs relativas al protocolo.
-    const corregido = original.replace(
+    // 1. Rutas absolutas sin prefijo. Se excluye // para no tocar las
+    //    URLs relativas al protocolo.
+    html = html.replace(
       /(href|src|action)="\/(?!\/|lecciones\/)([^"]*)"/g,
       (_, attr, resto) => {
-        total += 1;
+        rutas += 1;
         return `${attr}="${prefijo}/${resto}"`;
       },
     );
 
-    if (corregido !== original) fs.writeFileSync(ruta, corregido);
+    // 2. Logo enlazado al indice. Aparece dos veces por pagina: en la
+    //    cabecera normal y en la responsive.
+    html = html.replace(/<img class="brandLogo"[^>]*>/g, (etiqueta) => {
+      logos += 1;
+      return `<a href="/" title="Volver al índice del curso">${etiqueta}</a>`;
+    });
+
+    if (html !== original) fs.writeFileSync(ruta, html);
   }
 
-  return total;
+  return { rutas, logos };
 }
 
 function contarHtml(dir) {

@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Plataforma del curso
 
-## Getting Started
+Aplicación en Next.js 16 que sirve el curso de Desarrollo Web Full Stack.
 
-First, run the development server:
+Vive dentro del repositorio `Instituto` y lee el material de los módulos que
+están un nivel más arriba (`Introductorio/`, `Modulo_Uno/` … `Modulo_Cuatro/`).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Cómo se sirven las lecciones
+
+Las lecciones **no** están reescritas en React: las genera el propio Eleventy
+de cada módulo, igual que el sitio que ya existía. Reimplementar su aspecto
+obligaba a perseguirlo indefinidamente; ejecutarlo produce el original.
+
+```
+scripts/construir-lecciones.mjs
+        ↓  ejecuta Eleventy en los 5 módulos
+public/lecciones/<modulo>/<Leccion>/index.html
+        ↓  Next las sirve como archivos estáticos
+/lecciones/introductorio/JavaScript_I/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Cada módulo se construye con su propio `pathPrefix`, para que Eleventy
+reescriba los enlaces internos y los cinco convivan sin pisarse — `/CSS/`
+existe en Introductorio y en Modulo_Dos.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+El script hace además dos retoques que Eleventy no cubre:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Prefija las rutas absolutas que quedan sueltas.** El `pathPrefix` solo
+   afecta a lo que pasa por el filtro `url`. El plugin
+   `eleventy-navigation-bootstrap` genera la barra superior sin aplicarlo, y
+   las imágenes del material usan rutas escritas a mano.
+2. **Envuelve el logo en un enlace al índice**, para poder volver desde
+   cualquier lección.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## El HTML generado se versiona
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`public/lecciones/` **entra en git a propósito**. Así Vercel solo sirve
+archivos: no necesita ejecutar Eleventy ni instalar los paquetes `henry-*`,
+que se descargan de un CDN externo y podrían dejar de estar disponibles.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+El precio es que regenerar produce diffs grandes. Es deliberado.
 
-## Deploy on Vercel
+**Consecuencia práctica:** `npm run build` es solo `next build`, que es lo
+que ejecuta Vercel. Regenerar las lecciones es un paso manual.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Comandos
+
+| Comando | Qué hace | Cuándo |
+| --- | --- | --- |
+| `npm run dev` | Servidor de desarrollo | A diario |
+| `npm run lecciones` | Regenera las lecciones con Eleventy | **Al cambiar el material** |
+| `npm run build` | Solo `next build`. Es lo que corre Vercel | Automático |
+| `npm run build:todo` | Lecciones + build. Para comprobar en local | Antes de desplegar |
+| `npx jest` | Tests | Antes de commitear |
+
+### Al modificar una lección
+
+```bash
+# 1. editar el README.md del módulo correspondiente
+npm run lecciones     # 2. regenerar
+npx jest              # 3. comprobar
+# 4. commitear los .md Y el HTML generado
+```
+
+Si se olvida el paso 2, el sitio desplegado seguirá mostrando la versión
+anterior: Vercel no regenera nada.
+
+---
+
+## Estructura
+
+```
+plataforma/
+├── scripts/construir-lecciones.mjs   Eleventy → public/lecciones/
+├── public/lecciones/                 HTML generado (versionado)
+├── src/
+│   ├── app/                          portada y, más adelante, la app
+│   ├── lib/lecciones.ts              lee los README.json del material
+│   └── estilos/plataforma/           estilos propios de la app
+└── next.config.ts                    reescrituras y trailingSlash
+```
+
+`trailingSlash` está activo porque Eleventy genera URLs de directorio con
+barra final y dentro de las lecciones hay enlaces relativos. Sin ella, Next
+redirige `/Git/` a `/Git` y esos enlaces resuelven un nivel más arriba.
+
+---
+
+## Pendiente
+
+- Los 39 enlaces `./homework` apuntan a una carpeta que Eleventy no publica.
+  Su destino natural es la descarga de la plataforma (Fase 3 del plan).
+- Las páginas cargan la tipografía Avenir desde un S3 externo, que es el
+  comportamiento original del material.
+- Dos imágenes que el material referencia pero nunca incluyó:
+  `09-React-Routing/EjemploNavBar.png` y `Modulo_Tres/assets/imagen.jpg`.
+
+El plan completo está en
+[`docs/superpowers/plans/2026-09-05-plataforma-curso.md`](../docs/superpowers/plans/2026-09-05-plataforma-curso.md).

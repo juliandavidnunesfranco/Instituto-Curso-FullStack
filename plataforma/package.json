@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/construir-lecciones.mjs && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "lecciones": "node scripts/construir-lecciones.mjs"
+    "lecciones": "node scripts/construir-lecciones.mjs",
+    "build:todo": "npm run lecciones && next build"
   },
   "dependencies": {
     "highlight.js": "^11.12.0",

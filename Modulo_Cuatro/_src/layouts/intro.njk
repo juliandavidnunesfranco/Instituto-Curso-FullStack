@@ -1,5 +1,5 @@
 ---
-favicon: 'https://d31uz8lwfmyn8g.cloudfront.net/Assets/favicon.png'
+
 ---
 
 <!DOCTYPE html>
@@ -23,6 +23,7 @@ favicon: 'https://d31uz8lwfmyn8g.cloudfront.net/Assets/favicon.png'
     {{ styles.code | safe }}
     {{ styles.footer | safe }}
     {{ styles.responsive | safe }}
+    {{ styles.brand | safe }}
     {% endset %}
 
     <style>
@@ -34,6 +35,7 @@ favicon: 'https://d31uz8lwfmyn8g.cloudfront.net/Assets/favicon.png'
   <body>
     <div class="headerResponsive">
       <div class="leftContent">
+        <img class="brandLogo" src="{{ '/_src/assets/logo.png' | url }}" alt="{{ config.repoTitle }}">
         <span>{{ config.repoTitle }}</span>
       </div>
       <div class="menuDiv">
@@ -48,6 +50,7 @@ favicon: 'https://d31uz8lwfmyn8g.cloudfront.net/Assets/favicon.png'
 
     <div class="headerContainer">
       <div class="headerContained">
+        <img class="brandLogo" src="{{ '/_src/assets/logo.png' | url }}" alt="{{ config.repoTitle }}">
         <div>
           <span>{{ config.repoTitle }}</span>
         </div>

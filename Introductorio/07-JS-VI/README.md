@@ -8,9 +8,11 @@ En esta lección cubriremos:
 - Más métodos de Arrays
 - Introducción a la programación funcional
 
+<!--
 <div class="iframeContainer">
 <iframe src="https://player.vimeo.com/video/425254623?h=45f224ce62&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="06 - JS VI - Callbacks"></iframe>
 </div>
+-->
 
 ## Callbacks
 

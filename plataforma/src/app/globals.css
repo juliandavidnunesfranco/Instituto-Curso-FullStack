@@ -1,49 +1,282 @@
+/*
+  Plataforma del curso — estilos base.
+
+  Direccion: editorial academico. El alumno lee prosa tecnica larga con
+  ejemplos de codigo durante horas, asi que manda la legibilidad: medida de
+  linea contenida, jerarquia clara y bloques de codigo que no se confundan
+  con el texto.
+
+  Azul institucional #2E4F8F, el mismo que usa el sitio de Eleventy.
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --marca: #2e4f8f;
+  --marca-clara: #4a6fb5;
+  --fondo: #ffffff;
+  --fondo-sutil: #f7f8fa;
+  --fondo-codigo: #f4f6f9;
+  --texto: #1a1d21;
+  --texto-suave: #59616e;
+  --borde: #e2e6ec;
+
+  --medida: 68ch;
+  --radio: 8px;
+
+  --fuente: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --fuente-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --marca: #7ea3e0;
+    --marca-clara: #9bb8e8;
+    --fondo: #15181d;
+    --fondo-sutil: #1c2027;
+    --fondo-codigo: #1e232b;
+    --texto: #e6e9ee;
+    --texto-suave: #a2acb9;
+    --borde: #2a3038;
   }
 }
 
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
   margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: var(--marca);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+a:hover {
+  color: var(--marca-clara);
+}
+
+/* Foco visible: se navega mucho con teclado al copiar codigo */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--marca);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------- Encabezados ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  font-weight: 650;
+  margin: 2.2rem 0 0.8rem;
+  color: var(--texto);
+}
+
+h1 {
+  font-size: 2.1rem;
+  margin-top: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--marca);
+}
+
+h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--borde);
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+h4 {
+  font-size: 1.02rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Contenido de la leccion ---------- */
+
+.leccion {
+  max-width: var(--medida);
+}
+
+.leccion p,
+.leccion ul,
+.leccion ol {
+  margin: 0 0 1.1rem;
+}
+
+.leccion li {
+  margin: 0.35rem 0;
+}
+
+.leccion ul,
+.leccion ol {
+  padding-left: 1.4rem;
+}
+
+.leccion blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1.1rem;
+  border-left: 4px solid var(--marca);
+  background: var(--fondo-sutil);
+  color: var(--texto-suave);
+  border-radius: 0 var(--radio) var(--radio) 0;
+}
+
+.leccion blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.leccion hr {
+  border: 0;
+  border-top: 1px solid var(--borde);
+  margin: 2rem 0;
+}
+
+/* ---------- Codigo ---------- */
+
+/* Inline: se distingue del texto sin gritar */
+.leccion :not(pre) > code {
+  font-family: var(--fuente-mono);
+  font-size: 0.88em;
+  background: var(--fondo-codigo);
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  padding: 0.12em 0.36em;
+  white-space: nowrap;
+}
+
+/* Bloque: caja propia, con scroll horizontal en vez de romper el layout */
+.leccion pre {
+  margin: 1.2rem 0;
+  padding: 1rem 1.1rem;
+  background: var(--fondo-codigo);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  overflow-x: auto;
+  line-height: 1.55;
+}
+
+.leccion pre code {
+  font-family: var(--fuente-mono);
+  font-size: 0.87rem;
+  background: none;
+  border: 0;
+  padding: 0;
+  white-space: pre;
+}
+
+/* ---------- Tablas ---------- */
+
+.leccion table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.94rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.leccion th,
+.leccion td {
+  border: 1px solid var(--borde);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+}
+
+.leccion th {
+  background: var(--fondo-sutil);
+  font-weight: 600;
+}
+
+/* ---------- Medios ---------- */
+
+.leccion img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radio);
+}
+
+/* Los videos del curso vienen con width/height fijos de 1920x1080 */
+.leccion iframe {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  border-radius: var(--radio);
+  margin: 1.2rem 0;
+}
+
+.leccion .iframeContainer {
+  margin: 1.2rem 0;
+}
+
+/* ---------- Indice ---------- */
+
+.indice ol {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.8rem;
+}
+
+.indice li + li {
+  border-top: 1px solid var(--borde);
+}
+
+.indice li a {
+  display: block;
+  padding: 0.6rem 0.2rem;
+  text-decoration: none;
+  transition: background 0.12s ease, padding-left 0.12s ease;
+  border-radius: 4px;
+}
+
+.indice li a:hover {
+  background: var(--fondo-sutil);
+  padding-left: 0.6rem;
+}
+
+.volver {
+  display: inline-block;
+  margin-bottom: 1.2rem;
+  font-size: 0.92rem;
+  text-decoration: none;
+  color: var(--texto-suave);
+}
+
+.volver:hover {
+  color: var(--marca);
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 1.65rem;
+  }
+  h2 {
+    font-size: 1.3rem;
   }
 }

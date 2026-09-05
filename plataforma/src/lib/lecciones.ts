@@ -32,10 +32,17 @@ export function listarUnidades(): Unidad[] {
   const unidades: Unidad[] = [];
 
   for (const modulo of MODULOS) {
-    const dirModulo = path.join(RAIZ, modulo);
+    // turbopackIgnore: estas rutas se resuelven en tiempo de compilacion.
+    // Las paginas que llaman aqui se prerenderizan (SSG), asi que en
+    // produccion nadie lee el disco. Sin este marcador, el analisis
+    // estatico rastrea el repositorio entero -328 MB- hacia el bundle
+    // serverless y el despliegue puede exceder el limite de Vercel.
+    const dirModulo = path.join(/* turbopackIgnore: true */ RAIZ, modulo);
     if (!fs.existsSync(dirModulo)) continue;
 
-    for (const carpeta of fs.readdirSync(dirModulo)) {
+    for (const carpeta of fs.readdirSync(
+      /* turbopackIgnore: true */ dirModulo,
+    )) {
       const rutaJson = path.join(dirModulo, carpeta, 'README.json');
       const rutaMd = path.join(dirModulo, carpeta, 'README.md');
       if (!fs.existsSync(rutaJson) || !fs.existsSync(rutaMd)) continue;

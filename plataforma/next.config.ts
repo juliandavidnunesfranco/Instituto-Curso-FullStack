@@ -10,6 +10,13 @@ const config: NextConfig = {
   // que Vercel construye. Hay que ampliar la raíz del rastreo.
   outputFileTracingRoot: path.join(__dirname, '..'),
 
+  // Eleventy genera URLs de directorio con barra final y dentro de las
+  // lecciones hay enlaces relativos como `./homework`. Sin esta opción
+  // Next redirige /Git/ a /Git, y entonces `./homework` resuelve un nivel
+  // más arriba y da 404. Conservar la barra mantiene la resolución que
+  // Eleventy asume.
+  trailingSlash: true,
+
   async rewrites() {
     return [
       // Las lecciones las genera Eleventy en public/lecciones/<modulo>/
@@ -20,8 +27,10 @@ const config: NextConfig = {
       // El patrón excluye las rutas que contienen un punto para no tocar
       // los recursos reales —imágenes, css, js— que viven dentro de esas
       // mismas carpetas.
+      // Con trailingSlash activo la ruta entrante termina en barra, asi
+      // que el patron la incluye y el destino no la repite.
       {
-        source: '/lecciones/:ruta((?!.*\\.).*)',
+        source: '/lecciones/:ruta((?!.*\\.).*)/',
         destination: '/lecciones/:ruta/index.html',
       },
     ]

@@ -1,0 +1,1309 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>JavaScript V | Curso Introductorio</title>
+    
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+    /* border: 2px dashed green; */
+    font-family: 'Avenir-Roman';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: justify;
+    padding: 0 2rem 4rem 300px;
+    width: 100%;
+    max-width: 98vw;
+    margin-top: 60px;
+  }
+  
+  .lesson .hide {
+    display: none;
+  }
+  
+  .lesson :target:before {
+    content: '';
+    display: block;
+    height: 85px;
+  }
+  
+  .lesson img[alt~='HenryLogo'] {
+    display: none;
+  }
+  
+  .lesson h1 {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #2e2e2e;
+  
+    border-bottom-style: solid;
+    border-bottom-width: 25px;
+    border-bottom-color: #ffff01;
+  
+    height: 64px;
+    margin: 0px 0 50px 0;
+  }
+  
+  .lesson h1 + h4 {
+    margin: -40px 0 3rem 0;
+    font-family: 'Avenir-Black';
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+  }
+  
+  .lesson h1 + h2 {
+    margin-top: 0;
+  }
+  
+  .lesson h2 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h2#homework {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #1fa32a;
+  }
+  
+  .lesson h3 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 24px;
+    font-display: swap;
+    line-height: 24px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h4 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson img {
+    width: auto;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson img[alt~='logo'] {
+    box-shadow: none;
+    width: 350px;
+  }
+  
+  .lesson img[alt~='no-box'] {
+    box-shadow: none;
+  }
+  
+  .lesson ul {
+    list-style: square;
+  }
+  
+  .lesson li {
+    font-family: 'Avenir-Heavy';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+  }
+  
+  .lesson a {
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+  }
+  
+  .lesson .iframeContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson .sandboxContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+  .lesson iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lesson table {
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    text-align: center !important;
+  }
+  
+  .lesson th {
+    background-color: rgb(170, 170, 170);
+    padding: 8px;
+    text-align: center !important;
+  }
+  
+  .lesson thead {
+    text-align: center !important;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+  
+  .lesson td {
+    padding: 5px;
+    text-align: center !important;
+  }
+  
+  tr + td {
+    border-right: 1px solid gray !important;
+  }
+  
+  .rightBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    width: 97vw;
+    max-width: 1500px;
+    margin-top: 5rem;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .homeworkBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .homeworkBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .homeworkBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: green;
+  }
+  
+  .quizzBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .quizzBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .quizzBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: rgb(128, 79, 0);
+  }
+  
+  .readingTime {
+    font-family: 'Avenir-Book';
+    font-size: 14px;
+    font-display: swap;
+    line-height: 119.6%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reader-bar-start">
+
+      <div class="headerResponsive">
+        <div class="leftContent">
+          <a href="/" title="Volver al índice del curso"><img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio"></a>
+          <span>JavaScript V</span>
+        </div>
+        <div class="menuDiv">
+          <input type="checkbox">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times"></i>
+          <nav>
+            <ul><li><a href="/lecciones/introductorio/">Intro</a></li>
+<li><a href="/lecciones/introductorio/Primeros_Pasos/">Primeros Pasos</a></li>
+<li><a href="/lecciones/introductorio/Git/">Git</a></li>
+<li><a href="/lecciones/introductorio/Git_y_GitHub/">Git y GitHub</a></li>
+<li><a href="/lecciones/introductorio/Conceptos/">Conceptos</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_I/">JS I</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_II/">JS II</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_III/">JS III</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_IV/">JS IV</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_V/">JS V</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_VI/">JS VI</a></li>
+<li><a href="/lecciones/introductorio/HTML/">HTML</a></li>
+<li><a href="/lecciones/introductorio/CSS/">CSS</a></li>
+<li><a href="/lecciones/introductorio/Glosario/">Glosario</a></li></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="headerContainer">
+        <div class="headerContained">
+          <a href="/" title="Volver al índice del curso"><img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio"></a>
+          <div>
+            <span class="lessonTitle">JavaScript V</span> | <span>Curso Introductorio</span>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="topnav" id='myTopnav' >
+          
+          <ul class="nav">
+      
+      <li class="link">
+        <a href="/lecciones/introductorio/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Primeros_Pasos/" class="nav-link" role="menuitem">Primeros Pasos</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Git/" class="nav-link" role="menuitem">Git</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Git_y_GitHub/" class="nav-link" role="menuitem">Git y GitHub</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Conceptos/" class="nav-link" role="menuitem">Conceptos</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_I/" class="nav-link" role="menuitem">JS I</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_II/" class="nav-link" role="menuitem">JS II</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_III/" class="nav-link" role="menuitem">JS III</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_IV/" class="nav-link" role="menuitem">JS IV</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">JS V</span>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_VI/" class="nav-link" role="menuitem">JS VI</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/HTML/" class="nav-link" role="menuitem">HTML</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/CSS/" class="nav-link" role="menuitem">CSS</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Glosario/" class="nav-link" role="menuitem">Glosario</a>
+      </li>
+    </ul>
+        </div>
+
+        <div class='sidebar'>
+          <div class="tocTitle">
+            Contenido de la clase
+            </div>
+          <div class="tocBox">
+            
+            <nav class="toc" >
+        <ul><li><a href="#clases">Clases </a><ul><li><a href="#class-e-instanciaci%C3%B3n-pseudo-cl%C3%A1sica">Class e instanciación pseudo-clásica </a></li><li><a href="#this-en-las-clases">this en las clases </a></li></ul></li><li><a href="#prototype">Prototype </a><ul><li><a href="#object.create">Object.create </a></li><li><a href="#object.assign">Object.assign </a></li></ul></li><li><a href="#herencia-cl%C3%A1sica">Herencia Clásica </a></li><li><a href="#herencia-en-javascript">Herencia en JavaScript </a><ul><li><a href="#constructores-anidados">Constructores Anidados </a></li></ul></li><li><a href="#recursos-adicionales">Recursos adicionales </a></li><li><a href="#homework">Homework </a></li></ul>
+      </nav>
+          </div>
+        </div>
+
+        <div class='rightBox'>
+          <div class="readingTime">
+                    Tiempo de lectura 14 min
+          </div>
+
+          
+        </div>
+
+        <div class='lesson'>
+          
+          <h1 id="javascript-v" tabindex="-1">JavaScript V <a class="anchor-link" href="#javascript-v"></a></h1>
+<h4 id="clases-y-prototype" tabindex="-1">Clases y prototype <a class="anchor-link" href="#clases-y-prototype"></a></h4>
+<!--
+<div class="iframeContainer">
+<iframe src="https://player.vimeo.com/video/425235994?h=c566b7089f&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="05 - JS V - Classes"></iframe>
+</div>
+-->
+<h2 id="clases" tabindex="-1">Clases <a class="anchor-link" href="#clases"></a></h2>
+<p>Muchas veces cuando creamos un objeto, estamos creando una plantilla. En lugar de copiar esa plantilla una y otra vez, Javascript nos da acceso a lo que llamamos un constructor o <code>class</code>. Las clases comparten gran parte de la misma funcionalidad que los objetos normales, pero también se expande mucho en esa funcionalidad. Las clases son útiles para crear muchos objetos que comparten algunas de las mismas propiedades y métodos (como los usuarios en un sitio web).</p>
+<h3 id="class-e-instanciaci%C3%B3n-pseudo-cl%C3%A1sica" tabindex="-1">Class e instanciación pseudo-clásica <a class="anchor-link" href="#class-e-instanciaci%C3%B3n-pseudo-cl%C3%A1sica"></a></h3>
+<p>Si tienes experiencia en un lenguaje orientado a objetos (como Java o C#), probablemente estés familiarizado con el concepto de clases. Si bien Javascript no proporciona un “verdadero” sistema de clases, hay algo muy familiar. En aras de la discusión, llamaremos a nuestros objetos de clase ‘clases’. Se instancia de manera pseudo clásica, usando la palabra clave <code>new</code>, y puede tomar argumentos.</p>
+<p>En este ejemplo crearemos una clase <code>Gato</code>. La convención para las clases consiste en dar un nombre en mayúscula al nombre de todo lo que se pueda instanciar con la palabra clave <code>new</code>. Cuando usamos la palabra clave <code>new</code>, Javascript hace un gran trabajo detrás de escena para nosotros y crea y devuelve un objeto automáticamente.</p>
+<pre class="language-js"><code class="hljs language-js"><span class="token keyword">function</span> <span class="token function">Gato</span><span class="token punctuation">(</span><span class="token parameter">nombre</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// El nuevo operador crea un objeto, "this"</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">maullar</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token string">'Mi nombre es '</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">+</span> <span class="token string">' ... Meow!'</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token comment">// Devuelve el objeto "this"</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">const</span> sam <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gato</span><span class="token punctuation">(</span><span class="token string">'Sam'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">const</span> kitty <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gato</span><span class="token punctuation">(</span><span class="token string">'Kitty'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sam<span class="token punctuation">.</span><span class="token function">maullar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'Mi nombre es Sam ... Meow!'</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>kitty<span class="token punctuation">.</span><span class="token function">maullar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'Mi nombre es Kitty ... Meow!'</span><br></code></pre>
+<h3 id="this-en-las-clases" tabindex="-1"><em><strong>this</strong></em> en las clases <a class="anchor-link" href="#this-en-las-clases"></a></h3>
+<p>La palabra clave <code>this</code> puede comenzar a volverse muy confusa cuando comenzamos a usarla en clases. En el último ejemplo lo usamos en el método de los maullidos. Una buena regla general si no está seguro de a qué se refiere <code>this</code>, es observar dónde se llama el método y el objeto a la izquierda del ‘punto’. Ese es el objeto al que se refiere <code>this</code>.</p>
+<h2 id="prototype" tabindex="-1"><em><strong>Prototype</strong></em> <a class="anchor-link" href="#prototype"></a></h2>
+<p>La creación de funciones es costosa (refiriéndonos a la capacidad de memoria de una computadora) y cada vez que creamos un nuevo objeto de clase con métodos, estamos recreando esos métodos en la memoria. Puede imaginar que si estamos creando miles de objetos de clase a partir de una clase con docenas de métodos, la memoria se acumulará rápidamente (20.000 - 40.000 métodos). Las clases tienen una forma única de establecer un método una vez y dar acceso a cada objeto de esa clase a esos métodos. Esto se llama el <code>prototype</code>. Cada clase tiene una propiedad <em>prototype</em>, que luego podemos establecer en métodos:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">function</span> <span class="token function">Usuario</span><span class="token punctuation">(</span><span class="token parameter">nombre<span class="token punctuation">,</span> github</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>github <span class="token operator">=</span> github<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token class-name">Usuario</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">introduccion</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token string">'Mi nombre es '</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">+</span> <span class="token string">', mi usuario de Github es '</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>github <span class="token operator">+</span> <span class="token string">'.'</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">let</span> juan <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Usuario</span><span class="token punctuation">(</span><span class="token string">'Juan'</span><span class="token punctuation">,</span> <span class="token string">'juan.perez'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">let</span> antonio <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Usuario</span><span class="token punctuation">(</span><span class="token string">'Antonio'</span><span class="token punctuation">,</span> <span class="token string">'atralice'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>juan<span class="token punctuation">.</span><span class="token function">introduccion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mi nombre es Juan, mi usuario de Github es juan.perez.</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>antonio<span class="token punctuation">.</span><span class="token function">introduccion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mi nombre es Antonio, mi usuario de Github es atralice.</span><br></code></pre>
+<p>Los métodos de <code>prototype</code> tienen acceso a la palabra clave <code>this</code> y, al igual que antes, siempre apuntará al objeto (a la izquierda del punto) que lo está llamando.</p>
+<p>Hasta ahora siempre que teníamos que crear un objeto nuevo declarábamos un object literal, pero vamos a ver que hay otros métodos que nos da el prototype de Object para cumplir esa tarea</p>
+<h3 id="object.create" tabindex="-1">Object.create <a class="anchor-link" href="#object.create"></a></h3>
+<p>El método <code>create</code> de los objetos nos permite crear un nuevo objeto a partir de un prototype especificado.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// creo un objecto con un objeto vacio como proto</span><br><span class="token operator">></span> <span class="token keyword">var</span> obj <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><br><br><span class="token operator">></span> obj<br><span class="token operator">&lt;</span> Object <span class="token punctuation">{</span><span class="token punctuation">}</span><br><br><span class="token comment">// creo un objeto a partir de un proto de Objeto</span><br><span class="token operator">></span> <span class="token keyword">var</span> obj <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><br><span class="token comment">// que es lo mismo que crear un objeto vacio literal</span><br><span class="token operator">></span> <span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre>
+<h3 id="object.assign" tabindex="-1">Object.assign <a class="anchor-link" href="#object.assign"></a></h3>
+<p>El método <code>assign</code> de los objetos te permite agregar propiedades a un objeto pasado por parámetro</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> <span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><br><br><span class="token comment">// No hace falta guardar el resultado porque los objetos se pasan por `referencia`</span><br><span class="token operator">></span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">nombre</span><span class="token operator">:</span><span class="token string">'Emi'</span><span class="token punctuation">,</span> <span class="token literal-property property">apellido</span><span class="token operator">:</span><span class="token string">'Chequer'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><br><br><span class="token operator">></span> obj<span class="token punctuation">.</span>nombre<br><span class="token operator">&lt;</span> <span class="token string">'Emi'</span> </code></pre>
+<h2 id="herencia-cl%C3%A1sica" tabindex="-1">Herencia Clásica <a class="anchor-link" href="#herencia-cl%C3%A1sica"></a></h2>
+<p>En el paradigma de <em>Programación Orientada a Objetos</em> un tema muy importante es la <em>Herencia y Polimorfismo</em> y de las clases (los vamos a llamar constructores por ahora).</p>
+<p>Cuando hacemos referencia a <strong>Herencia</strong> nos referimos a la capacidad de un constructor de <em>heredar</em> propiedades y métodos de otro constructor, así como un Gato es Mamífero antes que Gato, y hereda sus ‘propiedades’ (nace, se reproduce y muere).</p>
+<p>Cuando hablamos de <strong>Polimorfismo</strong> nos referimos a la capacidad de que objetos distintos puedan responder a un llamado igual de acuerdo a su propia naturaleza.</p>
+<h2 id="herencia-en-javascript" tabindex="-1">Herencia en JavaScript <a class="anchor-link" href="#herencia-en-javascript"></a></h2>
+<p>En JS a diferencia de la herencia clásica nos manejamos con prototipos, que van a tomar los métodos pasados por sus ‘padres’ mediante la <code>Prototype Chain</code>.</p>
+<p>Cuando generamos un arreglo nuevo podemos acceder a métodos como <code>map</code> o <code>slice</code> gracias a que los heredamos del Objeto <code>Array</code> que esta vinculado en la propiedad <code>__proto__</code> y es el siguiente en el <code>Prototype Chain</code>.</p>
+<p>Nosotros también podemos generar nuestros propios constructores que de los cuales heredar. Creemos un constructor de el cual pueda haber variantes.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> <span class="token keyword">function</span> <span class="token function">Persona</span><span class="token punctuation">(</span><span class="token parameter">nombre<span class="token punctuation">,</span>apellido<span class="token punctuation">,</span>ciudad</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>apellido <span class="token operator">=</span> apellido<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>ciudad <span class="token operator">=</span> ciudad<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br><span class="token operator">></span> <span class="token class-name">Persona</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">saludar</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Soy '</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>nombre<span class="token operator">+</span><span class="token string">' de '</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>ciudad<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br><span class="token operator">></span> <span class="token keyword">var</span> Emi <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Persona</span><span class="token punctuation">(</span><span class="token string">'Emi'</span><span class="token punctuation">,</span> <span class="token string">'Chequer'</span><span class="token punctuation">,</span> <span class="token string">'Buenos Aires'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token operator">></span> Emi<span class="token punctuation">.</span><span class="token function">saludar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token operator">&lt;</span> <span class="token string">'Soy Emi de Buenos Aires'</span></code></pre>
+<p>Ahora todo Alumno del curso antes de Alumno es una Persona, asique podríamos decir que un Alumno hereda las propiedades de ser Persona.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> <span class="token keyword">function</span> <span class="token function">Alumno</span><span class="token punctuation">(</span><span class="token parameter">nombre<span class="token punctuation">,</span>apellido<span class="token punctuation">,</span>ciudad<span class="token punctuation">,</span>curso</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// podría copiar las mismas propiedades de Persona acá adentro</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>apellido <span class="token operator">=</span> apellido<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>ciudad <span class="token operator">=</span> ciudad<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>curso <span class="token operator">=</span> curso<br>  <span class="token punctuation">}</span></code></pre>
+<h3 id="constructores-anidados" tabindex="-1">Constructores Anidados <a class="anchor-link" href="#constructores-anidados"></a></h3>
+<p>Pero en este caso estaríamos repitiendo código, y si en un futuro quisiera cambiar una propiedad tendría que hacerlo en ambos constructores.<br>
+Descartemos esta opción.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// lo que nosotros queremos es poder reutilizar las propiedades de persona,</span><br><span class="token operator">></span> <span class="token keyword">function</span> <span class="token function">Alumno</span><span class="token punctuation">(</span><span class="token parameter">nombre<span class="token punctuation">,</span> apellido<span class="token punctuation">,</span> ciudad<span class="token punctuation">,</span> curso</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// usemos nuestro constructor Persona dentro del de Alumno</span><br>    <span class="token function">Persona</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> nombre<span class="token punctuation">,</span> apellido<span class="token punctuation">,</span> ciudad<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token comment">// vamos a necesitar el call porque queremos que las propiedades de persona, queden en bajo el objeto que va a devolver Alumno, y no uno nuevo del constructor Persona.</span><br>    <span class="token comment">// luego le paso los valores que quiero que reciba el constructor de Alumno</span><br>    <br>    <span class="token comment">// finalmente le agrego los puntos propios de Alumno</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>curso <span class="token operator">=</span> curso<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>empresa <span class="token operator">=</span> <span class="token string">'Mi Curso'</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br><span class="token operator">></span> <span class="token keyword">var</span> toni <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Alumno</span><span class="token punctuation">(</span><span class="token string">'Toni'</span><span class="token punctuation">,</span> <span class="token string">'Tralice'</span><span class="token punctuation">,</span> <span class="token string">'Tucuman'</span><span class="token punctuation">,</span> <span class="token string">'Web Full Stack'</span><span class="token punctuation">)</span><br><br><span class="token comment">// Ahora si tenemos nuestra instancia creada a partir de ambos constructores</span><br><span class="token operator">></span> toni<span class="token punctuation">.</span>curso<br><span class="token operator">&lt;</span> Web Full Stack<br><br><span class="token operator">></span> toni<span class="token punctuation">.</span>apellido<br><span class="token operator">&lt;</span> Tralice<br><br><span class="token operator">></span> toni<span class="token punctuation">.</span><span class="token function">saludar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token operator">&lt;</span> Uncaught TypeError<span class="token operator">:</span> toni<span class="token punctuation">.</span>saludar is not a <span class="token string">'function'</span><br><span class="token comment">// que paso?</span></code></pre>
+<p>Como podemos ver los métodos de <em>Personas</em> no fueron pasados a nuestros <em>Alumnos</em>. Veamos un poco el porqué.</p>
+<p>El constructor del <code>__proto__</code> esta ligado a Alumno y luego al <code>Object Object</code> de JS. Pero el método <code>saludar</code> esta en el objeto <code>prototype</code> de Personas… , y esta perfecto, así es como debería funcionar, las instancias acceden al <code>__proto__</code> que fue vinculado por el constructor para ver que métodos tienen. Nuestro problema es que al llamar a Persona con <code>call</code> en vez de con el método <code>new</code> no se esta haciendo ese vinculo en el que <code>Persona.prototype</code> se mete en nuestro <code>Prototype Chain</code>, y entonces las instancias de Alumno no tienen acceso a los métodos de Persona</p>
+<p>Vamos a solucionar ese problema agregando al prototipo los métodos de Persona, para esto vamos a usar el método <code>Object.create</code>.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// usamos `Object.create` porque este guardaba el argumento pasado como `__proto__` del objeto a retornar</span><br><span class="token operator">></span> <span class="token class-name">Alumno</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">Persona</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><br><br><span class="token comment">// si recuerdan el objeto prototype siempre tenia una propiedad constructor que hacia referencia a la función en si, con la asignación que hicimos arriba lo pisamos, por lo que deberíamos volver a agregarlo.</span><br><span class="token operator">></span> <span class="token class-name">Alumno</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> Alumno<br><br><span class="token operator">></span> <span class="token keyword">var</span> Franco <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Alumno</span><span class="token punctuation">(</span><span class="token string">'Franco'</span><span class="token punctuation">,</span><span class="token string">'Etcheverri'</span><span class="token punctuation">,</span><span class="token string">'Montevideo'</span><span class="token punctuation">,</span><span class="token string">'Bootcamp'</span><span class="token punctuation">)</span><br><br><span class="token operator">></span> Franco<span class="token punctuation">.</span><span class="token function">saludar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token operator">&lt;</span> <span class="token string">'Soy Franco de Montevideo'</span></code></pre>
+<h2 id="recursos-adicionales" tabindex="-1">Recursos adicionales <a class="anchor-link" href="#recursos-adicionales"></a></h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">MDN: Classes</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype">MDN: Prototype</a></li>
+</ul>
+<h2 id="homework" tabindex="-1">Homework <a class="anchor-link" href="#homework"></a></h2>
+<p>Completa la tarea descrita en el archivo <a href="./homework">README</a></p>
+<hr>
+<h4 id="si-tienes-dudas-sobre-este-tema%2C-puedes-consultarlas-en-el-canal-06_js-v-de-slack" tabindex="-1">Si tienes dudas sobre este tema, puedes consultarlas en el canal <em><strong>06_js-v</strong></em> de Slack <a class="anchor-link" href="#si-tienes-dudas-sobre-este-tema%2C-puedes-consultarlas-en-el-canal-06_js-v-de-slack"></a></h4>
+
+        </div>
+
+      </main>
+
+      
+
+      <div class="footerContainer">
+        <div class="footerContained">
+          <p>Material de estudio personal</p>
+        </div>
+      </div>
+
+      <div class="readerBarDiv">
+        
+  <!-- up button -->
+  <div>
+    <button
+      id="upBtn"
+      style="position:fixed; width:32px; height:32px; border-radius:50%; border:none; background-color:black; right:20px; bottom:55px; color:white; z-index:999; focus:outline-none; cursor:pointer; transition-duration:500ms; opacity:0; pointer-events:none;"
+    ><i class="arrow up"></i></button>
+  </div>
+  
+  <style>
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  </style>
+
+  <script>
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      upBtn.style.opacity = 1;
+      upBtn.style.pointerEvents = 'auto';     
+    }
+    else {
+      upBtn.style.opacity = 0;
+      upBtn.style.pointerEvents = 'none';
+    }
+  })
+
+  upBtn.addEventListener('click', () => {
+    let start = document.querySelector('.reader-bar-start')
+    start.scrollIntoView({behavior: "smooth"})
+  })
+  </script>
+
+  <!-- reader bar -->
+  <div id="readerBarContainer" style="height:3px;width:100%;background-color:black;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;">
+    <div id="readerBar" style="height:3px;width:0;background-color:#2E4F8F;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;"></div>
+  </div>
+
+  <script>
+    let winH = window.innerHeight;
+    const content = document.querySelector('.reader-bar-start');
+
+    let contentH = content.offsetHeight;
+    let contentS = contentH - winH;
+    let readerBar = document.getElementById('readerBar');
+    window.addEventListener('load', () => {
+      document.addEventListener ('scroll', updateBar);
+    })
+    window.addEventListener('resize', redefine)
+
+    function redefine() {
+      winH = window.innerHeight;
+      contentH = content.offsetHeight;
+      contentS = contentH - winH;
+      updateBar();
+    }
+
+    function updateBar() {
+      const pagePos = window.scrollY; 
+      const updatedBar = pagePos * 100 / contentS;
+      readerBar.style.width = updatedBar + "%";
+    }
+  </script>
+  
+      </div>
+
+    </body>
+  </html>

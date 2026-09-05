@@ -1,0 +1,30 @@
+/* Portada: listado de modulos y sus lecciones. */
+.contenedor {
+  max-width: var(--ancho-contenedor);
+  margin: 0 auto;
+  padding: 1.5rem 1.2rem 4rem;
+}
+
+.indice ol {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.8rem;
+}
+
+.indice li + li {
+  border-top: 1px solid var(--borde);
+}
+
+.indice li a {
+  display: block;
+  padding: 0.6rem 0.2rem;
+  text-decoration: none;
+  color: var(--marca);
+  transition: background 0.12s ease, padding-left 0.12s ease;
+  border-radius: var(--radio);
+}
+
+.indice li a:hover {
+  background: var(--fondo-sutil);
+  padding-left: 0.6rem;
+}

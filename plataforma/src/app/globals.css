@@ -1,0 +1,9 @@
+/*
+  Estilos de la PLATAFORMA unicamente.
+
+  Las lecciones las genera Eleventy y traen su propio CSS inline: este
+  archivo no las toca. Aqui solo viven la portada, el panel de notas y las
+  demas pantallas propias de la aplicacion.
+*/
+@import '../estilos/plataforma/variables.css';
+@import '../estilos/plataforma/indice.css';

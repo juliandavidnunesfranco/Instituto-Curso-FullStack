@@ -1,0 +1,1368 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>JavaScript II | Curso Introductorio</title>
+    
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+    /* border: 2px dashed green; */
+    font-family: 'Avenir-Roman';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: justify;
+    padding: 0 2rem 4rem 300px;
+    width: 100%;
+    max-width: 98vw;
+    margin-top: 60px;
+  }
+  
+  .lesson .hide {
+    display: none;
+  }
+  
+  .lesson :target:before {
+    content: '';
+    display: block;
+    height: 85px;
+  }
+  
+  .lesson img[alt~='HenryLogo'] {
+    display: none;
+  }
+  
+  .lesson h1 {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #2e2e2e;
+  
+    border-bottom-style: solid;
+    border-bottom-width: 25px;
+    border-bottom-color: #ffff01;
+  
+    height: 64px;
+    margin: 0px 0 50px 0;
+  }
+  
+  .lesson h1 + h4 {
+    margin: -40px 0 3rem 0;
+    font-family: 'Avenir-Black';
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+  }
+  
+  .lesson h1 + h2 {
+    margin-top: 0;
+  }
+  
+  .lesson h2 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h2#homework {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #1fa32a;
+  }
+  
+  .lesson h3 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 24px;
+    font-display: swap;
+    line-height: 24px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h4 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson img {
+    width: auto;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson img[alt~='logo'] {
+    box-shadow: none;
+    width: 350px;
+  }
+  
+  .lesson img[alt~='no-box'] {
+    box-shadow: none;
+  }
+  
+  .lesson ul {
+    list-style: square;
+  }
+  
+  .lesson li {
+    font-family: 'Avenir-Heavy';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+  }
+  
+  .lesson a {
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+  }
+  
+  .lesson .iframeContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson .sandboxContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+  .lesson iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lesson table {
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    text-align: center !important;
+  }
+  
+  .lesson th {
+    background-color: rgb(170, 170, 170);
+    padding: 8px;
+    text-align: center !important;
+  }
+  
+  .lesson thead {
+    text-align: center !important;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+  
+  .lesson td {
+    padding: 5px;
+    text-align: center !important;
+  }
+  
+  tr + td {
+    border-right: 1px solid gray !important;
+  }
+  
+  .rightBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    width: 97vw;
+    max-width: 1500px;
+    margin-top: 5rem;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .homeworkBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .homeworkBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .homeworkBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: green;
+  }
+  
+  .quizzBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .quizzBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .quizzBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: rgb(128, 79, 0);
+  }
+  
+  .readingTime {
+    font-family: 'Avenir-Book';
+    font-size: 14px;
+    font-display: swap;
+    line-height: 119.6%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reader-bar-start">
+
+      <div class="headerResponsive">
+        <div class="leftContent">
+          <a href="/" title="Volver al índice del curso"><img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio"></a>
+          <span>JavaScript II</span>
+        </div>
+        <div class="menuDiv">
+          <input type="checkbox">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times"></i>
+          <nav>
+            <ul><li><a href="/lecciones/introductorio/">Intro</a></li>
+<li><a href="/lecciones/introductorio/Primeros_Pasos/">Primeros Pasos</a></li>
+<li><a href="/lecciones/introductorio/Git/">Git</a></li>
+<li><a href="/lecciones/introductorio/Git_y_GitHub/">Git y GitHub</a></li>
+<li><a href="/lecciones/introductorio/Conceptos/">Conceptos</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_I/">JS I</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_II/">JS II</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_III/">JS III</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_IV/">JS IV</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_V/">JS V</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_VI/">JS VI</a></li>
+<li><a href="/lecciones/introductorio/HTML/">HTML</a></li>
+<li><a href="/lecciones/introductorio/CSS/">CSS</a></li>
+<li><a href="/lecciones/introductorio/Glosario/">Glosario</a></li></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="headerContainer">
+        <div class="headerContained">
+          <a href="/" title="Volver al índice del curso"><img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio"></a>
+          <div>
+            <span class="lessonTitle">JavaScript II</span> | <span>Curso Introductorio</span>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="topnav" id='myTopnav' >
+          
+          <ul class="nav">
+      
+      <li class="link">
+        <a href="/lecciones/introductorio/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Primeros_Pasos/" class="nav-link" role="menuitem">Primeros Pasos</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Git/" class="nav-link" role="menuitem">Git</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Git_y_GitHub/" class="nav-link" role="menuitem">Git y GitHub</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Conceptos/" class="nav-link" role="menuitem">Conceptos</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_I/" class="nav-link" role="menuitem">JS I</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">JS II</span>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_III/" class="nav-link" role="menuitem">JS III</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_IV/" class="nav-link" role="menuitem">JS IV</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_V/" class="nav-link" role="menuitem">JS V</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_VI/" class="nav-link" role="menuitem">JS VI</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/HTML/" class="nav-link" role="menuitem">HTML</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/CSS/" class="nav-link" role="menuitem">CSS</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Glosario/" class="nav-link" role="menuitem">Glosario</a>
+      </li>
+    </ul>
+        </div>
+
+        <div class='sidebar'>
+          <div class="tocTitle">
+            Contenido de la clase
+            </div>
+          <div class="tocBox">
+            
+            <nav class="toc" >
+        <ul><li><a href="#undefined-y-null">Undefined y null </a></li><li><a href="#veracidad">Veracidad </a></li><li><a href="#operadores-de-comparaci%C3%B3n-(continuaci%C3%B3n)">Operadores de comparación (continuación) </a></li><li><a href="#flujos-de-control-(continuaci%C3%B3n)">Flujos de control (continuación) </a></li><li><a href="#operadores-l%C3%B3gicos">Operadores lógicos </a><ul><li><a href="#%26%26">&amp;&amp; </a></li><li><a href="#%7C%7C">|| </a></li><li><a href="#!">! </a></li><li><a href="#notas-sobre-operadores-l%C3%B3gicos">Notas sobre operadores lógicos </a></li></ul></li><li><a href="#bucles-for">Bucles for </a><ul><li><a href="#el-operador-%2B%2B">El operador ++ </a></li><li><a href="#bucles-infinitos">Bucles infinitos </a></li></ul></li><li><a href="#arguments">Arguments </a></li><li><a href="#la-mejor-herramienta-del-programador">La mejor herramienta del programador </a></li><li><a href="#recursos-adicionales">Recursos adicionales </a></li><li><a href="#homework">Homework </a></li></ul>
+      </nav>
+          </div>
+        </div>
+
+        <div class='rightBox'>
+          <div class="readingTime">
+                    Tiempo de lectura 20 min
+          </div>
+
+          
+        </div>
+
+        <div class='lesson'>
+          
+          <h1 id="javascript-ii" tabindex="-1">JavaScript II <a class="anchor-link" href="#javascript-ii"></a></h1>
+<h4 id="flujos-de-control%2C-operadores-l%C3%B3gicos%2C-bucles-for" tabindex="-1">Flujos de control, operadores lógicos, bucles <em><strong>for</strong></em> <a class="anchor-link" href="#flujos-de-control%2C-operadores-l%C3%B3gicos%2C-bucles-for"></a></h4>
+<!-- En esta lección cubriremos:
+
+* `Undefined` y `null`
+* Operadores de comparación (continuación)
+* Flujos de control (continuación)
+* Operados lógicos
+* Bucles `for`
+* `arguments` -->
+<!--
+<div class="iframeContainer">
+<iframe src="https://player.vimeo.com/video/424318886?h=aa9eb809cc&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="02 - JS II - Flujos de control"></iframe>
+</div>
+-->
+<h2 id="undefined-y-null" tabindex="-1">Undefined y null <a class="anchor-link" href="#undefined-y-null"></a></h2>
+<p>Hay un par de objetos Javascript que realmente no encajan en ningún tipo de dato. Esos son los valores <code>undefined</code> y <code>null</code>. Obtendrás <code>undefined</code> cuando busques <em>algo</em> que no existe, como una variable que aún no tiene un valor. <code>undefined</code> simplemente significa que lo que estás pidiendo no existe.</p>
+<pre class="language-javascript"><code class="hljs language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>variableInexistente<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span></code></pre>
+<p><code>null</code> es un objeto que nosotros, los desarrolladores, establecemos cuando queremos decirles a otros desarrolladores que el elemento que están buscando existe, pero no hay ningún valor asociado con él. Mientras que <code>undefined</code> está configurado por Javascript, <code>null</code> está configurado por un desarrollador. Si alguna vez recibes <code>null</code>, debes saber que otro desarrollador estableció ese valor en <code>null</code></p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">let</span> numeroTelefono <span class="token operator">=</span> <span class="token string">'11-1234-5678'</span><span class="token punctuation">;</span><br>numeroTelefono <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span><br><br>numeroTelefono<span class="token punctuation">;</span> <span class="token comment">// null</span></code></pre>
+<p>Una última cosa a tener en cuenta, ni <code>undefined</code> ni <code>null</code> son cadenas, están escritas tal como están sin comillas, como un booleano.</p>
+<h2 id="veracidad" tabindex="-1">Veracidad <a class="anchor-link" href="#veracidad"></a></h2>
+<p>En estas lecciones hemos hablado sobre los valores booleanos, <code>true</code> y <code>false</code>. Cuando se usa una declaración <code>if</code> u otra declaración que espera un valor booleano (como <code>!</code>, <em>NOT</em>), y la expresión dada no es un valor booleano, Javascript hará algo llamado “coerción de tipo” y transformará lo que sea que se le entregue a un valor booleano. Esto se conoce como “truthy” y “falsey”. Cada tipo de datos tiene una veracidad. Acá hay unos ejemplos:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token comment">// Datos que son forzados a verdaderos/"true"</span><br><span class="token boolean">true</span><br><span class="token number">1</span><br><span class="token string">' '</span><br><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token comment">// Un array, aprenderemos más sobre esto más adelante</span><br><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">// Un objeto, aprenderemos más sobre esto más adelante</span><br><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><br><br><span class="token comment">// Datos que son forzados a falsos/"false"</span><br><span class="token boolean">false</span><br><span class="token number">0</span><br><span class="token keyword">undefined</span><br><span class="token keyword">null</span><br><span class="token string">''</span> <span class="token comment">// Una cadena vacía</span></code></pre>
+<h2 id="operadores-de-comparaci%C3%B3n-(continuaci%C3%B3n)" tabindex="-1">Operadores de comparación (continuación) <a class="anchor-link" href="#operadores-de-comparaci%C3%B3n-(continuaci%C3%B3n)"></a></h2>
+<p>En la última lección usamos operadores de comparación, ahora profundizaremos un poco más sobre cómo funcionan y luego presentaremos un pariente cercano de operadores de comparación, los “operadores lógicos”.</p>
+<p>En la última lección presentamos nuestros operadores de comparación, (<code>&gt;</code> <code>&gt;=</code> <code>&lt;</code> <code>&lt;=</code> <code>===</code> <code>!==</code>). Estos operadores funcionan como lo harían en una clase de matemáticas, mayor que, menor que, etc. Utilizamos estos operadores para evaluar dos expresiones. A medida que la computadora ejecuta el código, el operador devolverá un <code>verdadero</code> (si la declaración es verdadera) o un <code>falso</code>.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token number">1</span> <span class="token operator">></span> <span class="token number">2</span><span class="token punctuation">;</span>     <span class="token comment">// false</span><br><span class="token number">2</span> <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span>     <span class="token comment">// true</span><br><span class="token number">10</span> <span class="token operator">>=</span> <span class="token number">10</span><span class="token punctuation">;</span>  <span class="token comment">// true</span><br><span class="token number">100</span> <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// false</span></code></pre>
+<p>El “triple igual” (<code>===</code>) no debe confundirse con un solo signo igual (que indica asignar un valor a una variable). El triple igual comparará todo sobre los dos elementos, incluido el tipo, y devolverá si son exactamente iguales o no:</p>
+<p>(Algo a tener en cuenta: hay un “doble igual” (<code>==</code>) que comparará dos elementos, pero NO tendrá en cuenta sus tipos (<code>1 == '1' // verdadero</code>). Debido a esto , se considera una mala práctica usar el doble igual. Nos gustaría verte siempre usando el triple, y siempre nos verás usándolo.)</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token number">1</span> <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">;</span>          <span class="token comment">// true</span><br><span class="token number">1</span> <span class="token operator">===</span> <span class="token string">'1'</span><span class="token punctuation">;</span>        <span class="token comment">// false</span><br><span class="token string">'perro'</span> <span class="token operator">===</span> <span class="token string">'perro'</span><span class="token punctuation">;</span>  <span class="token comment">// true</span><br><span class="token string">'perro'</span> <span class="token operator">===</span> <span class="token string">'Perro'</span><span class="token punctuation">;</span>  <span class="token comment">// false</span></code></pre>
+<p>El último operador de comparación que nos gustaría presentarle tiene dos partes.</p>
+<p>Primero es el “NOT” (<code>!</code>). Cuando veas esto significará que estamos preguntando lo contrario de la expresión (volveremos a visitar el operador NOT más adelante en esta lección).</p>
+<p>Con eso en mente, podemos introducir el “no es igual” (<code>!==</code>). Esto devolverá verdadero si los artículos NO son iguales entre sí de alguna manera. Esto, como el triple igual, tiene en cuenta el tipo de dato.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token number">1</span> <span class="token operator">!==</span> <span class="token number">1</span><span class="token punctuation">;</span>          <span class="token comment">// false</span><br><span class="token number">1</span> <span class="token operator">!==</span> <span class="token string">'1'</span><span class="token punctuation">;</span>        <span class="token comment">// true</span><br><span class="token string">'perro'</span> <span class="token operator">!==</span> <span class="token string">'perro'</span><span class="token punctuation">;</span>  <span class="token comment">// false</span><br><span class="token string">'perro'</span> <span class="token operator">!==</span> <span class="token string">'Perro'</span><span class="token punctuation">;</span>  <span class="token comment">// true</span></code></pre>
+<h2 id="flujos-de-control-(continuaci%C3%B3n)" tabindex="-1">Flujos de control (continuación) <a class="anchor-link" href="#flujos-de-control-(continuaci%C3%B3n)"></a></h2>
+<p>En la última lección aprendimos sobre el operador <code>if</code>. Podemos usar <code>if</code> para verificar y ver si una expresión es <code>true</code>, si es así, ejecute algún código, o si no es así, que omita el código y siga ejecutando el programa.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">===</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'La expresión es verdadera'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Para complementar a <code>if</code>, también podemos usar las declaraciones <code>else if</code> y <code>else</code>. Estas declaraciones deben usarse con <code>if</code> y deben venir después de él. Estas declaraciones serán evaluadas si el inicial <code>if</code> devuelve <code>false</code>. Podemos pensar en el <code>else if</code> como otra declaración <code>if</code> que se ha encadenado (podemos tener tantas otras declaraciones <code>if</code> que queramos). Solo se ejecutará un bloque de código de instrucción <code>if</code> o <code>else if</code>. Si en algún momento una declaración devuelve <code>true</code>, ese código se ejecutará y el resto se omitirá:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Este código será omitido'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Este código correrá'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Este código NO correrá'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>La declaración <code>else</code> siempre aparecerá al final de una cadena <code>if-else</code> o <code>if</code>, y actuará de manera predeterminada. Si ninguna de las expresiones devuelve <code>true</code>, el bloque de código <code>else</code> se ejecutará sin importar qué. Si alguna de las expresiones anteriores <code>if</code> o <code>else if</code> son <code>true</code>, el bloque de código de instrucción <code>else</code> no se ejecutará.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Este código será omitido'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Este código NO correrá'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Este código correrá'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="operadores-l%C3%B3gicos" tabindex="-1">Operadores lógicos <a class="anchor-link" href="#operadores-l%C3%B3gicos"></a></h2>
+<p>También podemos combinar dos expresiones de igualdad y preguntar si alguna de las dos es verdadera, si ambas son verdaderas o si ninguna de ellas es verdadera. Para hacer esto, utilizaremos operadores lógicos.</p>
+<h3 id="%26%26" tabindex="-1">&amp;&amp; <a class="anchor-link" href="#%26%26"></a></h3>
+<p>El primer operador lógico que veremos es el operador “Y” (“AND”). Está escrito con dos símbolos (<code>&amp;&amp;</code>). Esto evaluará ambas expresiones y devolverá verdadero si AMBAS expresiones son <code>true</code>. Si uno (o ambos) de ellos es falso, este operador devolverá <code>false</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">100</span> <span class="token operator">></span> <span class="token number">10</span> <span class="token operator">&amp;&amp;</span> <span class="token number">10</span> <span class="token operator">===</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Ambas declaraciones son ciertas, este código se ejecutará'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">===</span> <span class="token number">9</span> <span class="token operator">&amp;&amp;</span> <span class="token number">10</span> <span class="token operator">></span> <span class="token number">9</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Una de las declaraciones es false, por lo que &amp;&amp; devolverá false, y este código no se ejecutará'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="%7C%7C" tabindex="-1">|| <a class="anchor-link" href="#%7C%7C"></a></h3>
+<p>El siguiente es el operador “Ó” (“OR”). Está escrito con dos barras verticales (<code>||</code>). Determinará si una de las expresiones es <code>true</code>. Devolverá <code>true</code> si una (o ambas) de las expresiones es <code>true</code>. Devolverá <code>false</code> si AMBAS expresiones son <code>false</code>:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">100</span> <span class="token operator">></span> <span class="token number">10</span> <span class="token operator">||</span> <span class="token number">10</span> <span class="token operator">===</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Ambas declaraciones son ciertas, este código se ejecutará'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">===</span> <span class="token number">9</span> <span class="token operator">||</span> <span class="token number">10</span> <span class="token operator">></span> <span class="token number">9</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Una de las declaraciones es true, por lo que || devolverá true y este código se ejecutará'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">===</span> <span class="token number">9</span> <span class="token operator">||</span> <span class="token number">1</span> <span class="token operator">></span> <span class="token number">9</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Ambas declaraciones son falsas, por lo que || devolverá false y este código no se ejecutará'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="!" tabindex="-1">! <a class="anchor-link" href="#!"></a></h3>
+<p>El último operador lógico es el operador “NOT” (“NO”). Está escrito como un solo signo de exclamación (<code>!</code>). Vimos este operador antes al determinar la igualdad (<code>!==</code>). Como antes, el operador NOT devolverá el valor booleano opuesto de lo que se le pasa:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'El ! devolverá true, porque es lo contrario de false, así que ste código se ejecutará'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'1 es igual a 1, de modo que la expresión devuelve true. El operador ! devolverá lo contrario de eso, por lo que este código NO se ejecutará'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="notas-sobre-operadores-l%C3%B3gicos" tabindex="-1">Notas sobre operadores lógicos <a class="anchor-link" href="#notas-sobre-operadores-l%C3%B3gicos"></a></h3>
+<p>Un par de cosas a tener en cuenta sobre los operadores lógicos.</p>
+<ul>
+<li>
+<p>Las expresiones se evalúan en orden, y la computadora omitirá cualquier expresión redundante. En una declaración <code>&amp;&amp;</code>, si la primera expresión es <code>false</code>, la segunda expresión no se evaluará porque AMBAS expresiones deben ser <code>true</code>. Lo mismo para la declaración <code>||</code>. Si la primera expresión es <code>verdadero</code>, la segunda no se evaluará porque solo debe haber una declaración <code>verdadero</code> para cumplir con los requisitos del operador.</p>
+</li>
+<li>
+<p>Usá paréntesis. Como vimos en el segundo ejemplo de operador <code>!</code>, usamos paréntesis para evaluar PRIMERO lo que estaba dentro de los paréntesis, luego aplicamos el operador <code>!</code>. Podemos ajustar cualquier expresión entre paréntesis y se evaluará antes de evaluar la expresión como un todo.</p>
+</li>
+</ul>
+<h2 id="bucles-for" tabindex="-1">Bucles <em><strong>for</strong></em> <a class="anchor-link" href="#bucles-for"></a></h2>
+<p>La mayoría del software se ejecuta en bucles, evaluando expresiones una y otra vez hasta que devuelve lo que estamos buscando o se detiene después de cierto tiempo. Javascript tiene dos expresiones de bucle incorporadas y hoy veremos la primera, el bucle “for”.</p>
+<p>Los bucles <code>for</code> tienen una sintaxis única, similar a la instrucción <code>if</code>, pero un poco más compleja. Primero tenemos la palabra clave <code>for</code>, seguida de paréntesis y luego abrir y cerrar llaves. Dentro de los paréntesis necesitaremos tres cosas. Primero, debemos declarar una variable, esto es sobre lo que se repetirá el bucle. Entonces tendremos una expresión condicional, el ciclo continuará sucediendo hasta que esta declaración sea <code>false</code>. Tercero, incrementaremos nuestra variable. Las tres declaraciones están separadas por un punto y coma.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span><br><span class="token comment">// | Declaramos una variable | Expresión condcicional | Incrementamos la variable |</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>En este ejemplo, vemos que inicialmente establecemos nuestra variable <code>i</code> en 0, el ciclo se ejecutará y cada vez que llegue al final, aumentará el contador en uno. El bucle <code>for</code> evaluará la expresión condicional. Si es <code>true</code>, se ejecutará nuevamente, si es <code>false</code> dejará de funcionar.</p>
+<h3 id="el-operador-%2B%2B" tabindex="-1">El operador ++ <a class="anchor-link" href="#el-operador-%2B%2B"></a></h3>
+<p>Vimos en el último ejemplo el operador <code>++</code>. Esta es la abreviatura de Javascript para “Establecer el valor de la variable a su valor actual más uno”. Hay algunas más de estas expresiones abreviadas de matemática / asignación variable, las visitaremos en las próximas lecciones.</p>
+<h3 id="bucles-infinitos" tabindex="-1">Bucles infinitos <a class="anchor-link" href="#bucles-infinitos"></a></h3>
+<p>Es posible que un bucle se atasque en lo que llamamos un “bucle infinito”. Debes asegurarte de que haya una forma de finalizar el bucle. Ejemplo de un bucle infinito:</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Debido a que nuestra expresión condicional SIEMPRE será <code>true</code> (<code>i</code> nunca será menor que 0), este ciclo se ejecutará esencialmente para siempre. Esto interrumpirá su programa y puede bloquear su navegador web o computadora.</p>
+<h2 id="arguments" tabindex="-1">Arguments <a class="anchor-link" href="#arguments"></a></h2>
+<p>Como vimos anteriormente, las funciones son objetos invocables, y podemos hacerlo pasándoles argumentos que varíen el comportamiento de estas.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> <span class="token keyword">function</span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token parameter">str</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><br><span class="token operator">></span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hola!'</span><span class="token punctuation">)</span><br><span class="token operator">&lt;</span> <span class="token string">'hola!'</span></code></pre>
+<p>Si sabemos las variables a tomar, como en el ejemplo <code>str</code>, podemos darle nombre a este parámetro. Sino hay una propiedad <strong>arguments</strong> , propia de todas las funciones, que contiene los parámetros pasados como argumento.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> <span class="token keyword">function</span> <span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><br><span class="token operator">></span> <span class="token function">args</span><span class="token punctuation">(</span><span class="token string">'hola!'</span><span class="token punctuation">,</span> <span class="token string">'otro parametro'</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><br><span class="token operator">&lt;</span> <span class="token punctuation">[</span><span class="token string">"hola!"</span><span class="token punctuation">,</span> <span class="token string">"otro parametro"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token literal-property property">callee</span><span class="token operator">:</span> <span class="token string">'function'</span><span class="token punctuation">,</span> <span class="token function">Symbol</span><span class="token punctuation">(</span>Symbol<span class="token punctuation">.</span>iterator<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token string">'function'</span><span class="token punctuation">]</span></code></pre>
+<p><em>arguments</em> nos da acceso a la <strong>n</strong> cantidad como parámetros, pero tengamos en cuenta que <strong>no es un Arreglo</strong>.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> <span class="token keyword">function</span> <span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><br><br><span class="token operator">></span> <span class="token function">args</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><br><span class="token operator">&lt;</span> <span class="token boolean">false</span></code></pre>
+<p>Si queremos saber cuantos parámetros puede recibir una función podemos usar la propiedad <code>length</code>.</p>
+<pre class="language-javascript"><code class="hljs language-javascript"><span class="token operator">></span> args<span class="token punctuation">.</span>length<br><span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token comment">// porque en la función `args` definimos 0 parámetros</span></code></pre>
+<h2 id="la-mejor-herramienta-del-programador" tabindex="-1">La mejor herramienta del programador <a class="anchor-link" href="#la-mejor-herramienta-del-programador"></a></h2>
+<p>Día a día nos encontramos con diversos problemas y, como sabemos, cada problema puede tener distintas soluciones. Una buena forma para adquirir las herramientas que nos permitan resolverlos y aprender su correcto uso es leer documentación oficial o “respaldada”. Para ello, nuestro mejor amigo es Google!</p>
+<p>En el homework de este módulo nos vamos a encontrar con dos temas que no están explicados en este readme: switch y do while.<br>
+Te invitamos a buscar en Google información de estos conceptos para poder desarrollar la homework. A continuación, algunos tips de búsqueda.</p>
+<ul>
+<li>
+<p>Recomendado buscar en inglés: ¡Aparecen mejores y mayor cantidad de resultados! Ej: “switch statement javascript”.</p>
+</li>
+<li>
+<p>Recordemos aclarar el lenguaje en el que estamos buscando el tema, como en el ejemplo de arriba donde aclaramos javascript, ya que un mismo tema puede existir en distintos lenguajes de programación y funcionar de manera distinta en cada uno de ellos.</p>
+</li>
+<li>
+<p>Uno de los primeros resultados que vas a encontrar será MDN (Mozilla Developer Network): es una web muy completa que incluye tanto documentación como ejemplos.</p>
+  <summary>Spoiler, resultado de búsqueda en Google!</summary>
+  <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/switch">MDN : Switch</a>
+  <br>
+  <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/do...while">MDN : Do While</a>
+</li>
+</ul>
+<h2 id="recursos-adicionales" tabindex="-1">Recursos adicionales <a class="anchor-link" href="#recursos-adicionales"></a></h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators">MDN: Comparison Operators</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else">MDN: Control Flow</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators">MDN: Logical Operators</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for">MDN: for Loops</a></li>
+</ul>
+<h2 id="homework" tabindex="-1">Homework <a class="anchor-link" href="#homework"></a></h2>
+<p>Abre la carpeta “homework” y completa la tarea descripta en el archivo <a href="./homework">README</a></p>
+<hr>
+<h4 id="si-tienes-dudas-sobre-este-tema%2C-puedes-consultarlas-en-el-canal-03_js-ii-de-slack" tabindex="-1">Si tienes dudas sobre este tema, puedes consultarlas en el canal <em><strong>03_js-ii</strong></em> de Slack <a class="anchor-link" href="#si-tienes-dudas-sobre-este-tema%2C-puedes-consultarlas-en-el-canal-03_js-ii-de-slack"></a></h4>
+
+        </div>
+
+      </main>
+
+      
+
+      <div class="footerContainer">
+        <div class="footerContained">
+          <p>Material de estudio personal</p>
+        </div>
+      </div>
+
+      <div class="readerBarDiv">
+        
+  <!-- up button -->
+  <div>
+    <button
+      id="upBtn"
+      style="position:fixed; width:32px; height:32px; border-radius:50%; border:none; background-color:black; right:20px; bottom:55px; color:white; z-index:999; focus:outline-none; cursor:pointer; transition-duration:500ms; opacity:0; pointer-events:none;"
+    ><i class="arrow up"></i></button>
+  </div>
+  
+  <style>
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  </style>
+
+  <script>
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      upBtn.style.opacity = 1;
+      upBtn.style.pointerEvents = 'auto';     
+    }
+    else {
+      upBtn.style.opacity = 0;
+      upBtn.style.pointerEvents = 'none';
+    }
+  })
+
+  upBtn.addEventListener('click', () => {
+    let start = document.querySelector('.reader-bar-start')
+    start.scrollIntoView({behavior: "smooth"})
+  })
+  </script>
+
+  <!-- reader bar -->
+  <div id="readerBarContainer" style="height:3px;width:100%;background-color:black;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;">
+    <div id="readerBar" style="height:3px;width:0;background-color:#2E4F8F;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;"></div>
+  </div>
+
+  <script>
+    let winH = window.innerHeight;
+    const content = document.querySelector('.reader-bar-start');
+
+    let contentH = content.offsetHeight;
+    let contentS = contentH - winH;
+    let readerBar = document.getElementById('readerBar');
+    window.addEventListener('load', () => {
+      document.addEventListener ('scroll', updateBar);
+    })
+    window.addEventListener('resize', redefine)
+
+    function redefine() {
+      winH = window.innerHeight;
+      contentH = content.offsetHeight;
+      contentS = contentH - winH;
+      updateBar();
+    }
+
+    function updateBar() {
+      const pagePos = window.scrollY; 
+      const updatedBar = pagePos * 100 / contentS;
+      readerBar.style.width = updatedBar + "%";
+    }
+  </script>
+  
+      </div>
+
+    </body>
+  </html>

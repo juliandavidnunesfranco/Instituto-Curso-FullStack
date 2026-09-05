@@ -1,0 +1,1353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2c38f3d850.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>CSS | Curso Introductorio</title>
+    
+
+    
+
+    <style>
+      
+    @font-face {
+  font-family: "Avenir-Book";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Book-01-995b34ab56b423abffe48e64bf8b8df1.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Medium-09-7d635ea94b4460e86cd678e9e754a643.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Roman";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Roman-12-c6d37b26297461a78d10f169dd5cf46d.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Light-07-33f6570a328d84cb7d06e829a0c7ca1b.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url(https://henry-social-resources.s3.sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Heavy-05-ff80b6894f8375c59a197caa24aac91c.ttf);
+}
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url(https://henry-social-resources.s3-sa-east-1.amazonaws.com/fonts/Avenir/Avenir-Black-03-968e784956ff9b6a05c29cc3be18cad0.ttf);
+}
+
+    .headerContainer {
+    /* border: 2px dashed orange; */
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 68px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .headerContained {
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+    font-family: "Avenir-Roman";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    padding: 0 30px 0 30px;
+    z-index: 1000;
+    color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .headerContained .lessonTitle {
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+    color: #ffffff;
+  }
+    * {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    /* border: 2px dashed; */
+    margin: auto;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+  }
+  
+  main {
+    /* border: 2px dashed red; */
+    max-width: 1500px;
+    margin-top: 68px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback {
+    position: fixed;
+    background: #ffff01;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 8px;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1200;
+  }
+  
+  .feedback a {
+    font-family: "Avenir-Black";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 24px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+  }
+    .topnav {
+  /* border: 2px dashed blue; */
+  display: flex;
+  justify-items: end;
+  justify-content: flex-end;
+  padding-top: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.topnav .activeLink {
+  color: black;
+  border-bottom: 3px solid black;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: 'Avenir-Medium';
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.topnav a {
+  font-family: 'Avenir-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+    .sidebar {
+    /* border: 2px dashed blue; */
+    position: fixed;
+    width: 240px;
+    margin-left: 8px;
+    padding-top: 75px;
+  }
+  
+  .sidebar .tocTitle {
+    font-family: "Avenir-Black";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 25px;
+    display: flex;
+    color: #000000;
+    padding-left: 2px;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+  }
+  
+  .sidebar .tocBox {
+    /* border: 2px dashed; */
+    display: flex;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    font-family: "Avenir-Heavy";
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .sidebar a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: rgb(88, 80, 80);
+  }
+  
+  .sidebar a:active {
+    color: rgb(255, 238, 0);
+  }
+  
+  .sidebar ul {
+    /* border: 2px dashed; */
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  
+  .sidebar li li {
+    font-family: "Avenir-Roman";
+    font-weight: normal;
+    font-size: 16px;
+    font-display: swap;
+    line-height: 28px;
+  }
+    .lesson {
+    /* border: 2px dashed green; */
+    font-family: 'Avenir-Roman';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: justify;
+    padding: 0 2rem 4rem 300px;
+    width: 100%;
+    max-width: 98vw;
+    margin-top: 60px;
+  }
+  
+  .lesson .hide {
+    display: none;
+  }
+  
+  .lesson :target:before {
+    content: '';
+    display: block;
+    height: 85px;
+  }
+  
+  .lesson img[alt~='HenryLogo'] {
+    display: none;
+  }
+  
+  .lesson h1 {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #2e2e2e;
+  
+    border-bottom-style: solid;
+    border-bottom-width: 25px;
+    border-bottom-color: #ffff01;
+  
+    height: 64px;
+    margin: 0px 0 50px 0;
+  }
+  
+  .lesson h1 + h4 {
+    margin: -40px 0 3rem 0;
+    font-family: 'Avenir-Black';
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+  }
+  
+  .lesson h1 + h2 {
+    margin-top: 0;
+  }
+  
+  .lesson h2 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 32px;
+    font-display: swap;
+    line-height: 32px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h2#homework {
+    display: inline-block;
+    font-family: 'Avenir-Black';
+    font-size: 48px;
+    font-display: swap;
+    line-height: 66px;
+    color: #1fa32a;
+  }
+  
+  .lesson h3 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 24px;
+    font-display: swap;
+    line-height: 24px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson h4 {
+    font-family: 'Avenir-Black';
+    font-weight: 900;
+    font-size: 18px;
+    font-display: swap;
+    line-height: 18px;
+    text-align: left;
+    color: #2e2e2e;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lesson img {
+    width: auto;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson img[alt~='logo'] {
+    box-shadow: none;
+    width: 350px;
+  }
+  
+  .lesson img[alt~='no-box'] {
+    box-shadow: none;
+  }
+  
+  .lesson ul {
+    list-style: square;
+  }
+  
+  .lesson li {
+    font-family: 'Avenir-Heavy';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 22px;
+  }
+  
+  .lesson a {
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+  }
+  
+  .lesson .iframeContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  .lesson .sandboxContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+  .lesson iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lesson table {
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    text-align: center !important;
+  }
+  
+  .lesson th {
+    background-color: rgb(170, 170, 170);
+    padding: 8px;
+    text-align: center !important;
+  }
+  
+  .lesson thead {
+    text-align: center !important;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+  
+  .lesson td {
+    padding: 5px;
+    text-align: center !important;
+  }
+  
+  tr + td {
+    border-right: 1px solid gray !important;
+  }
+  
+  .rightBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+    width: 97vw;
+    max-width: 1500px;
+    margin-top: 5rem;
+    /* margin-bottom: 1rem; */
+  }
+  
+  .homeworkBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .homeworkBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .homeworkBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: green;
+  }
+  
+  .quizzBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-top: none;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  .quizzBox:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  
+  .quizzBox a {
+    text-decoration: none;
+    font-family: 'Avenir-Black';
+    font-size: 16px;
+    font-display: swap;
+    line-height: 119.6%;
+    color: rgb(128, 79, 0);
+  }
+  
+  .readingTime {
+    font-family: 'Avenir-Book';
+    font-size: 14px;
+    font-display: swap;
+    line-height: 119.6%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 160px;
+    height: 41px;
+    padding: 1.1rem;
+  }
+  
+  
+    code {
+  font-family: Monospace;
+  font-size: 15px;
+  line-height: 24px;
+  background-color: rgb(231, 231, 231);
+  padding: 2px 7px;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: none;
+  padding: 0;
+  border-radius: 0.2rem;
+  color: #d4d4d4;
+  font-weight: normal;
+  font-size: 14px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  margin: auto;
+  width: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background: #264f78;
+}
+
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  overflow: auto;
+  background: #2e2e2e;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #db4c69;
+  background: #1e1e1e;
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: #569cd6;
+}
+
+.token.doctype .token.name {
+  color: #9cdcfe;
+}
+
+.token.comment,
+.token.prolog {
+  color: #6a9955;
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: #ce9178;
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: #d4d4d4;
+}
+
+.token.operator.arrow {
+  color: #569cd6;
+}
+
+.token.atrule {
+  color: #ce9178;
+}
+
+.token.atrule .token.rule {
+  color: #c586c0;
+}
+
+.token.atrule .token.url {
+  color: #9cdcfe;
+}
+
+.token.atrule .token.url .token.function {
+  color: #dcdcaa;
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: #c586c0;
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: #dcdcaa;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.important {
+  color: #569cd6;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: #9cdcfe;
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: #4ec9b0;
+}
+
+.token.console {
+  color: #9cdcfe;
+}
+
+.token.parameter {
+  color: #9cdcfe;
+}
+
+.token.interpolation {
+  color: #9cdcfe;
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: #569cd6;
+}
+
+.token.boolean {
+  color: #569cd6;
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #d7ba7d;
+}
+
+.token.escape {
+  color: #d7ba7d;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.tag .token.punctuation {
+  color: #808080;
+}
+
+.token.cdata {
+  color: #808080;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: #ce9178;
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: #d4d4d4;
+}
+
+.token.entity {
+  color: #569cd6;
+}
+
+.token.namespace {
+  color: #4ec9b0;
+}
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: #9cdcfe;
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: #ce9178;
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: #d4d4d4;
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html .token.punctuation {
+  color: #808080;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+    div.footerContainer {
+  /* border: 2px dashed blue; */
+  background-color: #000000;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  z-index: 20;
+}
+
+div.footerContained {
+  /* border: 2px dashed red; */
+  display: flex;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  position: absolute;
+  font-family: "Avenir-Black";
+  font-size: 18px;
+  line-height: 33px;
+  width: 100%;
+  max-width: 1500px;
+  z-index: 20;
+}
+
+div.footerContained p {
+  margin-bottom: 0;
+}
+
+    .headerResponsive {
+  position: fixed;
+  display: none;
+  width: 100%;
+  color: white;
+  align-items: center;
+  background: #000000;
+  min-height: 48px;
+  height: 40px;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerResponsive .leftContent {
+  display: flex;
+  padding-left: 12px;
+  justify-content: space-between;
+  margin-right: 60px;
+}
+
+.headerResponsive .menuDiv {
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+.headerResponsive .menuDiv a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background: #000000;
+  width: 100%;
+}
+
+.headerResponsive input[type='checkbox'],
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  position: absolute;
+  box-sizing: border-box;
+  right: 3px;
+  top: 7px;
+  width: 48px;
+  height: 48px;
+}
+
+.headerResponsive .menuDiv ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.headerResponsive .menuDiv li {
+  border-bottom: 1px solid gray;
+}
+
+.headerResponsive .menuDiv a {
+  text-align: center;
+}
+
+.headerResponsive .fa-bars,
+.headerResponsive .fa-times {
+  font-size: 32px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.headerResponsive .menuDiv input[type='checkbox'] {
+  opacity: 0;
+}
+
+.headerResponsive .menuDiv nav {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:checked ~ nav {
+  display: block;
+}
+
+.headerResponsive .menuDiv input:checked ~ .fa-bars {
+  display: none;
+}
+
+.headerResponsive .menuDiv input:not(:checked) ~ .fa-times {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topnav ul {
+    display: none;
+  }
+
+  .headerContainer {
+    display: none;
+    height: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+  }
+
+  .lesson {
+    padding-left: 8px;
+    padding-right: 8px;
+    /* width: 100vw; */
+    max-width: 100vw;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .rightBox {
+    position: relative;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-left: 8px;
+    justify-content: left;
+  }
+
+  .quizzBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .homeworkBox {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .lesson img {
+    max-width: 95vw;
+  }
+
+  .lesson ul {
+    padding-left: 15px;
+  }
+
+  /* .lesson .readingTime {
+    margin-top: 25px;
+    margin-bottom: -20px;
+  } */
+
+  .readerBarDiv {
+    display: none;
+  }
+
+  .feedback {
+    z-index: 10;
+  }
+
+  .headerResponsive {
+    display: block;
+  }
+
+  .headerResponsive .leftContent {
+    padding-top: 12px;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .lesson h1 {
+    font-size: 32px;
+  }
+
+  .lesson h1 + h4 {
+    font-size: 24px;
+  }
+
+  .lesson h2 {
+    font-size: 24px;
+  }
+}
+
+    
+    .headerContainer,
+    .headerContained,
+    .footerContainer,
+    .headerResponsive,
+    .headerResponsive .menuDiv a {
+      background-color: #2E4F8F;
+    }
+
+    .lesson h1 {
+      border-bottom-color: #2E4F8F;
+    }
+
+    .sidebar a:active {
+      color: #2E4F8F;
+    }
+
+    .topnav .activeLink {
+      color: #2E4F8F;
+      border-bottom: 3px solid #2E4F8F;
+    }
+
+    .brandLogo {
+      height: 32px;
+      width: auto;
+    }
+
+    .headerResponsive .brandLogo {
+      height: 22px;
+      margin-right: 10px;
+    }
+  
+    
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reader-bar-start">
+
+      <div class="headerResponsive">
+        <div class="leftContent">
+          <a href="/" title="Volver al índice del curso"><img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio"></a>
+          <span>CSS</span>
+        </div>
+        <div class="menuDiv">
+          <input type="checkbox">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times"></i>
+          <nav>
+            <ul><li><a href="/lecciones/introductorio/">Intro</a></li>
+<li><a href="/lecciones/introductorio/Primeros_Pasos/">Primeros Pasos</a></li>
+<li><a href="/lecciones/introductorio/Git/">Git</a></li>
+<li><a href="/lecciones/introductorio/Git_y_GitHub/">Git y GitHub</a></li>
+<li><a href="/lecciones/introductorio/Conceptos/">Conceptos</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_I/">JS I</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_II/">JS II</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_III/">JS III</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_IV/">JS IV</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_V/">JS V</a></li>
+<li><a href="/lecciones/introductorio/JavaScript_VI/">JS VI</a></li>
+<li><a href="/lecciones/introductorio/HTML/">HTML</a></li>
+<li><a href="/lecciones/introductorio/CSS/">CSS</a></li>
+<li><a href="/lecciones/introductorio/Glosario/">Glosario</a></li></ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="headerContainer">
+        <div class="headerContained">
+          <a href="/" title="Volver al índice del curso"><img class="brandLogo" src="/lecciones/introductorio/_src/assets/logo.png" alt="Curso Introductorio"></a>
+          <div>
+            <span class="lessonTitle">CSS</span> | <span>Curso Introductorio</span>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="topnav" id='myTopnav' >
+          
+          <ul class="nav">
+      
+      <li class="link">
+        <a href="/lecciones/introductorio/" class="nav-link" role="menuitem">Intro</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Primeros_Pasos/" class="nav-link" role="menuitem">Primeros Pasos</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Git/" class="nav-link" role="menuitem">Git</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Git_y_GitHub/" class="nav-link" role="menuitem">Git y GitHub</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Conceptos/" class="nav-link" role="menuitem">Conceptos</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_I/" class="nav-link" role="menuitem">JS I</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_II/" class="nav-link" role="menuitem">JS II</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_III/" class="nav-link" role="menuitem">JS III</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_IV/" class="nav-link" role="menuitem">JS IV</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_V/" class="nav-link" role="menuitem">JS V</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/JavaScript_VI/" class="nav-link" role="menuitem">JS VI</a>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/HTML/" class="nav-link" role="menuitem">HTML</a>
+      </li>
+<li class="link">
+        <span class="nav-link activeLink" tabindex="-1" aria-current="true">CSS</span>
+      </li>
+<li class="link">
+        <a href="/lecciones/introductorio/Glosario/" class="nav-link" role="menuitem">Glosario</a>
+      </li>
+    </ul>
+        </div>
+
+        <div class='sidebar'>
+          <div class="tocTitle">
+            Contenido de la clase
+            </div>
+          <div class="tocBox">
+            
+            <nav class="toc" >
+        <ul><li><a href="#introducci%C3%B3n-al-posicionamiento">Introducción al posicionamiento </a><ul><li><a href="#la-propiedad-display">La propiedad display </a></li><li><a href="#la-propiedad-position">La propiedad position </a></li><li><a href="#propiedades-de-posici%C3%B3n">Propiedades de posición </a></li></ul></li><li><a href="#introducci%C3%B3n-a-flexbox">Introducción a Flexbox </a><ul><li><a href="#display%3A-flex-e-inline-flex">display: flex e inline-flex </a></li><li><a href="#justify-content-y-align-items">justify-content y align-items </a></li><li><a href="#flex-direction">flex-direction </a></li><li><a href="#align-self">align-self </a></li></ul></li><li><a href="#recursos-adicionales">Recursos adicionales </a></li><li><a href="#homework">Homework </a></li></ul>
+      </nav>
+          </div>
+        </div>
+
+        <div class='rightBox'>
+          <div class="readingTime">
+                    Tiempo de lectura 13 min
+          </div>
+
+          
+        </div>
+
+        <div class='lesson'>
+          
+          <h1 id="css-intermedio" tabindex="-1">CSS Intermedio <a class="anchor-link" href="#css-intermedio"></a></h1>
+<p>En esta lección cubriremos:</p>
+<ul>
+<li>Introducción al posicionamiento.</li>
+<li>Propiedad “display”.</li>
+<li>Propiedad “position”.</li>
+<li>Usar “position” para posicionar elementos.</li>
+<li>Introducción a Flexbox.</li>
+<li>Recursos adicionales.</li>
+</ul>
+<!--
+<div class="iframeContainer">
+<iframe src="https://player.vimeo.com/video/425169846?h=e525f529ea&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1282" height="720" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Prep-Lesson03-CSS"></iframe>
+</div>
+-->
+<h2 id="introducci%C3%B3n-al-posicionamiento" tabindex="-1">Introducción al posicionamiento <a class="anchor-link" href="#introducci%C3%B3n-al-posicionamiento"></a></h2>
+<p>Armar un layout y hacer que todo se vea limpio es lo que la mayoría de gente espera hacer cuando empiezan a aprender CSS. Posicionar elementos HTML en la página con CSS es posiblemente la habilidad más poderosa que tiene CSS, aunque también puede ser la más <strong>frustrante</strong>. En esta lección aprenderemos distintas formas de posicionar elementos en la página.</p>
+<h3 id="la-propiedad-display" tabindex="-1">La propiedad <em><strong>display</strong></em> <a class="anchor-link" href="#la-propiedad-display"></a></h3>
+<p>Esta propiedad es una de las más importante de posicionamiento en CSS. Podemos usarla para controlar cómo se muestra el contenido en relación a los elementos alrededor de este, y cómo se comportan en la pantalla.</p>
+<pre class="language-css"><code class="hljs language-css"><span class="token selector">div</span> <span class="token punctuation">{</span><br>  <span class="token property">display</span><span class="token punctuation">:</span> &lt;valor de la propiedad><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Hay dos tipos de elementos “display” ya incluidos en HTML; “block” e “inline”,</p>
+<h4 id="elementos-block" tabindex="-1">Elementos <em><strong>block</strong></em> <a class="anchor-link" href="#elementos-block"></a></h4>
+<p>Un elemento “block” siempre arrancará en una nueva línea, y siempre tomará el ancho máximo del contenedor en el cual se encuentre. ¿Recuerdas que en la lección anterior aprendimos que el elemento <code>&lt;p&gt;</code> siempre empieza en una nueva línea? Es porque es un elemento “block”, como también lo son los <code>div</code> y los <code>&lt;h1-6&gt;</code>.</p>
+<h4 id="elementos-inline" tabindex="-1">Elementos <em><strong>inline</strong></em> <a class="anchor-link" href="#elementos-inline"></a></h4>
+<p>Los elementos “inline” son opuestos a los “block”, dado que no comenzarán en una nueva linea y sólo tomarán el espacio suficiente que necesiten para mostrar la información dentro del mismo. Los elementos <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code> e <code>&lt;img&gt;</code> son inline.</p>
+<p>Podemos controlar cómo un elemento se comporta usando la propiedad “display”. Si queremos que un elemento “inline” actúe como uno “block”, le definimos:</p>
+<pre class="language-css"><code class="hljs language-css"><span class="token selector">div</span> <span class="token punctuation">{</span><br>  <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Y vice-versa.</p>
+<h4 id="none" tabindex="-1"><em><strong>none</strong></em> <a class="anchor-link" href="#none"></a></h4>
+<p>Definir como valor “none” hará que el elemento desaparezca completamente. No debe ser confundido con la regla <code>visibility: hidden;</code> dado que esta hace que el elemento sea invisible pero no lo elimina de la página (el espacio continuará ocupado por <em>algo</em>). Si un elemento está definido como <code>display: none;</code> no habrá signos de él en la página.</p>
+<h4 id="flex" tabindex="-1"><em><strong>flex</strong></em> <a class="anchor-link" href="#flex"></a></h4>
+<p>Flex es una nueva herramienta que nos ofrece CSS3, la cual nos da la habilidad de controlar en qué parte de la página queremos que estén nuestros items. Hablaremos sobre ella más adelante en esta lección.</p>
+<h4 id="grid" tabindex="-1"><em><strong>grid</strong></em> <a class="anchor-link" href="#grid"></a></h4>
+<p>Esta es una característica de CSS3 que nos permitirá crear sistemas de grillas dentro de un elemento.</p>
+<h3 id="la-propiedad-position" tabindex="-1">La propiedad <em><strong>position</strong></em> <a class="anchor-link" href="#la-propiedad-position"></a></h3>
+<p>Esta propiedad especificará qué tipo de método de posicionamiento usará un elemento HTML. Hay 5 métodos diferentes disponibles (aquí veremos 4 de ellos).</p>
+<pre class="language-css"><code class="hljs language-css"><span class="token selector">div</span> <span class="token punctuation">{</span><br>  <span class="token property">position</span><span class="token punctuation">:</span> &lt;valor de la propiedad><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h4 id="static" tabindex="-1"><em><strong>static</strong></em> <a class="anchor-link" href="#static"></a></h4>
+<p>Este es el posicionamiento por defecto de un elemento, definir un elemento como “estático” no afectará al comportamiento del mismo de ninguna manera.</p>
+<h4 id="relative" tabindex="-1"><em><strong>relative</strong></em> <a class="anchor-link" href="#relative"></a></h4>
+<p>Usar este valor mantendrá el elemento posicionado como si fuese estático, pero nos permitirá usar otros métodos de posicionamiento de elementos que veremos enseguida.</p>
+<h4 id="fixed" tabindex="-1"><em><strong>fixed</strong></em> <a class="anchor-link" href="#fixed"></a></h4>
+<p>Definir un elemento como “fijo” hará que éste quede fijo en un lugar de la pantalla, sin importar cuánto navegemos, “scroleemos” o movamos la pantalla, el elemento se quedará en ese lugar. Los casos de uso pueden ser un header o la barra de navegació de un sitio web.</p>
+<h4 id="absolute" tabindex="-1"><em><strong>absolute</strong></em> <a class="anchor-link" href="#absolute"></a></h4>
+<p>“absolute” es muy parecido a “fixed”, excepto que el elemento quedará anclado de forma relativa al elemento <em>parent</em> (siempre que el elemento padre tenga alguna posición definida, excepto “static”).</p>
+<h3 id="propiedades-de-posici%C3%B3n" tabindex="-1">Propiedades de posición <a class="anchor-link" href="#propiedades-de-posici%C3%B3n"></a></h3>
+<p>Ahora que hemos definido nuestros métodos de posicionamiento al estilo que queremos usar, podemos arrancar a posicionar nuestro elemento. (Nota: esto funciona para cada método de posición que no sea “static”, dado que no afecta al elemento de ninguna forma).</p>
+<h4 id="top%2C-left%2C-right-y-bottom" tabindex="-1"><em><strong>top</strong></em>, <em><strong>left</strong></em>, <em><strong>right</strong></em> y <em><strong>bottom</strong></em> <a class="anchor-link" href="#top%2C-left%2C-right-y-bottom"></a></h4>
+<p>Después de haber definido nuestro método de posicionamiento, podemos usar las propiedades “top”, “left”, “right” y “bottom” para acomodar nuestro elemento. El valor que le des a cada uno determinará qué tan lejos del borde quedará nuestro elemento. Por ejemplo, si queremos que nuestro elemento esté en la esquina superior izquierda (con una posición fija), podemos usar lo siguiente:</p>
+<pre class="language-css"><code class="hljs language-css"><span class="token selector">div</span> <span class="token punctuation">{</span><br>  <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span><br>  <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span><br>  <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Si lo quisiésemos 10 píxeles debajo del límite superior y 10 píxeles del borde derecho:</p>
+<pre class="language-css"><code class="hljs language-css"><span class="token selector">div</span> <span class="token punctuation">{</span><br>  <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span><br>  <span class="token property">top</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span><br>  <span class="token property">right</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="introducci%C3%B3n-a-flexbox" tabindex="-1">Introducción a Flexbox <a class="anchor-link" href="#introducci%C3%B3n-a-flexbox"></a></h2>
+<p>Introducido en CSS3, Flexbos es una nueva e interesante característica. La misma nos permite posicionar nuestros elementos en relación a su <em>parent</em> y entre ellos. Ya no necesitamos aplicar “hacks” para cosas como centrar elementos. Esto nos permite que el diseño “mobile-friendly” sea excelente y nos hace dedicar menos tiempo tratando de posicionar elementos como corresponde. Flexbox se puede complicar muy rápido, pero veremos los aspectos básicos a continuación.</p>
+<h3 id="display%3A-flex-e-inline-flex" tabindex="-1"><em><strong>display: flex</strong></em> e <em><strong>inline-flex</strong></em> <a class="anchor-link" href="#display%3A-flex-e-inline-flex"></a></h3>
+<p>Como mencionamos anteriormente en la sección de la propiedad “display”, uno de los valores puede ser “flex”, esto hace que cualquier contenedor sea un “flex block”. También podemos usar “inline-flex” para hacer que el elemento sea “flex” e “inline”, aunque para la mayor parte del tiempo, usaremos simplemente “flex”.</p>
+<h3 id="justify-content-y-align-items" tabindex="-1"><em><strong>justify-content</strong></em> y <em><strong>align-items</strong></em> <a class="anchor-link" href="#justify-content-y-align-items"></a></h3>
+<p>Ahora que nuestro contenedor (elemento) es “flex”, podemos imaginarlo como una grilla con columnas que van de izquierdo a derecha y filas que van de arriba a abajo. Podemos usar las propiedades “justify-content” y “align-items” para decirle al contenedor dónde queremos que estén los elementos en la grilla. En principio, “justify-content” aplicará al movimiento de izquierda a derecha (fila), y “align-items” lo hará de arriba a abajo (columna). Tenemos unas reglas que debemos aplicar a cada una de estas reglas:</p>
+<ul>
+<li><code>center</code>: centrará el elemento (o grupo de elementos) a lo largo de un eje en el que aplica esta regla.</li>
+<li><code>flex-start</code>: Este es el valor por defecto de cada “flex box”, mostrará todos los elementos en un grupo al comienzo de una fila o columna.</li>
+<li><code>flex-end</code>: es lo opuesto a <code>flex-start</code>, mostrará los elementos al final de un grupo al comienzo de una fila o columna.</li>
+<li><code>space-between</code>: Esta regla espaciará uniformemente el elemento o los elementos a lo largo de la fila o columna. El primer elemento estará como <code>flex-start</code> y el último como <code>flex-end</code>.</li>
+<li><code>space-around</code>: Similar a <code>space-between</code>, pero  aplicará márgenes igualitarios entre cada elemento, por lo que ningún elemento estara directamente sobre el borde del contenedor.</li>
+</ul>
+<p>Ejemplo: si quisiésemos nuestros elementos centrados en el medio exacto de un “flex box”, usaríamos lo siguiente:</p>
+<pre class="language-css"><code class="hljs language-css"><span class="token selector">div</span> <span class="token punctuation">{</span><br>  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span><br>  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span><br>  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="flex-direction" tabindex="-1"><em><strong>flex-direction</strong></em> <a class="anchor-link" href="#flex-direction"></a></h3>
+<p>Esta propiedad puede cambiar cómo el navegador interpreta <code>justify-content</code> (JC) y <code>align-items</code> (AI). El valor por defecto es “row” (fila), y esto funciona en la mayoría de los casos, pero algunas veces queremos cambiar cómo funciona la dirección del contenido.</p>
+<ul>
+<li>
+<p><code>row</code>: es la dirección por defecto. JC aplica de izquierda a derecha, AI aplica de arriba a abajo.</p>
+</li>
+<li>
+<p><code>column</code>: Esto invertirá qué propiedad controla qué dirección. JC aplicará de arriba a abajo y AI de izquierda a derecha.</p>
+</li>
+<li>
+<p><code>row-reverse</code>: Sólo invierte la dirección de JC de derecha a izquierda, no afecta a AI.</p>
+</li>
+<li>
+<p><code>column-reverse</code>: Sólo invierte la dirección de AI de abajo a arriba, no afecta a JC.</p>
+</li>
+</ul>
+<h3 id="align-self" tabindex="-1"><em><strong>align-self</strong></em> <a class="anchor-link" href="#align-self"></a></h3>
+<p>Por último, cubriremos una propiedad más avanzada llamada “align-self”. La misma será aplicada a un elemento dentro del “flex box” del cual queremos separar el control de <code>align-items</code>. Si le damos la propiedad <code>align-self</code>, podemos colocarla en cualquier lugar a lo largo del eje de elementos de alineación que queramos. (Nota: NO existe <code>justify-self</code>, esta es la razón principal por la que los desarrolladores cambiarán la dirección de “flex”).</p>
+<h2 id="recursos-adicionales" tabindex="-1">Recursos adicionales <a class="anchor-link" href="#recursos-adicionales"></a></h2>
+<ul>
+<li><a href="http://flexboxfroggy.com/">Flexbox Froggy</a> (un excelente tutorial sobre flexbox)</li>
+<li><a href="https://developer.mozilla.org/es/docs/Web/CSS/CSS_Flexible_Box_Layout/Conceptos_Basicos_de_Flexbox">Conceptos básicos de FlexBox</a></li>
+<li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS tricks: A Complete Guide to Flexbox</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes">MDN: Using CSS Flexible Boxes</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display">MDN: CSS display propery</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">MDN: CSS position property</a></li>
+</ul>
+<h2 id="homework" tabindex="-1">Homework <a class="anchor-link" href="#homework"></a></h2>
+<p>Abre una nueva ventana en el navegador y completa <a href="./homework">homework.html</a></p>
+<hr>
+<h4 id="si-tienes-dudas-sobre-este-tema%2C-puedes-consultarlas-en-el-canal-html-y-css-de-slack" tabindex="-1">Si tienes dudas sobre este tema, puedes consultarlas en el canal <em><strong>html-y-css</strong></em> de Slack <a class="anchor-link" href="#si-tienes-dudas-sobre-este-tema%2C-puedes-consultarlas-en-el-canal-html-y-css-de-slack"></a></h4>
+
+        </div>
+
+      </main>
+
+      
+
+      <div class="footerContainer">
+        <div class="footerContained">
+          <p>Material de estudio personal</p>
+        </div>
+      </div>
+
+      <div class="readerBarDiv">
+        
+  <!-- up button -->
+  <div>
+    <button
+      id="upBtn"
+      style="position:fixed; width:32px; height:32px; border-radius:50%; border:none; background-color:black; right:20px; bottom:55px; color:white; z-index:999; focus:outline-none; cursor:pointer; transition-duration:500ms; opacity:0; pointer-events:none;"
+    ><i class="arrow up"></i></button>
+  </div>
+  
+  <style>
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  </style>
+
+  <script>
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 250) {
+      upBtn.style.opacity = 1;
+      upBtn.style.pointerEvents = 'auto';     
+    }
+    else {
+      upBtn.style.opacity = 0;
+      upBtn.style.pointerEvents = 'none';
+    }
+  })
+
+  upBtn.addEventListener('click', () => {
+    let start = document.querySelector('.reader-bar-start')
+    start.scrollIntoView({behavior: "smooth"})
+  })
+  </script>
+
+  <!-- reader bar -->
+  <div id="readerBarContainer" style="height:3px;width:100%;background-color:black;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;">
+    <div id="readerBar" style="height:3px;width:0;background-color:#2E4F8F;position:fixed;top:66px;left:0;z-index:1099;transition:0.2s;"></div>
+  </div>
+
+  <script>
+    let winH = window.innerHeight;
+    const content = document.querySelector('.reader-bar-start');
+
+    let contentH = content.offsetHeight;
+    let contentS = contentH - winH;
+    let readerBar = document.getElementById('readerBar');
+    window.addEventListener('load', () => {
+      document.addEventListener ('scroll', updateBar);
+    })
+    window.addEventListener('resize', redefine)
+
+    function redefine() {
+      winH = window.innerHeight;
+      contentH = content.offsetHeight;
+      contentS = contentH - winH;
+      updateBar();
+    }
+
+    function updateBar() {
+      const pagePos = window.scrollY; 
+      const updatedBar = pagePos * 100 / contentS;
+      readerBar.style.width = updatedBar + "%";
+    }
+  </script>
+  
+      </div>
+
+    </body>
+  </html>

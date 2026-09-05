@@ -1,0 +1,33 @@
+/*
+  Tokens de la plataforma. Todo color, medida o radio que se repita vive
+  aqui: es el unico archivo que hay que tocar para recolorear el sitio.
+*/
+:root {
+  /* Azul institucional, el mismo de brand.js en el sitio de Eleventy */
+  --marca: #2e4f8f;
+  --marca-clara: #4a6fb5;
+
+  --fondo: #ffffff;
+  --fondo-sutil: #f7f8fa;
+  --texto: #1a1d21;
+  --texto-suave: #59616e;
+  --borde: #e2e6ec;
+
+  --alto-cabecera: 56px;
+  --ancho-contenedor: 1080px;
+  --radio: 6px;
+}
+
+/* Base de las pantallas propias de la plataforma */
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+h1 {
+  border-bottom: 3px solid var(--marca);
+  padding-bottom: 0.4rem;
+}
